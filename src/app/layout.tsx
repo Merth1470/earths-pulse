@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SkyBackdrop } from "@/components/layout/SkyBackdrop";
 import { PROJECT } from "@/config/project";
 
 import "./globals.css";
@@ -80,6 +81,7 @@ export default function RootLayout({
       lang="en"
     >
       <body>
+        <SkyBackdrop />
         <a className="skip-link" href="#main">
           Skip to main content
         </a>

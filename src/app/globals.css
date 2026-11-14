@@ -49,7 +49,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   font-family: var(--sans);
   font-size: 14px;
@@ -57,6 +57,58 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sky backdrop */
+
+.sky-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+.sky-backdrop-image {
+  object-fit: cover;
+  object-position: 50% 58%;
+  opacity: 0.92;
+  transform: translate3d(0, calc(var(--sky-shift, 0px) * -1), 0)
+    scale(calc(1.18 + var(--sky-zoom, 0)));
+  transform-origin: 50% 55%;
+  will-change: transform;
+  animation: sky-breathe 32s ease-in-out infinite;
+}
+
+/* A fixed scrim keeps running text legible without hiding the field. */
+.sky-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      120% 78% at 50% 0%,
+      rgba(8, 13, 22, 0.18) 0%,
+      rgba(8, 13, 22, 0.54) 58%,
+      rgba(8, 13, 22, 0.84) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 13, 22, 0.32) 0%,
+      rgba(8, 13, 22, 0.58) 42%,
+      rgba(8, 13, 22, 0.88) 100%
+    );
+}
+
+@keyframes sky-breathe {
+  0%,
+  100% {
+    opacity: 0.84;
+  }
+  50% {
+    opacity: 0.96;
+  }
 }
 
 ::selection {
@@ -169,7 +221,14 @@ section[id] {
 }
 
 .site-main {
+  position: relative;
+  z-index: 1;
   flex: 1;
+}
+
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* Header */
@@ -178,8 +237,10 @@ section[id] {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--bg);
+  background: rgba(8, 13, 22, 0.72);
   border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
 }
 
 .site-header-inner {
@@ -1650,6 +1711,7 @@ section[id] {
 
 .footer-credit {
   margin-left: auto;
+  text-wrap: balance;
 }
 
 .footer-credit a {
@@ -2100,6 +2162,11 @@ section[id] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .sky-backdrop-image {
+    animation: none;
+    transform: scale(1.18);
   }
 }
 
