@@ -12,30 +12,37 @@ const SIGNAL_STAGES: readonly SignalStage[] = [
   {
     code: "01",
     label: "Numerical field",
-    detail: "ECCO2 surface u, v, SST",
-    status: "Not connected",
-    tone: "blocked",
+    detail: "OSCAR surface u, v · NOAA OISST SST",
+    status: "Available",
+    tone: "available",
   },
   {
     code: "02",
-    label: "Normalize",
-    detail: "Physical units → verified [0, 1] range",
-    status: "Pending",
-    tone: "pending",
+    label: "Shared grid",
+    detail: "1.5° equirectangular · missing cells preserved",
+    status: "Available",
+    tone: "available",
   },
   {
     code: "03",
-    label: "Map",
-    detail: "Value → pitch, timbre, pan",
-    status: "Pending",
-    tone: "pending",
+    label: "Normalize",
+    detail: "Dataset percentile ranges → [0, 1]",
+    status: "Available",
+    tone: "available",
   },
   {
     code: "04",
-    label: "Audio graph",
-    detail: "Web Audio synthesis",
-    status: "Not implemented",
-    tone: "neutral",
+    label: "Map",
+    detail: "Temperature, speed, east and north components",
+    status: "Available",
+    tone: "available",
+  },
+  {
+    code: "05",
+    label: "Web Audio",
+    detail: "Three voices · compressor · deterministic graph",
+    status: "Available",
+    tone: "available",
   },
 ] as const;
 
@@ -53,7 +60,7 @@ export function SignalPath({ id = "signal-path-title", level = 2 }: SignalPathPr
         <Heading className="panel-title" id={id}>
           Signal path
         </Heading>
-        <span className="panel-count">04 stages</span>
+        <span className="panel-count">05 stages live</span>
       </div>
 
       <ol className="signal-path">
@@ -73,8 +80,9 @@ export function SignalPath({ id = "signal-path-title", level = 2 }: SignalPathPr
       </ol>
 
       <p className="panel-footnote">
-        The path stops at the field boundary. No scientific value reaches the
-        audio layer in this stage.
+        The path is live end to end. Missing cells stay silent rather than
+        becoming an invented value, and the same sample always produces the same
+        audio parameters.
       </p>
     </section>
   );

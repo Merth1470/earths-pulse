@@ -2,24 +2,27 @@ export const PROJECT = {
   name: "Earth's Pulse",
   tagline: "Listen to what you cannot see.",
   description:
-    "An interactive scientific sonification platform that translates NASA Earth observation and model data into sound. Stage 1 establishes the visual and scientific foundation.",
+    "An interactive scientific sonification instrument that translates global ocean surface currents and sea surface temperature into sound. Built from public OSCAR and NOAA OISST fields, with an explicit, reproducible mapping.",
   challenge: "NASA Space Apps Challenge",
   stage: {
-    number: "01",
-    label: "Visual foundation",
-    audioState: "Not implemented",
-    dataState: "Rendered visualization only",
+    number: "02",
+    label: "Ocean sonification",
+    audioState: "Web Audio engine",
+    dataState: "OSCAR + OISST, 2012 subset",
     validatedOn: "14 Nov 2026",
   },
   links: {
     nasaMediaGuidelines: "https://www.nasa.gov/nasa-brand-center/images-and-media/",
     eccoProducts: "https://ecco-group.org/products.htm",
     eccoDatasets: "https://ecco-group.org/datasets.htm",
+    oscar: "https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplOscar",
+    oisst: "https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg",
     spaceApps: "https://www.spaceappschallenge.org/",
   },
   nav: [
     { href: "/", label: "Explore" },
     { href: "/about", label: "About" },
+    { href: "/accessibility", label: "Accessibility" },
     { href: "/data-sources", label: "Data Sources" },
   ],
 } as const;

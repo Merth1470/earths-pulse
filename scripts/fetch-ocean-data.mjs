@@ -81,10 +81,6 @@ async function cachedCsv(url, cacheName) {
   return parseCsv(text);
 }
 
-async function fetchCsv(url) {
-  return parseCsv(await fetchText(url));
-}
-
 function parseCsv(text) {
   const lines = text.trim().split(/\r?\n/);
   const header = lines[0].split(",").map((h) => h.trim());

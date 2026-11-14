@@ -9,13 +9,14 @@ import { NASA_SVS_RECORD } from "@/lib/nasa/sources";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Why Earth's Pulse turns NASA Earth observations into sound, how the sonification pipeline is structured, and what Stage 1 does and does not implement.",
+    "Why Earth's Pulse turns ocean observations into sound, how the sampling and sonification pipeline works, what is real, and what remains a deliberate limitation.",
 };
 
 const contents = [
   { href: "#why-sound", label: "Why sound" },
   { href: "#pipeline", label: "From field to sound" },
-  { href: "#stage", label: "Stage 1 scope" },
+  { href: "#how", label: "How to listen" },
+  { href: "#scope", label: "What is real" },
   { href: "#access", label: "Access" },
   { href: "#credits", label: "Credits" },
 ];
@@ -26,8 +27,8 @@ export default function AboutPage() {
       <PageIntro
         aside={
           <>
-            <span>Stage 01</span>
-            <span>Visual foundation</span>
+            <span>Stage 02</span>
+            <span>Ocean sonification</span>
             <span>Validated {NASA_SVS_RECORD.validatedOn}</span>
           </>
         }
@@ -41,11 +42,12 @@ export default function AboutPage() {
             <p className="pull-line">Listen to what you cannot see.</p>
             <p className="prose">
               The first subject is global ocean circulation and sea surface
-              temperature, seen through NASA Scientific Visualization Studio
-              record 3912 and the ECCO2 ocean model behind it. The long-term
-              subject is larger: a platform where any verified Earth variable
-              can be explored through sound without losing the provenance that
-              makes it science.
+              temperature. The interactive field is built from public OSCAR
+              surface currents and NOAA OISST temperature, reduced to a
+              documented twelve-month subset. NASA Scientific Visualization
+              Studio record 3912 and its ECCO2 model remain the historical
+              reference that inspired the experience, but they are not the
+              numerical source for the sound.
             </p>
           </section>
 
@@ -53,24 +55,25 @@ export default function AboutPage() {
             <h2>Why sound</h2>
             <div className="prose">
               <p>
-                NASA&apos;s ocean visualization is extraordinarily dense. A
-                sighted visitor can see swirling filaments, but a blind visitor
-                receives nothing from it. Even with sight, a still image cannot
-                tell you the velocity of a current or the temperature under a
-                color. The visual carries pattern; it does not carry the numbers.
+                A global ocean visualization is extraordinarily dense. A sighted
+                visitor can see swirling filaments, but a blind visitor receives
+                nothing from the image. Even with sight, a still frame cannot
+                tell you how fast a current moves or how warm the water is under
+                a color.
               </p>
               <p>
-                Sonification adds a second interpretive channel. A verified
-                variable can drive pitch, timbre, amplitude, or stereo position,
-                letting a listener hear structure that the eye has to infer. That
-                is an interpretation of data, not a replacement for it, and not
-                background music.
+                Sonification adds a second interpretive channel. Temperature can
+                drive pitch, speed can drive rhythm, and direction can move
+                across the stereo field. The listener hears structure that the
+                eye has to infer, and the same values always produce the same
+                sound.
               </p>
               <p>
-                The mapping is therefore part of the science interface. Every
-                range will come from dataset metadata. Every parameter choice
-                will be named. If a field is unavailable, the interface says so
-                instead of producing a plausible sound.
+                The mapping is part of the science interface, not a hidden
+                aesthetic choice. It is printed in the rail, repeated in the
+                documentation, and derived from published data ranges. If a cell
+                is missing, the instrument is silent rather than inventing a
+                value.
               </p>
             </div>
             <p className="principle">
@@ -81,35 +84,79 @@ export default function AboutPage() {
           <section className="prose-section" id="pipeline">
             <h2>From field to sound</h2>
             <p className="prose">
-              The application separates acquisition, scientific processing,
-              visualization, and audio synthesis. Stage 1 implements the
-              contracts between them and stops honestly at the first missing
-              input: the numerical ECCO2 field.
+              Acquisition, reduction, normalization, mapping, and synthesis stay
+              separate. The browser receives a 1.75 MB subset, not a raw
+              scientific archive. Each stage below is live in this build.
             </p>
             <SignalPath id="about-signal-path" level={3} />
+            <div className="prose">
+              <p>
+                OSCAR provides the zonal and meridional surface velocity
+                components. NOAA OISST provides sea surface temperature. The
+                fetch script selects one representative composite per month,
+                resamples both onto a shared 1.5° grid, and leaves coastal or
+                ice-covered gaps missing.
+              </p>
+              <p>
+                The audio layer never sees a rendered pixel. It receives
+                numerical samples in physical units, normalizes them with ranges
+                computed from the bundled dataset, and maps them to a small Web
+                Audio graph with a compressor.
+              </p>
+            </div>
           </section>
 
-          <section className="prose-section" id="stage">
-            <h2>What Stage 1 is</h2>
+          <section className="prose-section" id="how">
+            <h2>How to listen</h2>
+            <div className="scope-columns">
+              <div>
+                <h3>A route, not a globe</h3>
+                <ul className="marker-list">
+                  <li>Choose a region; the route is a straight line at one latitude.</li>
+                  <li>The instrument samples west to east, one step at a time.</li>
+                  <li>The playhead and reading name the exact longitude.</li>
+                  <li>Land or missing data produces a silent step, not a guess.</li>
+                </ul>
+              </div>
+              <div>
+                <h3>What changes the sound</h3>
+                <ul className="marker-list marker-list--muted">
+                  <li>Warmer water raises pitch and opens the filter.</li>
+                  <li>Faster flow pulses more quickly and strongly.</li>
+                  <li>Eastward flow moves right; westward moves left.</li>
+                  <li>Northward flow lifts the pulse by up to three semitones.</li>
+                </ul>
+              </div>
+            </div>
+            <p className="fine-print">
+              Playback speed changes listening time only. It never changes the
+              sampled values or the mapping.
+            </p>
+          </section>
+
+          <section className="prose-section" id="scope">
+            <h2>What is real, and what is not</h2>
             <div className="scope-columns">
               <div>
                 <h3>Working now</h3>
                 <ul className="marker-list">
-                  <li>A verified 2048 × 1024 NASA SVS still and its source record.</li>
-                  <li>Period, model, credits, and data limitations stated in the interface.</li>
-                  <li>Typed scientific, NASA, and audio boundaries with no fabricated values.</li>
-                  <li>Keyboard-operable navigation and controls that expose their disabled state.</li>
-                  <li>Responsive Explore, About, and Data Sources routes.</li>
+                  <li>Twelve monthly OSCAR and OISST composites from 2012.</li>
+                  <li>A shared 1.5° global grid with missing cells preserved.</li>
+                  <li>A functional three-voice Web Audio sonification engine.</li>
+                  <li>Region, month, speed, volume, seek, and layer controls.</li>
+                  <li>Visible readings, a traceable table, and on-demand speech.</li>
+                  <li>Keyboard operation, reduced motion, and nonvisual instructions.</li>
                 </ul>
               </div>
               <div>
-                <h3>Not yet connected</h3>
+                <h3>Deliberately not claimed</h3>
                 <ul className="marker-list marker-list--muted">
-                  <li>Numerical ECCO2 surface fields.</li>
-                  <li>Verified normalization ranges and sonification mappings.</li>
-                  <li>Web Audio synthesis and playback.</li>
-                  <li>Timeline synchronization and geographic region selection.</li>
-                  <li>Any claim that the rendered plate is live or measurable.</li>
+                  <li>Live or current ocean conditions.</li>
+                  <li>Numerical ECCO2 fields behind the 2012 NASA render.</li>
+                  <li>Full-resolution or global daily coverage.</li>
+                  <li>Direct measurement at every grid cell.</li>
+                  <li>Subsurface circulation, uncertainty, or causal attribution.</li>
+                  <li>AI-generated music or an unverified sonification.</li>
                 </ul>
               </div>
             </div>
@@ -120,42 +167,66 @@ export default function AboutPage() {
             <div className="prose">
               <p>
                 Visual-only science excludes people, and an audio layer that
-                cannot be inspected excludes them differently. Stage 1 is
-                keyboard-operable, screen-reader legible, and built without
-                color-only status. Motion respects reduced-motion preferences.
-                Future audio must ship with equivalent textual state, never sound
-                alone.
+                cannot be inspected excludes them differently. The Explore
+                instrument exposes every value in text, supports complete
+                keyboard operation, and offers browser speech for the current
+                reading. Motion can be reduced without losing the field.
+              </p>
+              <p>
+                The audio is never the only source of truth: the reading panel,
+                traceable table, and current-value description carry the same
+                information. A screen-reader user can explore the transect
+                without hearing a single tone.
               </p>
             </div>
+            <p className="license-links">
+              <Link className="text-link" href="/accessibility">
+                Read the accessibility guide
+                <ArrowRight aria-hidden="true" size={13} strokeWidth={1.6} />
+              </Link>
+            </p>
           </section>
 
           <section className="prose-section" id="credits">
             <h2>Credits and independence</h2>
             <p className="prose">
-              The visualization is NASA&apos;s work. Earth&apos;s Pulse is an
-              independent challenge project built on top of it; NASA does not
-              endorse it.
+              Earth&apos;s Pulse is an independent challenge project. NASA does
+              not endorse it. The numerical field is built from public products
+              by Earth &amp; Space Research and NOAA NCEI, accessed through NOAA
+              CoastWatch ERDDAP.
             </p>
             <dl className="credits-list">
               <div>
-                <dt>Visualization</dt>
-                <dd>Greg Shirah, NASA/GSFC</dd>
+                <dt>Currents</dt>
+                <dd>
+                  OSCAR surface velocity, Earth &amp; Space Research. Bonjean
+                  &amp; Lagerloef (2002).
+                </dd>
               </div>
               <div>
-                <dt>Animation</dt>
-                <dd>Greg Shirah, Horace Mitchell, Eric Sokolowsky</dd>
+                <dt>Temperature</dt>
+                <dd>
+                  NOAA OISST v2.1. Huang et al. (2021), NOAA National Centers for
+                  Environmental Information.
+                </dd>
               </div>
               <div>
-                <dt>Producer</dt>
-                <dd>{NASA_SVS_RECORD.credits.producer}</dd>
+                <dt>NASA reference</dt>
+                <dd>
+                  {NASA_SVS_RECORD.title}, NASA Scientific Visualization Studio
+                  record {NASA_SVS_RECORD.id}.
+                </dd>
+              </div>
+              <div>
+                <dt>Visualization credit</dt>
+                <dd>
+                  Greg Shirah, Horace Mitchell, Eric Sokolowsky; producer{" "}
+                  {NASA_SVS_RECORD.credits.producer}.
+                </dd>
               </div>
               <div>
                 <dt>Scientists</dt>
                 <dd>Hong Zhang (UCLA), Dimitris Menemenlis (NASA/JPL CalTech)</dd>
-              </div>
-              <div>
-                <dt>Model</dt>
-                <dd>ECCO2, using the MIT general circulation model (MITgcm)</dd>
               </div>
               <div>
                 <dt>Source</dt>
@@ -173,7 +244,8 @@ export default function AboutPage() {
             </dl>
             <p className="fine-print">
               Fonts: Inter and IBM Plex Mono, licensed under the SIL Open Font
-              License. Imagery is public domain unless NASA notes otherwise.
+              License. Coastline geometry: Natural Earth, public domain. NASA
+              imagery is public domain unless NASA notes otherwise.
             </p>
           </section>
         </article>
@@ -191,8 +263,8 @@ export default function AboutPage() {
           <div className="aside-note">
             <p className="aside-label">Current stage</p>
             <p>
-              Visual foundation only. The sonification engine and numerical
-              fields are not connected.
+              Ocean sonification is live on a verified 2012 subset. The field is
+              historical; nothing is live or forecast.
             </p>
             <Link className="text-link" href="/data-sources">
               Read the data status

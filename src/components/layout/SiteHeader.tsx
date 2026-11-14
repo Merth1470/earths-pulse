@@ -18,13 +18,13 @@ export function SiteHeader() {
         <SiteNav />
 
         <Link
-          aria-label="Stage 1, visual only. View data status."
+          aria-label="Stage 2, ocean sonification active. View data status."
           className="header-stage"
           href="/data-sources"
         >
-          <span aria-hidden="true" className="status-dot status-dot--blocked" />
-          <span>Stage 01</span>
-          <span className="header-stage-mode"> / Visual only</span>
+          <span aria-hidden="true" className="status-dot status-dot--available" />
+          <span>Stage 02</span>
+          <span className="header-stage-mode"> / Audio active</span>
         </Link>
       </div>
     </header>

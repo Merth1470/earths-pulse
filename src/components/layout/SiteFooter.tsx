@@ -10,9 +10,9 @@ export function SiteFooter() {
         </div>
 
         <p className="footer-credit">
-          Imagery:{" "}
-          <Link href="/data-sources">NASA SVS 3912</Link>. Public domain unless
-          noted.
+          Data:{" "}
+          <Link href="/data-sources">OSCAR currents and NOAA OISST</Link>.
+          Reference imagery: NASA SVS 3912.
         </p>
 
         <p className="footer-note">
