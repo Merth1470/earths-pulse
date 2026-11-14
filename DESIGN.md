@@ -200,6 +200,8 @@ The palette is a cold ocean field with three semantic signals: cyan for availabl
 
 **The Reading Size Rule.** The values that drive the sound never drop below 16px, even at 390px.
 
+**The Legibility Floor.** No functional label, value, or running copy is set below 12px. Canvas tick labels are the only exception, at 9–10px, because they annotate the map rather than the interface.
+
 ## Layout
 
 The page uses a 1440px shell with 32px side gutters and 18px gutters below 760px. The header is a 64px sticky band with a single 1px bottom rule; below 980px it wraps the navigation onto a second row and grows to roughly 92px. Explore opens with a title block and a field bar, then a two-column instrument bay: a flexible field column and a 368px rail with a 26px gap. Below 1180px the rail moves under the plate, first as two columns with the reading panel full width, then as one column below 760px.
@@ -270,7 +272,7 @@ The form language is rectilinear and instrument-like. Corners are square (0px ra
 - **Shape:** Raised Navy panel with a three-column value row, a position line, a plain-language sentence, and speech actions.
 - **Type:** 12px mono labels; 16px tabular values; 12px description.
 - **Values:** Sea surface temperature, current speed, and the compass direction the current flows toward. Missing values read "Missing", not a dash or zero.
-- **Speech:** "Read this aloud" uses the browser voice. The "Announce every fourth step" checkbox swaps the polite live region for speech synthesis, so the two paths never duplicate.
+- **Speech:** "Read this aloud" uses the browser voice. The "Speak every fourth step" checkbox swaps the polite live region for speech synthesis, so the two paths never duplicate.
 - **Status:** Preview, Live, Paused, or Final sample. The status is always text.
 
 ### Data Record

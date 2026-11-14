@@ -196,7 +196,7 @@ export default function AccessibilityPage() {
             <div className="prose">
               <p>
                 A polite live region announces every fourth sample by default.
-                Enabling “Announce every fourth step” switches to the browser
+                Enabling “Speak every fourth step” switches to the browser
                 speech voice and removes the live region, so the two paths do not
                 duplicate. “Read this aloud” speaks the current sample on demand.
               </p>

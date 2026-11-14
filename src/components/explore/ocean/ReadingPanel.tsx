@@ -132,7 +132,7 @@ export function ReadingPanel({
             onChange={(event) => onSpoken(event.target.checked)}
             type="checkbox"
           />
-          <span>Announce every fourth step</span>
+          <span>Speak every fourth step</span>
         </label>
       </div>
 

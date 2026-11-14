@@ -72,7 +72,7 @@ The interface is designed so the field remains usable without seeing the canvas:
 
 - One `<h1>`, one `<main>`, labelled controls, visible focus, and a skip link.
 - The position slider moves **one sample per arrow key**; its value text names the step, longitude, and latitude.
-- The reading panel announces every fourth step through a polite live region by default. Turning on “Announce every fourth step” switches to browser speech synthesis instead, avoiding duplicate announcements.
+- The reading panel announces every fourth step through a polite live region by default. Turning on “Speak every fourth step” switches to browser speech synthesis instead, avoiding duplicate announcements.
 - “Read this aloud” speaks the current values on demand.
 - The full transect table is available below the instrument, with the same numbers as the sound.
 - Missing values are announced as missing; they are never sonified as zero or as the coldest/slowest value.

@@ -17,7 +17,7 @@ Earth's Pulse is built blind-first: the sound and the reading panel are the prim
 - A reading panel with the same values that drive the audio: sea surface temperature, current speed, and the compass direction the current flows toward.
 - A plain-language description of the current sample, also used by speech synthesis.
 - A polite live region that announces every fourth sample by default.
-- An optional “Announce every fourth step” mode that speaks through the browser's speech synthesis.
+- An optional “Speak every fourth step” mode that speaks through the browser's speech synthesis.
 - A “Read this aloud” button for the current sample on demand.
 - A full transect table below the instrument with every sample, including missing values.
 - Visible focus outlines and a `prefers-reduced-motion` path that stops particle animation.
@@ -37,7 +37,7 @@ The canvas has `role="img"` and an accessible name that summarizes the month, th
 | Sound layers | `Tab`, `Space` | Toggles temperature tone, current pulse, flow texture |
 | Volume | `Tab`, arrow keys | 0–100% |
 | Read this aloud | `Tab`, `Enter` | Speaks the current reading |
-| Announce every fourth step | `Tab`, `Space` | Switches automatic speech on/off |
+| Speak every fourth step | `Tab`, `Space` | Switches automatic speech on/off |
 | Transect table | `Tab` into the disclosure, then browse | Reads the same numbers as the sound |
 
 The position slider is a sample index, not a continuous 0–1000 scale. Its `aria-valuetext` reads, for example, “Step 02 of 48, 77.0° W / 38.0° N”. This means a screen reader user can move through the route one sample at a time without needing the mouse.
@@ -48,7 +48,7 @@ The play button's accessible name changes between “Play sonification” and �
 
 There are two automatic announcement paths, and they are deliberately exclusive:
 
-1. **Live region (default).** When “Announce every fourth step” is off, a visually hidden `aria-live="polite"` paragraph updates on samples 0, 4, 8, … with the plain-language reading. This lets a screen reader announce progress without a second voice.
+1. **Live region (default).** When “Speak every fourth step” is off, a visually hidden `aria-live="polite"` paragraph updates on samples 0, 4, 8, … with the plain-language reading. This lets a screen reader announce progress without a second voice.
 2. **Browser speech (optional).** When the checkbox is on, the live region is removed and the same text is sent to `speechSynthesis`. This avoids hearing the same sentence twice.
 
 “Read this aloud” always speaks the current sample and is independent of the automatic mode. It is disabled when the browser does not expose `speechSynthesis`.
@@ -107,7 +107,7 @@ Manual and scripted checks performed for this build:
 4. Press `Tab` to the position slider; press `ArrowRight` once. Confirm the step advances by exactly one and the reading changes.
 5. Press Play/Pause. Confirm the status becomes Paused and the audio stops.
 6. Toggle each sound layer; confirm the label remains checked/unchecked and no error appears.
-7. Turn on “Announce every fourth step”; confirm the live region is removed and speech is attempted. Turn it off; confirm the live region returns.
+7. Turn on “Speak every fourth step”; confirm the live region is removed and speech is attempted. Turn it off; confirm the live region returns.
 8. Tab to the transect table and confirm the values match the reading panel.
 9. Enable “Reduce motion” in the OS or browser and reload; confirm particles stop and static vectors remain.
 10. Resize to 390 px and confirm no horizontal scrolling and that the transport, readings, and table remain operable.
