@@ -9,7 +9,11 @@
     "lint": "eslint",
     "verify:data": "node scripts/verify-ocean-data.mjs",
     "verify:mapping": "node --no-warnings --experimental-strip-types scripts/verify-sonification.mjs",
-    "verify": "npm run verify:data && npm run verify:mapping"
+    "verify": "npm run verify:data && npm run verify:mapping && npm run verify:carbon && npm run verify:air",
+    "fetch:carbon": "node scripts/build-carbon-data.mjs",
+    "fetch:air": "node scripts/build-air-quality-data.mjs",
+    "verify:carbon": "node scripts/verify-carbon-data.mjs",
+    "verify:air": "node scripts/verify-air-quality-data.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.73.0",
