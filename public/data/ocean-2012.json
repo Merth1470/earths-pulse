@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 1,
+  "id": "oscar-oisst-2012",
+  "title": "Global surface currents and sea surface temperature, 2012",
+  "subtitle": "One representative composite per month, regridded to 1.5°",
+  "generatedAt": "2026-11-14T14:30:43.507Z",
+  "period": {
+    "start": "2012-01-01T00:00:00Z",
+    "end": "2012-12-31T23:59:59Z",
+    "label": "January — December 2012",
+    "note": "Historical reanalysis and satellite products. Not live, not current conditions."
+  },
+  "grid": {
+    "projection": "equirectangular",
+    "lonStart": -179.25,
+    "lonStep": 1.5,
+    "lonCount": 240,
+    "latStart": 78.75,
+    "latStep": -1.5,
+    "latCount": 106,
+    "rowOrder": "north-to-south"
+  },
+  "variables": {
+    "sst": {
+      "id": "sea_surface_temperature",
+      "label": "Sea surface temperature",
+      "symbol": "SST",
+      "unit": "degrees-celsius",
+      "unitLabel": "°C",
+      "scale": 0.01,
+      "fill": -32768,
+      "product": "NOAA OISST v2.1 (0.25° daily)"
+    },
+    "u": {
+      "id": "eastward_surface_velocity",
+      "label": "Eastward surface velocity",
+      "symbol": "u",
+      "unit": "meters-per-second",
+      "unitLabel": "m/s",
+      "scale": 0.001,
+      "fill": -32768,
+      "product": "OSCAR surface currents (1/3°, 5-day composite)"
+    },
+    "v": {
+      "id": "northward_surface_velocity",
+      "label": "Northward surface velocity",
+      "symbol": "v",
+      "unit": "meters-per-second",
+      "unitLabel": "m/s",
+      "scale": 0.001,
+      "fill": -32768,
+      "product": "OSCAR surface currents (1/3°, 5-day composite)"
+    }
+  },
+  "normalization": {
+    "sst": {
+      "min": -1.7731944223244982,
+      "max": 29.609999656677246,
+      "method": "2nd–98th percentile of all 2012 grid cells"
+    },
+    "speed": {
+      "min": 0,
+      "max": 0.5360660360972435,
+      "method": "98th percentile of current speed in all 2012 grid cells"
+    }
+  },
+  "stats": {
+    "sst": {
+      "min": -1.7999999523162846,
+      "max": 34.13999938964844,
+      "p02": -1.7731944223244982,
+      "p98": 29.609999656677246,
+      "mean": 14.8467966840141,
+      "count": 226464
+    },
+    "speed": {
+      "min": 0.00017952403845810112,
+      "max": 3.343630009793088,
+      "p02": 0.010523872126047237,
+      "p98": 0.5360660360972435,
+      "mean": 0.1266865323839693,
+      "count": 196404
+    },
+    "cellsPerFrame": 25440,
+    "cellsTotal": 305280
+  },
+  "frames": [
+    {
+      "index": 0,
+      "month": "2012-01",
+      "label": "Jan 2012",
+      "oscarTime": "2012-01-11T00:00:00Z",
+      "oisstTime": "2012-01-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 31.600000381469727,
+          "p02": -1.782986044883728,
+          "p98": 29.389375686645508,
+          "mean": 14.606148848868028,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0005213449751604373,
+          "max": 2.2123418125614376,
+          "p02": 0.009187521425672258,
+          "p98": 0.5442359631432823,
+          "mean": 0.12559743438338747,
+          "count": 16685
+        }
+      }
+    },
+    {
+      "index": 1,
+      "month": "2012-02",
+      "label": "Feb 2012",
+      "oscarTime": "2012-02-20T00:00:00Z",
+      "oisstTime": "2012-02-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 31.40999984741211,
+          "p02": -1.7741667032241821,
+          "p98": 29.299930572509766,
+          "mean": 14.776525935456691,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0003757527501961108,
+          "max": 2.218022163006768,
+          "p02": 0.009832994920022122,
+          "p98": 0.5122801942764089,
+          "mean": 0.12154363566925293,
+          "count": 16606
+        }
+      }
+    },
+    {
+      "index": 2,
+      "month": "2012-03",
+      "label": "Mar 2012",
+      "oscarTime": "2012-03-17T00:00:00Z",
+      "oisstTime": "2012-03-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 30.6200008392334,
+          "p02": -1.7834028005599976,
+          "p98": 29.37444496154785,
+          "mean": 14.696205061719517,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.000581537754454158,
+          "max": 1.8886578124605353,
+          "p02": 0.009857967300124977,
+          "p98": 0.5021688663027483,
+          "mean": 0.11957245734503487,
+          "count": 16523
+        }
+      }
+    },
+    {
+      "index": 3,
+      "month": "2012-04",
+      "label": "Apr 2012",
+      "oscarTime": "2012-04-16T00:00:00Z",
+      "oisstTime": "2012-04-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 30.829999923706055,
+          "p02": -1.7799999713897705,
+          "p98": 29.77666664123535,
+          "mean": 14.651820301136166,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0006505460950842068,
+          "max": 2.428013628732771,
+          "p02": 0.00971397305420827,
+          "p98": 0.5252407609309174,
+          "mean": 0.12037604102356302,
+          "count": 16394
+        }
+      }
+    },
+    {
+      "index": 4,
+      "month": "2012-05",
+      "label": "May 2012",
+      "oscarTime": "2012-05-17T00:00:00Z",
+      "oisstTime": "2012-05-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 31.4440975189209,
+          "p02": -1.7715277671813965,
+          "p98": 30.109375,
+          "mean": 14.73553343466605,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0008559005476635109,
+          "max": 2.5158709089193323,
+          "p02": 0.010226871707522053,
+          "p98": 0.5454035127513067,
+          "mean": 0.12535907225709836,
+          "count": 16300
+        }
+      }
+    },
+    {
+      "index": 5,
+      "month": "2012-06",
+      "label": "Jun 2012",
+      "oscarTime": "2012-06-16T00:00:00Z",
+      "oisstTime": "2012-06-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 32.040000915527344,
+          "p02": -1.7709722518920898,
+          "p98": 29.58416748046875,
+          "mean": 14.779325550300552,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0012227410701208166,
+          "max": 2.971301471455827,
+          "p02": 0.011083493930673587,
+          "p98": 0.5112614050922569,
+          "mean": 0.12226237765991026,
+          "count": 16354
+        }
+      }
+    },
+    {
+      "index": 6,
+      "month": "2012-07",
+      "label": "Jul 2012",
+      "oscarTime": "2012-07-17T00:00:00Z",
+      "oisstTime": "2012-07-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 32.602500915527344,
+          "p02": -1.778807282447815,
+          "p98": 29.529443740844727,
+          "mean": 15.225418548208667,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.00058414174856213,
+          "max": 2.3883712465291493,
+          "p02": 0.011610780215811226,
+          "p98": 0.545676327167708,
+          "mean": 0.13165558522177495,
+          "count": 16350
+        }
+      }
+    },
+    {
+      "index": 7,
+      "month": "2012-08",
+      "label": "Aug 2012",
+      "oscarTime": "2012-08-16T00:00:00Z",
+      "oisstTime": "2012-08-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 34.13999938964844,
+          "p02": -1.7716666460037231,
+          "p98": 29.476736068725586,
+          "mean": 15.340370230498372,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.00048822610591445225,
+          "max": 2.7512379041758552,
+          "p02": 0.011438499209769986,
+          "p98": 0.595774579937733,
+          "mean": 0.13500750818366555,
+          "count": 16236
+        }
+      }
+    },
+    {
+      "index": 8,
+      "month": "2012-09",
+      "label": "Sep 2012",
+      "oscarTime": "2012-09-01T00:00:00Z",
+      "oisstTime": "2012-09-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 32.88999938964844,
+          "p02": -1.7714582681655884,
+          "p98": 29.592987060546875,
+          "mean": 15.267842454432143,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0004538763656867399,
+          "max": 2.5166013327255645,
+          "p02": 0.01092192168107293,
+          "p98": 0.5209333563786561,
+          "mean": 0.12837904926579954,
+          "count": 16100
+        }
+      }
+    },
+    {
+      "index": 9,
+      "month": "2012-10",
+      "label": "Oct 2012",
+      "oscarTime": "2012-10-16T00:00:00Z",
+      "oisstTime": "2012-10-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 31.79083251953125,
+          "p02": -1.756666660308838,
+          "p98": 29.484651565551758,
+          "mean": 14.876164608710742,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.00017952403794057754,
+          "max": 2.743311059371581,
+          "p02": 0.011511771883531079,
+          "p98": 0.5494879600267122,
+          "mean": 0.13179209957844634,
+          "count": 16165
+        }
+      }
+    },
+    {
+      "index": 10,
+      "month": "2012-11",
+      "label": "Nov 2012",
+      "oscarTime": "2012-11-16T00:00:00Z",
+      "oisstTime": "2012-11-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 30.950000762939453,
+          "p02": -1.7534722089767456,
+          "p98": 29.690000534057617,
+          "mean": 14.597900975749097,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.0009202494556218512,
+          "max": 2.889739072560938,
+          "p02": 0.011462886954461567,
+          "p98": 0.5451899675798739,
+          "mean": 0.13034361149436746,
+          "count": 16245
+        }
+      }
+    },
+    {
+      "index": 11,
+      "month": "2012-12",
+      "label": "Dec 2012",
+      "oscarTime": "2012-12-16T00:00:00Z",
+      "oisstTime": "2012-12-15T12:00:00Z",
+      "stats": {
+        "sst": {
+          "min": -1.7999999523162842,
+          "max": 31.670833587646484,
+          "p02": -1.7806943655014038,
+          "p98": 29.645763397216797,
+          "mean": 14.608304216945283,
+          "count": 18872
+        },
+        "speed": {
+          "min": 0.00022216639138376553,
+          "max": 3.343630009793088,
+          "p02": 0.010712837184212816,
+          "p98": 0.5316630836356606,
+          "mean": 0.12869499546917715,
+          "count": 16446
+        }
+      }
+    }
+  ],
+  "binary": {
+    "path": "/data/ocean-2012.bin",
+    "bytes": 1831680,
+    "dtype": "int16-le",
+    "layout": "frame-major, then variable-major (sst, u, v), then north-to-south row-major",
+    "fill": -32768
+  },
+  "sources": [
+    {
+      "id": "oscar",
+      "name": "OSCAR Sea Surface Velocity, 1/3°, L4, Global, 5 Day Composite",
+      "provider": "Earth & Space Research (NASA-funded)",
+      "institution": "Earth & Space Research",
+      "access": "NOAA CoastWatch ERDDAP · jplOscar",
+      "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplOscar",
+      "citation": "Bonjean, F. and G.S.E. Lagerloef (2002). Diagnostic model and analysis of the surface currents in the tropical Pacific Ocean. Journal of Physical Oceanography, 32, 2938–2954.",
+      "variables": [
+        "u",
+        "v"
+      ],
+      "depth": "15 m",
+      "resolution": "1/3° · 5-day composite",
+      "license": "Publicly redistributed by NOAA CoastWatch ERDDAP; ESR and NOAA provide no warranty of accuracy for legal use."
+    },
+    {
+      "id": "oisst",
+      "name": "NOAA Optimum Interpolation Sea Surface Temperature (OISST) v2.1",
+      "provider": "NOAA National Centers for Environmental Information",
+      "access": "NOAA CoastWatch ERDDAP · ncdcOisst21Agg",
+      "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg",
+      "citation": "Huang, B., et al. (2021). Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1. Journal of Climate, 34, 2923–2939.",
+      "variables": [
+        "sst"
+      ],
+      "depth": "0 m",
+      "resolution": "0.25° · daily",
+      "license": "U.S. Government work; public domain."
+    }
+  ],
+  "processing": [
+    "Nearest 5-day OSCAR composite and nearest daily OISST field to the 15th of each month.",
+    "Bilinear resampling onto a shared 1.5° equirectangular grid.",
+    "Coastal cells where any source corner is missing are left missing; no fill or smoothing across land.",
+    "Quantized to Int16 with documented scales; missing is -32768."
+  ],
+  "limitations": [
+    "OSCAR is a satellite-derived surface current analysis, not a direct measurement at every point; it combines geostrophic, Ekman, and buoyancy components.",
+    "OISST v2.1 blends satellite and in-situ observations; it is a gridded product, not a single instrument reading.",
+    "One composite per month is a sample of 2012, not a continuous time series.",
+    "The NASA SVS record 3912 render is a separate ECCO2 visualization from 2007–2008 and is not the numerical source for this dataset."
+  ]
+}

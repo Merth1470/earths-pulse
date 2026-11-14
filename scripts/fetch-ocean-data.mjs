@@ -20,6 +20,7 @@ const ERDDAP = "https://coastwatch.pfeg.noaa.gov/erddap/griddap";
 const OUT_DIR = path.resolve("public/data");
 const OUT_JSON = path.join(OUT_DIR, "ocean-2012.json");
 const OUT_BIN = path.join(OUT_DIR, "ocean-2012.bin");
+const CACHE_DIR = path.resolve("scripts/.cache");
 
 const GRID = {
   lonStart: -179.25,
@@ -45,7 +46,7 @@ const VELOCITY_SCALE = 0.001;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function fetchCsv(url, attempt = 1) {
+async function fetchText(url, attempt = 1) {
   const response = await fetch(url, {
     headers: { "user-agent": "earths-pulse-data-pipeline/1.0" },
     signal: AbortSignal.timeout(180_000),
@@ -55,7 +56,7 @@ async function fetchCsv(url, attempt = 1) {
     if (attempt < 4 && response.status >= 500) {
       console.warn(`  retry ${attempt} after ${response.status}`);
       await sleep(4000 * attempt);
-      return fetchCsv(url, attempt + 1);
+      return fetchText(url, attempt + 1);
     }
     throw new Error(`ERDDAP ${response.status}: ${body.slice(0, 300)}`);
   }
@@ -63,7 +64,25 @@ async function fetchCsv(url, attempt = 1) {
   if (text.startsWith("Error {")) {
     throw new Error(`ERDDAP error: ${text.slice(0, 400)}`);
   }
+  return text;
+}
+
+/** Cache raw responses so an interrupted run can resume without refetching. */
+async function cachedCsv(url, cacheName) {
+  const file = path.join(CACHE_DIR, cacheName);
+  try {
+    const text = await fs.readFile(file, "utf8");
+    if (text.includes("\n")) return parseCsv(text);
+  } catch {
+    // Cache miss.
+  }
+  const text = await fetchText(url);
+  await fs.writeFile(file, text);
   return parseCsv(text);
+}
+
+async function fetchCsv(url) {
+  return parseCsv(await fetchText(url));
 }
 
 function parseCsv(text) {
@@ -73,6 +92,7 @@ function parseCsv(text) {
   for (let i = 1; i < lines.length; i += 1) {
     const line = lines[i];
     if (!line) continue;
+    if (i === 1 && /^[A-Za-z]/.test(line)) continue; // ERDDAP units row
     const cells = line.split(",");
     const row = {};
     for (let c = 0; c < header.length; c += 1) {
@@ -86,7 +106,7 @@ function parseCsv(text) {
 }
 
 function uniqueSorted(values) {
-  return [...new Set(values.map((v) => Math.round(v * 1e6) / 1e6))].sort((a, b) => a - b);
+  return [...new Set(values.filter((v) => Number.isFinite(v)).map((v) => Math.round(v * 1e6) / 1e6))].sort((a, b) => a - b);
 }
 
 /**
@@ -104,6 +124,7 @@ function toGrid(rows, latKey, lonKey, valueKeys) {
     valueKeys.map((key) => [key, new Float32Array(nLat * nLon).fill(NaN)]),
   );
   for (const row of rows) {
+    if (!Number.isFinite(row[latKey]) || !Number.isFinite(row[lonKey])) continue;
     const y = latIndex.get(Math.round(row[latKey] * 1e6) / 1e6);
     const x = lonIndex.get(Math.round(row[lonKey] * 1e6) / 1e6);
     if (y === undefined || x === undefined) continue;
@@ -230,12 +251,13 @@ function stats(values) {
 
 async function main() {
   await fs.mkdir(OUT_DIR, { recursive: true });
+  await fs.mkdir(CACHE_DIR, { recursive: true });
 
   console.log("Reading OSCAR and OISST time axes…");
-  const oscarTimes = (await fetchCsv(`${ERDDAP}/jplOscar.csv?time`)).rows
+  const oscarTimes = (await cachedCsv(`${ERDDAP}/jplOscar.csv?time`, "oscar-time.csv")).rows
     .map((r) => r.time)
     .filter((t) => typeof t === "string");
-  const oisstTimes = (await fetchCsv(`${ERDDAP}/ncdcOisst21Agg.csv?time`)).rows
+  const oisstTimes = (await cachedCsv(`${ERDDAP}/ncdcOisst21Agg.csv?time`, "oisst-time.csv")).rows
     .map((r) => r.time)
     .filter((t) => typeof t === "string");
 
@@ -272,8 +294,8 @@ async function main() {
       `sst[(${oisstTime.time})][(0.0)][(-89.875):6:(89.75)][(0.125):6:(359.875)]`;
 
     const [oscar, oisst] = await Promise.all([
-      fetchCsv(oscarUrl),
-      fetchCsv(oisstUrl),
+      cachedCsv(oscarUrl, `oscar-2012-${MONTHS[m]}.csv`),
+      cachedCsv(oisstUrl, `oisst-2012-${MONTHS[m]}.csv`),
     ]);
 
     const ocean = toGrid(oscar.rows, "latitude", "longitude", ["u", "v"]);
@@ -483,3 +505,5 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+
+export { parseCsv, toGrid, bilinear, lowerIndex, lowerIndexWrapped };
