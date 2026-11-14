@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T14:59:27+03:00",
+  "title": "Design System: Earth's Pulse",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Instrument Cyan",
+        "canonical": "#42c7d9",
+        "tonalRamp": [
+          "oklch(15% 0.115 208.1)",
+          "oklch(26% 0.115 208.1)",
+          "oklch(38% 0.115 208.1)",
+          "oklch(49% 0.115 208.1)",
+          "oklch(61% 0.115 208.1)",
+          "oklch(72% 0.115 208.1)",
+          "oklch(84% 0.115 208.1)",
+          "oklch(95% 0.115 208.1)"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Deep Current Blue",
+        "canonical": "#438be8",
+        "tonalRamp": [
+          "oklch(15% 0.158 256.0)",
+          "oklch(26% 0.158 256.0)",
+          "oklch(38% 0.158 256.0)",
+          "oklch(49% 0.158 256.0)",
+          "oklch(61% 0.158 256.0)",
+          "oklch(72% 0.158 256.0)",
+          "oklch(84% 0.158 256.0)",
+          "oklch(95% 0.158 256.0)"
+        ]
+      },
+      "tertiary": {
+        "role": "tertiary",
+        "displayName": "Sea Ice",
+        "canonical": "#9bc8d8",
+        "tonalRamp": [
+          "oklch(15% 0.052 221.7)",
+          "oklch(26% 0.052 221.7)",
+          "oklch(38% 0.052 221.7)",
+          "oklch(49% 0.052 221.7)",
+          "oklch(61% 0.052 221.7)",
+          "oklch(72% 0.052 221.7)",
+          "oklch(84% 0.052 221.7)",
+          "oklch(95% 0.052 221.7)"
+        ]
+      },
+      "blocked": {
+        "role": "primary",
+        "displayName": "Blocked Amber",
+        "canonical": "#d6a84b",
+        "tonalRamp": [
+          "oklch(15% 0.122 82.5)",
+          "oklch(26% 0.122 82.5)",
+          "oklch(38% 0.122 82.5)",
+          "oklch(49% 0.122 82.5)",
+          "oklch(61% 0.122 82.5)",
+          "oklch(72% 0.122 82.5)",
+          "oklch(84% 0.122 82.5)",
+          "oklch(95% 0.122 82.5)"
+        ]
+      },
+      "void": {
+        "role": "neutral",
+        "displayName": "Abyss",
+        "canonical": "#080d16",
+        "tonalRamp": [
+          "oklch(15% 0.021 261.3)",
+          "oklch(26% 0.021 261.3)",
+          "oklch(38% 0.021 261.3)",
+          "oklch(49% 0.021 261.3)",
+          "oklch(61% 0.021 261.3)",
+          "oklch(72% 0.021 261.3)",
+          "oklch(84% 0.021 261.3)",
+          "oklch(95% 0.021 261.3)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Navy",
+        "canonical": "#101925",
+        "tonalRamp": [
+          "oklch(15% 0.027 255.8)",
+          "oklch(26% 0.027 255.8)",
+          "oklch(38% 0.027 255.8)",
+          "oklch(49% 0.027 255.8)",
+          "oklch(61% 0.027 255.8)",
+          "oklch(72% 0.027 255.8)",
+          "oklch(84% 0.027 255.8)",
+          "oklch(95% 0.027 255.8)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Instrument Panel",
+        "canonical": "#151f2d",
+        "tonalRamp": [
+          "oklch(15% 0.031 256.9)",
+          "oklch(26% 0.031 256.9)",
+          "oklch(38% 0.031 256.9)",
+          "oklch(49% 0.031 256.9)",
+          "oklch(61% 0.031 256.9)",
+          "oklch(72% 0.031 256.9)",
+          "oklch(84% 0.031 256.9)",
+          "oklch(95% 0.031 256.9)"
+        ]
+      },
+      "panel-deep": {
+        "role": "neutral",
+        "displayName": "Deep Panel",
+        "canonical": "#0b1220",
+        "tonalRamp": [
+          "oklch(15% 0.031 263.4)",
+          "oklch(26% 0.031 263.4)",
+          "oklch(38% 0.031 263.4)",
+          "oklch(49% 0.031 263.4)",
+          "oklch(61% 0.031 263.4)",
+          "oklch(72% 0.031 263.4)",
+          "oklch(84% 0.031 263.4)",
+          "oklch(95% 0.031 263.4)"
+        ]
+      },
+      "plate-void": {
+        "role": "neutral",
+        "displayName": "Plate Void",
+        "canonical": "#05080e",
+        "tonalRamp": [
+          "oklch(15% 0.015 259.3)",
+          "oklch(26% 0.015 259.3)",
+          "oklch(38% 0.015 259.3)",
+          "oklch(49% 0.015 259.3)",
+          "oklch(61% 0.015 259.3)",
+          "oklch(72% 0.015 259.3)",
+          "oklch(84% 0.015 259.3)",
+          "oklch(95% 0.015 259.3)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#e8eef5",
+        "tonalRamp": [
+          "oklch(15% 0.011 252.1)",
+          "oklch(26% 0.011 252.1)",
+          "oklch(38% 0.011 252.1)",
+          "oklch(49% 0.011 252.1)",
+          "oklch(61% 0.011 252.1)",
+          "oklch(72% 0.011 252.1)",
+          "oklch(84% 0.011 252.1)",
+          "oklch(95% 0.011 252.1)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Blue-Grey",
+        "canonical": "#8b9aaa",
+        "tonalRamp": [
+          "oklch(15% 0.029 250.0)",
+          "oklch(26% 0.029 250.0)",
+          "oklch(38% 0.029 250.0)",
+          "oklch(49% 0.029 250.0)",
+          "oklch(61% 0.029 250.0)",
+          "oklch(72% 0.029 250.0)",
+          "oklch(84% 0.029 250.0)",
+          "oklch(95% 0.029 250.0)"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint Blue-Grey",
+        "canonical": "#7c8ca0",
+        "tonalRamp": [
+          "oklch(15% 0.035 254.1)",
+          "oklch(26% 0.035 254.1)",
+          "oklch(38% 0.035 254.1)",
+          "oklch(49% 0.035 254.1)",
+          "oklch(61% 0.035 254.1)",
+          "oklch(72% 0.035 254.1)",
+          "oklch(84% 0.035 254.1)",
+          "oklch(95% 0.035 254.1)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Inner-page titles only; never a marketing hero."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The Explore title and the largest reading voice."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Article section headings and long-form subheads."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Ledes, interface notes, and compact reading copy."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Long-form article prose capped at 68ch."
+      },
+      "nav": {
+        "displayName": "Navigation",
+        "purpose": "Top navigation and compact sans interface labels."
+      },
+      "label": {
+        "displayName": "Instrument Label",
+        "purpose": "Mono field labels, panel titles, table headers, and status tags."
+      },
+      "meta": {
+        "displayName": "Measured Meta",
+        "purpose": "Record values, identifiers, dates, and transport metrics."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plate-lift",
+        "value": "0 30px 70px -44px rgba(0, 0, 0, 0.95)",
+        "purpose": "The visualization frame only; every other surface stays flat."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-quick",
+        "value": "120ms ease",
+        "purpose": "Navigation, link, and border-state feedback."
+      },
+      {
+        "name": "plate-scan",
+        "value": "1.7s cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "The thin loading rule inside the visualization plate."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "instrument-rail-collapse",
+        "value": "1180px"
+      },
+      {
+        "name": "navigation-wrap-and-article-single",
+        "value": "980px"
+      },
+      {
+        "name": "compact-gutters-and-rail-single",
+        "value": "760px"
+      },
+      {
+        "name": "small-phone-type-scale",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Top navigation link with a 1px cyan current-page rule.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\" aria-current=\"page\">Explore</a>",
+      "css": ".ds-nav-link { position: relative; display: inline-block; padding: 9px 0; color: var(--text-secondary); font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.005em; line-height: 1.4; text-decoration: none; transition: color 120ms ease; } .ds-nav-link:hover { color: var(--text); } .ds-nav-link[aria-current=\"page\"] { color: var(--text); } .ds-nav-link[aria-current=\"page\"]::after { content: \"\"; position: absolute; left: 0; right: 0; bottom: 1px; height: 1px; background: var(--accent-cyan); } .ds-nav-link:focus-visible { outline: 1px solid var(--accent-cyan); outline-offset: 3px; }"
+    },
+    {
+      "name": "Stage Status Link",
+      "kind": "nav",
+      "refersTo": "stage-link",
+      "description": "The header's permanent Stage 01 / Visual only status, linked to provenance.",
+      "html": "<a class=\"ds-stage\" href=\"#\"><span class=\"ds-stage-dot\" aria-hidden=\"true\"></span><span>Stage 01</span><span class=\"ds-stage-mode\"> / Visual only</span></a>",
+      "css": ".ds-stage { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; padding: 6px 0 6px 20px; border-left: 1px solid var(--line); color: var(--text-secondary); font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; line-height: 1.3; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: color 120ms ease; } .ds-stage:hover { color: var(--text); } .ds-stage-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--blocked); } .ds-stage:focus-visible { outline: 1px solid var(--accent-cyan); outline-offset: 3px; }"
+    },
+    {
+      "name": "Status Tag",
+      "kind": "chip",
+      "refersTo": "status-tag",
+      "description": "A dot-and-word status mark; color never carries state alone.",
+      "html": "<span class=\"ds-status ds-status--blocked\"><span class=\"ds-status-dot\"></span>Offline</span>",
+      "css": ".ds-status { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); font-family: var(--mono); font-size: 9.5px; font-weight: 500; letter-spacing: 0.1em; line-height: 1.2; text-transform: uppercase; white-space: nowrap; } .ds-status-dot { display: inline-block; flex: none; width: 4px; height: 4px; border-radius: 50%; background: currentColor; } .ds-status--available { color: var(--accent-cyan); } .ds-status--blocked { color: var(--blocked); } .ds-status--pending { color: var(--text-secondary); } .ds-status--neutral { color: var(--text-tertiary); }"
+    },
+    {
+      "name": "Rendered Plate",
+      "kind": "card",
+      "refersTo": "plate-frame",
+      "description": "The signature 2:1 NASA visualization frame with source metadata and corner ticks.",
+      "html": "<figure class=\"ds-plate\"><div class=\"ds-plate-bar\"><span class=\"ds-plate-index\">Plate 01 / Global</span><span class=\"ds-plate-kind\">Rendered visualization · not live</span><span class=\"ds-plate-dims\">2048 × 1024</span></div><div class=\"ds-plate-viewport\"><img class=\"ds-plate-image\" src=\"/assets/nasa/ecco2-global-currents-sst-2048.jpg\" alt=\"NASA-rendered global map of sea surface currents and temperature.\" /><span class=\"ds-plate-tick ds-plate-tick--tl\"></span><span class=\"ds-plate-tick ds-plate-tick--tr\"></span><span class=\"ds-plate-tick ds-plate-tick--bl\"></span><span class=\"ds-plate-tick ds-plate-tick--br\"></span></div><figcaption class=\"ds-plate-caption\"><span>Single frame from the animation, 19 June 2007 12:00 UTC. Surface current flow colored by sea surface temperature, not a live view.</span><span class=\"ds-plate-credit\">NASA SVS / Greg Shirah</span></figcaption></figure>",
+      "css": ".ds-plate { margin: 0; width: 100%; border: 1px solid var(--line-strong); background: var(--panel-deep); box-shadow: var(--shadow-plate); color: var(--text); font-family: var(--sans); } .ds-plate-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 34px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--bg-raised); color: var(--text-tertiary); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; } .ds-plate-index { color: var(--text); } .ds-plate-kind { color: var(--blocked); } .ds-plate-viewport { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: var(--plate-void); } .ds-plate-image { display: block; width: 100%; height: 100%; object-fit: contain; } .ds-plate-caption { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 10px 12px; border-top: 1px solid var(--line); background: var(--bg-raised); color: var(--text-secondary); font-family: var(--sans); font-size: 10px; line-height: 1.5; } .ds-plate-credit { flex: none; color: var(--text-tertiary); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; text-align: right; } .ds-plate-tick { position: absolute; z-index: 1; width: 9px; height: 9px; border-color: var(--accent-cyan); opacity: 0.5; pointer-events: none; } .ds-plate-tick--tl { top: 8px; left: 8px; border-top: 1px solid; border-left: 1px solid; } .ds-plate-tick--tr { top: 8px; right: 8px; border-top: 1px solid; border-right: 1px solid; } .ds-plate-tick--bl { bottom: 8px; left: 8px; border-bottom: 1px solid; border-left: 1px solid; } .ds-plate-tick--br { bottom: 8px; right: 8px; border-bottom: 1px solid; border-right: 1px solid; }"
+    },
+    {
+      "name": "Source Record Panel",
+      "kind": "card",
+      "refersTo": "source-panel",
+      "description": "The evidence rail's verified record, with a label/value grid and a NASA link.",
+      "html": "<section class=\"ds-source\"><div class=\"ds-source-head\"><h2 class=\"ds-source-title\">Source record</h2><span class=\"ds-source-state\"><span class=\"ds-source-dot\"></span>Verified</span></div><dl class=\"ds-source-list\"><div class=\"ds-source-row\"><dt>Record</dt><dd>SVS 3912</dd></div><div class=\"ds-source-row\"><dt>Publisher</dt><dd>NASA Scientific Visualization Studio</dd></div><div class=\"ds-source-row\"><dt>Period</dt><dd>25 Mar 2007 — 03 Mar 2008</dd></div><div class=\"ds-source-row\"><dt>Plate frame</dt><dd>25000 · 19 Jun 2007 / 12:00Z</dd></div></dl><div class=\"ds-source-actions\"><a class=\"ds-source-link\" href=\"#\">Open NASA record <svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7\"/><path d=\"M7 7h10v10\"/></svg></a><span class=\"ds-source-validated\">Validated 14 Nov 2026</span></div></section>",
+      "css": ".ds-source { box-sizing: border-box; width: 100%; max-width: 368px; padding: 12px 14px; border: 1px solid var(--line); background: var(--bg-raised); color: var(--text); font-family: var(--sans); } .ds-source-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); } .ds-source-title { margin: 0; color: var(--text-secondary); font-family: var(--mono); font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em; line-height: 1.3; text-transform: uppercase; } .ds-source-state { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-cyan); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; } .ds-source-dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; } .ds-source-list { margin: 0; padding: 2px 0 0; } .ds-source-row { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line-faint); } .ds-source-row:last-child { border-bottom: 0; } .ds-source-row dt { padding-top: 2px; color: var(--text-tertiary); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em; line-height: 1.4; text-transform: uppercase; } .ds-source-row dd { margin: 0; color: var(--text); font-family: var(--mono); font-size: 10.5px; line-height: 1.5; } .ds-source-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line); } .ds-source-link { display: inline-flex; align-items: center; gap: 4px; color: var(--accent-cyan); font-size: 10.5px; text-decoration: none; } .ds-source-link:hover { text-decoration: underline; text-underline-offset: 3px; } .ds-source-link:focus-visible { outline: 1px solid var(--accent-cyan); outline-offset: 3px; } .ds-source-validated { color: var(--text-tertiary); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.05em; }"
+    },
+    {
+      "name": "Disabled Sonification Transport",
+      "kind": "custom",
+      "refersTo": "transport",
+      "description": "The square, offline playback shell; every control states that Stage 2 is missing.",
+      "html": "<section class=\"ds-player\"><div class=\"ds-transport\"><button class=\"ds-transport-play\" type=\"button\" disabled aria-label=\"Play sonification. Unavailable in Stage 1.\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 5v14l11-7z\"/></svg></button><div class=\"ds-transport-copy\"><div class=\"ds-transport-heading\"><h2>Sonification transport</h2><span class=\"ds-transport-status\"><span class=\"ds-transport-dot\"></span>Offline</span></div><p>Audio engine not implemented. Stage 02 will map verified ECCO2 fields to Web Audio; playback stays disabled until then.</p></div><dl class=\"ds-transport-metrics\"><div><dt>Web Audio API</dt><dd class=\"ds-capable\">Browser supported</dd></div><div><dt>Engine</dt><dd class=\"ds-blocked\">Not implemented</dd></div></dl></div><div class=\"ds-transport-timeline\"><div class=\"ds-track\"></div><div class=\"ds-dates\"><span>2007.03.25 / 12:00Z</span><span class=\"ds-not-synced\">Not synchronized</span><span>2008.03.03 / 12:00Z</span></div></div></section>",
+      "css": ".ds-player { width: 100%; border: 1px solid var(--line-strong); background: var(--panel-deep); color: var(--text); font-family: var(--sans); } .ds-transport { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 13px 16px; } .ds-transport-play { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border: 1px solid var(--line-strong); background: transparent; color: var(--text-tertiary); opacity: 0.65; cursor: not-allowed; } .ds-transport-copy { flex: 1 1 260px; min-width: 0; } .ds-transport-heading { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; } .ds-transport-heading h2 { margin: 0; color: var(--text); font-size: 12px; font-weight: 600; line-height: 1.4; } .ds-transport-status { display: inline-flex; align-items: center; gap: 6px; color: var(--blocked); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; } .ds-transport-dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; } .ds-transport-copy p { margin: 3px 0 0; max-width: 62ch; color: var(--text-secondary); font-size: 11.5px; line-height: 1.5; } .ds-transport-metrics { display: flex; gap: 24px; margin: 0 0 0 auto; } .ds-transport-metrics div { display: flex; flex-direction: column; gap: 3px; } .ds-transport-metrics dt { color: var(--text-tertiary); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.11em; text-transform: uppercase; } .ds-transport-metrics dd { margin: 0; color: var(--text-secondary); font-family: var(--mono); font-size: 10px; line-height: 1.3; } .ds-capable { color: var(--accent-cyan); } .ds-blocked { color: var(--blocked); } .ds-transport-timeline { padding: 0 16px 11px; } .ds-track { height: 16px; border-top: 1px dashed rgba(155, 200, 216, 0.3); } .ds-dates { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 2px; color: var(--text-tertiary); font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; } .ds-not-synced { color: var(--blocked); letter-spacing: 0.1em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Primary Link Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The square, outlined action used on status and recovery pages.",
+      "html": "<a class=\"ds-button-primary\" href=\"/\">Return to Explore <svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m13 6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border: 1px solid var(--accent-cyan); background: transparent; color: var(--accent-cyan); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; line-height: 1.4; text-transform: uppercase; text-decoration: none; transition: background 120ms ease; } .ds-button-primary:hover { background: rgba(66, 199, 217, 0.08); } .ds-button-primary:focus-visible { outline: 1px solid var(--accent-cyan); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calibrated Plate",
+    "overview": "Earth's Pulse reads as an oceanographic instrument bay, not a dashboard for selling one. The system borrows its composure from research charts and observatory consoles: a near-black navy field, one dominant NASA plate, hairline rules, and monospaced annotations that behave like measured labels. The page is quiet enough that the ocean image can carry it, and exact enough that provenance can interrupt the mood without feeling bolted on.\n\nEverything is rectangular and flat. Depth comes from tone rather than stacked shadows, and the only ambient lift belongs to the visualization plate. Status is always spelled out next to its color. The layout gives the plate the first viewport and gives the source record a permanent rail, so the visual and the evidence are read together.\n\nMotion is limited to state feedback: a thin scan line while the plate loads, 120ms color transitions, and no entrance choreography. The world explicitly refuses the dark neon dashboard, glass panels, gradient spectacle, hero metrics, and fake charts that would make an unavailable scientific system look finished.",
+    "keyCharacteristics": [
+      "Near-black navy fields with blue-grey hairlines.",
+      "One rectangular 2:1 visualization plate as the dominant object.",
+      "Inter for reading; IBM Plex Mono only for identifiers, coordinates, timestamps, and measurements.",
+      "Cyan for available or active, amber for blocked, neutral grey for pending.",
+      "Flat panels, square corners, and one deep plate shadow.",
+      "Disabled controls that explain their missing subsystem in visible copy."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Cyan means available or active, amber means blocked or incomplete, and neutral grey means pending. Never use one of these hues for decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Structure is drawn with 1px rules and tonal shifts, not with rounded cards, glass, or shadows on panels.",
+        "section": "colors"
+      },
+      {
+        "name": "The Measurement Mono Rule",
+        "body": "IBM Plex Mono is reserved for identifiers, coordinates, timestamps, units, machine status, and compact data values. Prose stays in Inter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Quiet Heading Rule",
+        "body": "Headings gain emphasis through size and weight, never through gradient fills, shadows, or all-caps display type.",
+        "section": "typography"
+      },
+      {
+        "name": "The Single Lift Rule",
+        "body": "Only the visualization plate casts a shadow. Header, rail panels, player, tables, and callouts stay flat on their tonal layer.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the NASA plate as the largest, first-read object on Explore.",
+      "Do use 1px hairlines and tonal surfaces to separate regions before reaching for any shadow.",
+      "Do pair every status color with a text label and a nearby reason.",
+      "Do reserve IBM Plex Mono for identifiers, coordinates, timestamps, units, measurements, and machine status.",
+      "Do keep reading measure between 61ch and 68ch and preserve the 2:1 plate ratio.",
+      "Do let disabled controls state what is missing in visible copy as well as aria-describedby.",
+      "Do keep the page background at Abyss and the plate frame on Deep Panel so the image remains the brightest field."
+    ],
+    "donts": [
+      "Don't introduce gradients, glassmorphism, neon glows, or decorative blur.",
+      "Don't wrap panels in rounded cards or add shadows to rail panels, the header, or the player.",
+      "Don't communicate availability with color alone.",
+      "Don't sample rendered pixel colors as measurements or imply that the plate is numerical data.",
+      "Don't use marketing hero metrics, card grids, oversized slogans, or chart-like ornament that implies data we do not have.",
+      "Don't make a disabled control look active or hide the reason it cannot be used.",
+      "Don't use the mono face for prose."
+    ]
+  }
+}
