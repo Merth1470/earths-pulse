@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Ocean data fetch cache
 scripts/.cache/
+
+# Local design review artifacts and dev server logs
+.impeccable/review/
+.impeccable/dev.log

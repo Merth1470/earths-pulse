@@ -43,7 +43,7 @@ export default function AboutPage() {
             <p className="prose">
               The first subject is global ocean circulation and sea surface
               temperature. The interactive field is built from public OSCAR
-              surface currents and NOAA OISST temperature, reduced to a
+              near-surface currents and NOAA OISST temperature, reduced to a
               documented twelve-month subset. NASA Scientific Visualization
               Studio record 3912 and its ECCO2 model remain the historical
               reference that inspired the experience, but they are not the
@@ -91,7 +91,7 @@ export default function AboutPage() {
             <SignalPath id="about-signal-path" level={3} />
             <div className="prose">
               <p>
-                OSCAR provides the zonal and meridional surface velocity
+                OSCAR provides the zonal and meridional velocity at 15 m depth
                 components. NOAA OISST provides sea surface temperature. The
                 fetch script selects one representative composite per month,
                 resamples both onto a shared 1.5° grid, and leaves coastal or
@@ -199,7 +199,7 @@ export default function AboutPage() {
               <div>
                 <dt>Currents</dt>
                 <dd>
-                  OSCAR surface velocity, Earth &amp; Space Research. Bonjean
+                  OSCAR near-surface (15 m) velocity, Earth &amp; Space Research. Bonjean
                   &amp; Lagerloef (2002).
                 </dd>
               </div>

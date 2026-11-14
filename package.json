@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:data": "node scripts/verify-ocean-data.mjs",
+    "verify:mapping": "node --no-warnings --experimental-strip-types scripts/verify-sonification.mjs",
+    "verify": "npm run verify:data && npm run verify:mapping"
   },
   "dependencies": {
     "lucide-react": "^1.73.0",

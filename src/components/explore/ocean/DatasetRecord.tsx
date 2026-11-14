@@ -21,7 +21,7 @@ export function DatasetRecord({ meta }: DatasetRecordProps) {
       <dl className="record-list">
         <div className="record-row">
           <dt>Products</dt>
-          <dd>OSCAR surface currents · NOAA OISST v2.1</dd>
+          <dd>OSCAR near-surface currents · NOAA OISST v2.1</dd>
         </div>
         <div className="record-row">
           <dt>Providers</dt>
@@ -43,7 +43,7 @@ export function DatasetRecord({ meta }: DatasetRecordProps) {
         </div>
         <div className="record-row">
           <dt>Variables</dt>
-          <dd>SST °C · u, v m/s at the surface</dd>
+          <dd>SST °C · u, v m/s at 15 m depth</dd>
         </div>
         <div className="record-row">
           <dt>Access</dt>
@@ -71,7 +71,7 @@ export function DatasetRecord({ meta }: DatasetRecordProps) {
       </div>
 
       <p className="panel-footnote">
-        OSCAR is a satellite-derived surface current analysis; OISST blends
+        OSCAR is a satellite-derived near-surface (15 m) current analysis; OISST blends
         satellite and in-situ observations. Neither product is a direct reading
         at every grid cell. The NASA SVS 2007–2008 ECCO2 render is a separate
         reference and is not the numerical source for this field.

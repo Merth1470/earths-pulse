@@ -35,6 +35,10 @@ export interface SoundParameters {
   textureGain: number;
   /** Flow-texture band-pass center, Hz. */
   textureCutoffHz: number;
+  /** False when temperature is missing; its voice must stay silent. */
+  hasTemperature: boolean;
+  /** False when either velocity component is missing; flow voices stay silent. */
+  hasFlow: boolean;
 }
 
 export const AUDIO_LIMITS = {
@@ -130,6 +134,8 @@ export function mapSample(
     pulseDepth,
     textureGain,
     textureCutoffHz,
+    hasTemperature: sample.sst !== null,
+    hasFlow: sample.speed !== null && sample.u !== null && sample.v !== null,
   };
 }
 

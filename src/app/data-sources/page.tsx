@@ -24,7 +24,7 @@ const contents = [
 
 const assets = [
   {
-    name: "OSCAR surface currents",
+    name: "OSCAR near-surface currents",
     role: "Numerical u, v fields",
     state: "2012 subset",
     tone: "available" as const,
@@ -118,7 +118,7 @@ export default function DataSourcesPage() {
               </dl>
             </div>
             <p className="prose">
-              OSCAR is a satellite-derived surface current analysis from Earth
+              OSCAR is a satellite-derived near-surface (15 m) current analysis from Earth
               &amp; Space Research, built from altimetry, winds, and ocean
               property fields. OISST v2.1 is a NOAA blended sea surface
               temperature analysis that combines satellite and in-situ
@@ -184,7 +184,7 @@ export default function DataSourcesPage() {
             <dl className="credits-list">
               <div>
                 <dt>OSCAR variables</dt>
-                <dd>Surface zonal (u) and meridional (v) velocity, m/s, 15 m depth.</dd>
+                <dd>Near-surface zonal (u) and meridional (v) velocity, m/s, 15 m depth.</dd>
               </div>
               <div>
                 <dt>OISST variable</dt>
@@ -268,7 +268,7 @@ export default function DataSourcesPage() {
                     <StatusTag tone="available">Available</StatusTag>
                   </div>
                   <p>
-                    OSCAR surface current analysis and NOAA OISST v2.1
+                    OSCAR near-surface (15 m) current analysis and NOAA OISST v2.1
                     temperature. These are gridded, published products with
                     documented providers and citations, accessed through public
                     NOAA CoastWatch ERDDAP.
@@ -368,8 +368,8 @@ export default function DataSourcesPage() {
               <div>
                 <h3>Can show</h3>
                 <ul className="marker-list">
-                  <li>Relative surface temperature across the sampled months.</li>
-                  <li>Surface current direction and relative speed.</li>
+                  <li>Relative sea surface temperature across the sampled months.</li>
+                  <li>Near-surface current direction and relative speed.</li>
                   <li>Seasonal change between twelve monthly composites.</li>
                   <li>Where the source products have no valid ocean value.</li>
                 </ul>
@@ -402,12 +402,12 @@ export default function DataSourcesPage() {
                 unresolved from public metadata.
               </p>
               <p>
-                The current ECCO distribution is measured in terabytes and
+                The current ECCO distribution is a separate multi-file archive and
                 requires NASA Earthdata Login. Downloading a defensible subset
                 from this build environment was not possible. Rather than
                 fabricate ECCO2 values or claim the render is data, the project
-                used two public authoritative alternatives that support the same
-                scientific experience: surface velocity and sea surface
+                used two public alternatives that support the same scientific
+                experience: near-surface velocity at 15 m and sea surface
                 temperature, sampled globally over a full year.
               </p>
               <p>

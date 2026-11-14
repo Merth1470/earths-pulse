@@ -24,6 +24,20 @@ export async function loadOceanDataset(
   metaUrl = "/data/ocean-2012.json",
   binaryUrl = "/data/ocean-2012.bin",
 ): Promise<OceanDataset> {
+  try {
+    return await loadOceanDatasetUnchecked(metaUrl, binaryUrl);
+  } catch (error) {
+    if (error instanceof OceanDataError) throw error;
+    throw new OceanDataError(
+      "The bundled ocean field could not be retrieved. Check the connection and retry.",
+    );
+  }
+}
+
+async function loadOceanDatasetUnchecked(
+  metaUrl: string,
+  binaryUrl: string,
+): Promise<OceanDataset> {
   const [metaResponse, binaryResponse] = await Promise.all([
     fetch(metaUrl),
     fetch(binaryUrl),

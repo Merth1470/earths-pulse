@@ -74,7 +74,7 @@ export function TransectDetails({
       <p className="transect-note">
         Rows are bilinear samples of the 1.5° shared grid. The full transect has{" "}
         {samples.length} points; the table thins them for reading. OSCAR
-        currents are a 15 m surface product, and OISST is a daily blended
+        currents are a 15 m near-surface product, and OISST is a daily blended
         analysis.
       </p>
     </details>

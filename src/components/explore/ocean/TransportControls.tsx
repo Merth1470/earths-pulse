@@ -62,7 +62,6 @@ export function TransportControls({
       <div className="transport">
         <button
           aria-label={playing ? "Pause sonification" : "Play sonification"}
-          aria-pressed={playing}
           className="transport-play"
           disabled={!supported}
           onClick={onToggle}
@@ -90,7 +89,7 @@ export function TransportControls({
         <div className="transport-copy">
           <div className="transport-heading-row">
             <h2 className="transport-title" id="transport-title">
-              Sonification transport
+              Listen to the transect
             </h2>
             <StatusTag tone={tone}>{status}</StatusTag>
           </div>
@@ -123,13 +122,19 @@ export function TransportControls({
           aria-valuetext={`Step ${stepIndex + 1} of ${stepCount}, ${positionLabel}`}
           className="seek"
           id="seek"
-          max={1000}
+          max={Math.max(1, stepCount - 1)}
           min={0}
-          onChange={(event) => onSeek(Number(event.target.value) / 1000)}
+          onChange={(event) =>
+            onSeek(Number(event.target.value) / Math.max(1, stepCount - 1))
+          }
           step={1}
-          style={{ "--seek": `${Math.round(progress * 1000) / 10}%` } as CSSProperties}
+          style={
+            {
+              "--seek": `${(stepIndex / Math.max(1, stepCount - 1)) * 100}%`,
+            } as CSSProperties
+          }
           type="range"
-          value={Math.round(progress * 1000)}
+          value={stepIndex}
         />
         <div className="seek-labels" aria-hidden="true">
           <span>West</span>
@@ -197,6 +202,7 @@ export function TransportControls({
           <div className="volume-row">
             <input
               aria-valuetext={`${Math.round(volume * 100)} percent`}
+              disabled={!supported}
               id="volume"
               max={1}
               min={0}
@@ -218,7 +224,8 @@ export function TransportControls({
 
       <p className="transport-fineprint">
         Same fields and settings produce the same sound. Speed changes listening
-        time only; it does not change the values.
+        time only; it does not change the values. Each arrow key on the position
+        slider moves one sample along the transect.
       </p>
     </section>
   );

@@ -8,7 +8,7 @@ import { TRANSECTS } from "@/lib/ocean/regions";
 export const metadata: Metadata = {
   title: { absolute: "Explore — Earth's Pulse" },
   description:
-    "Listen to real 2012 ocean surface currents and sea surface temperature. Temperature becomes pitch, current speed becomes pulse, and direction becomes stereo position. Built from OSCAR and NOAA OISST fields.",
+    "Listen to real 2012 ocean near-surface currents and sea surface temperature. Temperature becomes pitch, current speed becomes pulse, and direction becomes stereo position. Built from OSCAR and NOAA OISST fields.",
 };
 
 export default function ExplorePage() {
@@ -18,7 +18,7 @@ export default function ExplorePage() {
         <div className="explore-head-main">
           <h1>Listen to what you cannot see.</h1>
           <p className="explore-lede">
-            A sonified atlas of the ocean. Real surface currents and sea surface
+            A sonified atlas of the ocean. Real near-surface currents and sea surface
             temperature, sampled along a transect you can hear. Temperature
             becomes pitch, current speed becomes rhythm, and east–west flow
             moves across the stereo field.
@@ -90,7 +90,7 @@ export default function ExplorePage() {
           <div className="field-note">
             <h3>Currents</h3>
             <p>
-              OSCAR surface velocities from Earth &amp; Space Research, a
+              OSCAR near-surface velocities (15 m) from Earth &amp; Space Research, a
               NASA-funded satellite-derived analysis. The product combines
               geostrophic, Ekman, and buoyancy components at 15 m depth; it is
               not a direct current meter at every point.

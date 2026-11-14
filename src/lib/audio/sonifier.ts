@@ -284,14 +284,19 @@ export class OceanSonifier {
       target(graph.toneOscA.frequency, params.toneHz, time, 0.06);
       target(graph.toneOscB.frequency, params.toneHz * 1.004, time, 0.06);
       target(graph.toneFilter.frequency, params.toneCutoffHz, time, 0.08);
-      target(graph.toneGain.gain, this.layers.temperature ? 0.105 : SILENT, time, 0.08);
+      target(
+        graph.toneGain.gain,
+        this.layers.temperature && params.hasTemperature ? 0.105 : SILENT,
+        time,
+        0.08,
+      );
       target(graph.tonePan.pan, params.pan, time, 0.06);
 
       target(graph.pulseOsc.frequency, params.pulseHz, time, 0.07);
       target(graph.pulseLfo.frequency, params.pulseRateHz, time, 0.12);
       target(
         graph.pulseDepth.gain,
-        this.layers.rhythm ? params.pulseDepth : SILENT,
+        this.layers.rhythm && params.hasFlow ? params.pulseDepth : SILENT,
         time,
         0.1,
       );
@@ -299,7 +304,7 @@ export class OceanSonifier {
 
       target(
         graph.textureGain.gain,
-        this.layers.texture ? params.textureGain : SILENT,
+        this.layers.texture && params.hasFlow ? params.textureGain : SILENT,
         time,
         0.1,
       );
@@ -458,9 +463,24 @@ export class OceanSonifier {
         const params = this.currentParams ?? mapSample(sample, this.ranges);
         if (this.graph && params) {
           const now = this.context.currentTime;
-          target(this.graph.toneGain.gain, layers.temperature ? 0.105 : SILENT, now, 0.08);
-          target(this.graph.pulseDepth.gain, layers.rhythm ? params.pulseDepth : SILENT, now, 0.1);
-          target(this.graph.textureGain.gain, layers.texture ? params.textureGain : SILENT, now, 0.1);
+          target(
+            this.graph.toneGain.gain,
+            layers.temperature && params.hasTemperature ? 0.105 : SILENT,
+            now,
+            0.08,
+          );
+          target(
+            this.graph.pulseDepth.gain,
+            layers.rhythm && params.hasFlow ? params.pulseDepth : SILENT,
+            now,
+            0.1,
+          );
+          target(
+            this.graph.textureGain.gain,
+            layers.texture && params.hasFlow ? params.textureGain : SILENT,
+            now,
+            0.1,
+          );
         }
       }
     }

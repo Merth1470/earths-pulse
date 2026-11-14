@@ -2279,8 +2279,8 @@ section[id] {
 
 .ocean-plate-corner {
   position: absolute;
+  top: 9px;
   right: 10px;
-  bottom: 9px;
   padding: 3px 6px;
   background: rgba(5, 8, 14, 0.78);
   color: var(--text-secondary);
@@ -2344,8 +2344,8 @@ section[id] {
   border-top: 1px solid var(--line);
   background: var(--bg-raised);
   color: var(--text-secondary);
-  font-size: 10px;
-  line-height: 1.5;
+  font-size: 11px;
+  line-height: 1.55;
 }
 
 .ocean-plate-credit {
@@ -2631,7 +2631,7 @@ section[id] {
 
 .sonification-transport .segment {
   min-width: 40px;
-  height: 25px;
+  height: 32px;
   border-color: var(--line-strong);
   color: var(--text-secondary);
   cursor: pointer;
@@ -2782,8 +2782,8 @@ section[id] {
 .reading-description {
   margin-top: 9px;
   color: var(--text-secondary);
-  font-size: 11px;
-  line-height: 1.55;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .reading-actions {
@@ -2799,8 +2799,9 @@ section[id] {
 .reading-speak {
   display: inline-flex;
   align-items: center;
+  min-height: 34px;
   gap: 6px;
-  padding: 6px 9px;
+  padding: 7px 11px;
   border: 1px solid var(--line-strong);
   background: transparent;
   color: var(--accent-ice);
@@ -2880,7 +2881,7 @@ section[id] {
 
 .mapping-sound {
   color: var(--accent-ice);
-  font-size: 10.5px;
+  font-size: 11px;
   line-height: 1.4;
 }
 
@@ -2897,6 +2898,18 @@ section[id] {
   color: var(--text-tertiary);
   font-size: 9.5px;
   line-height: 1.5;
+}
+
+/* Rail access note */
+
+.rail-access .panel-head {
+  margin-bottom: 8px;
+}
+
+.rail-access-copy {
+  color: var(--text-secondary);
+  font-size: 10.8px;
+  line-height: 1.55;
 }
 
 /* Source links */
@@ -3043,10 +3056,10 @@ section[id] {
 }
 
 .section-intro p {
-  max-width: 40ch;
+  max-width: 42ch;
   margin-top: 10px;
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -3096,8 +3109,8 @@ section[id] {
 .encoding-row dd {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 11.5px;
-  line-height: 1.6;
+  font-size: 12.5px;
+  line-height: 1.65;
 }
 
 .field-notes {
@@ -3125,7 +3138,7 @@ section[id] {
 .field-note p {
   margin-top: 5px;
   color: var(--text-secondary);
-  font-size: 10.8px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -3161,8 +3174,8 @@ section[id] {
 .transect-index dd {
   margin: 2px 0 0;
   color: var(--text-tertiary);
-  font-size: 10.2px;
-  line-height: 1.5;
+  font-size: 11px;
+  line-height: 1.55;
 }
 
 .transect-index dd span {
@@ -3324,19 +3337,35 @@ section[id] {
 
   .sonification-transport .transport {
     grid-template-columns: auto auto minmax(0, 1fr);
+    grid-template-areas:
+      "copy copy copy"
+      "play stop metrics";
     gap: 10px;
   }
 
+  .sonification-transport .transport-copy {
+    grid-area: copy;
+  }
+
+  .sonification-transport .transport-play {
+    grid-area: play;
+  }
+
+  .sonification-transport .transport-stop {
+    grid-area: stop;
+  }
+
   .sonification-transport .transport-metrics {
-    grid-column: 1 / -1;
+    grid-area: metrics;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 16px;
     margin-left: 0;
-    padding-top: 4px;
-    border-top: 1px solid var(--line-faint);
   }
 
   .transport-play,
   .transport-stop {
-    height: 36px;
+    height: 44px;
   }
 
   .transport-play span,
@@ -3345,14 +3374,40 @@ section[id] {
   }
 
   .transport-play {
-    width: 38px;
+    width: 44px;
     padding: 0;
   }
 
   .transport-stop {
-    width: 34px;
+    width: 44px;
     justify-content: center;
     padding: 0;
+  }
+
+  .sonification-transport .segment {
+    height: 40px;
+    min-width: 44px;
+  }
+
+  .sonification-transport .layer-option {
+    min-height: 34px;
+  }
+
+  .reading-speak {
+    min-height: 42px;
+  }
+
+  .reading-toggle {
+    min-height: 34px;
+  }
+
+  .field-control select {
+    height: 42px;
+  }
+
+  .seek,
+  .volume-row input {
+    height: 30px;
   }
 
   .sonification-transport .transport-controls {
@@ -3503,7 +3558,7 @@ section[id] {
   }
 
   .reading-values dd {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .reading-values dt {
@@ -3519,10 +3574,17 @@ section[id] {
   }
 
   .ocean-plate-corner {
+    top: 7px;
     right: 7px;
-    bottom: 7px;
     font-size: 8px;
   }
+}
+
+#main,
+.ocean-plate,
+.rail-panel,
+.transect-details {
+  scroll-margin-top: 104px;
 }
 
 @media (prefers-reduced-motion: reduce) {

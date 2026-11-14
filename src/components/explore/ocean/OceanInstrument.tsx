@@ -1,6 +1,7 @@
 "use client";
 
 import { AlertTriangle, RefreshCw } from "lucide-react";
+import Link from "next/link";
 import {
   useCallback,
   useEffect,
@@ -12,7 +13,6 @@ import {
 
 import { DatasetRecord } from "@/components/explore/ocean/DatasetRecord";
 import { FieldBar } from "@/components/explore/ocean/FieldBar";
-import { ListeningMap } from "@/components/explore/ocean/ListeningMap";
 import { OceanCanvas } from "@/components/explore/ocean/OceanCanvas";
 import { ReadingPanel } from "@/components/explore/ocean/ReadingPanel";
 import { TransectDetails } from "@/components/explore/ocean/TransectDetails";
@@ -451,8 +451,22 @@ export function OceanInstrument() {
             stepIndex={stepIndex}
             transect={activeTransect}
           />
-          <ListeningMap ranges={dataset.meta.normalization} />
           <DatasetRecord meta={dataset.meta} />
+          <section aria-labelledby="rail-access-title" className="rail-panel rail-access">
+            <div className="panel-head">
+              <h2 className="panel-title" id="rail-access-title">
+                Nonvisual path
+              </h2>
+              <Link className="panel-link" href="/accessibility">
+                Guide
+              </Link>
+            </div>
+            <p className="rail-access-copy">
+              Tab to the transport and press Play. The reading panel names every
+              value; “Read this aloud” speaks it, and the trace table carries the
+              same numbers. The field is usable without the canvas.
+            </p>
+          </section>
         </aside>
       </div>
 

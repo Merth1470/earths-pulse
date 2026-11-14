@@ -18,7 +18,7 @@ export const TRANSECTS: TransectDefinition[] = [
     description:
       "A west-to-east crossing of the North Atlantic at 38°N, from the US seaboard toward the Azores.",
     whyItMatters:
-      "The Gulf Stream is a warm western boundary current. It carries heat poleward and is one of the most energetic surface flows in the Atlantic.",
+      "The Gulf Stream is a warm western boundary current. It carries heat poleward and is one of the most energetic near-surface flows in the Atlantic.",
   },
   {
     id: "equatorial-pacific",

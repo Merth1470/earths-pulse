@@ -12,7 +12,7 @@ const SIGNAL_STAGES: readonly SignalStage[] = [
   {
     code: "01",
     label: "Numerical field",
-    detail: "OSCAR surface u, v · NOAA OISST SST",
+    detail: "OSCAR near-surface u, v · NOAA OISST SST",
     status: "Available",
     tone: "available",
   },

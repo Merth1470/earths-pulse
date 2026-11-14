@@ -242,7 +242,7 @@ export function OceanCanvas({
 
     function seedParticles() {
       const count = Math.round(
-        Math.max(520, Math.min(2100, (width * height) / 1250)),
+        Math.max(640, Math.min(2400, (width * height) / 700)),
       );
       particles = Array.from({ length: count }, () => spawnParticle(true));
       trail2d.clearRect(0, 0, width, height);
@@ -300,6 +300,7 @@ export function OceanCanvas({
     }
 
     function drawGraticule() {
+      const compact = width < 540;
       context2d.save();
       context2d.strokeStyle = "rgba(155, 200, 216, 0.10)";
       context2d.lineWidth = 0.5;
@@ -326,18 +327,25 @@ export function OceanCanvas({
       context2d.lineTo(width, equator);
       context2d.stroke();
 
-      context2d.fillStyle = "rgba(155, 200, 216, 0.5)";
-      context2d.font = '8px "IBM Plex Mono", ui-monospace, monospace';
+      context2d.fillStyle = compact
+        ? "rgba(180, 210, 222, 0.68)"
+        : "rgba(155, 200, 216, 0.5)";
+      context2d.font = `${compact ? 9 : 8}px "IBM Plex Mono", ui-monospace, monospace`;
       context2d.textAlign = "center";
-      for (let lon = -180; lon <= 180; lon += 60) {
+      const longitudeLabels = compact
+        ? [-120, 0, 120]
+        : [-180, -120, -60, 0, 60, 120, 180];
+      for (const lon of longitudeLabels) {
         const [x] = project(lon, 0, width, height);
         const label = lon === 0 ? "0°" : `${Math.abs(lon)}°${lon > 0 ? "E" : "W"}`;
         context2d.fillText(label, Math.min(width - 16, Math.max(16, x)), height - 6);
       }
       context2d.textAlign = "left";
-      for (const lat of [-60, -30, 30, 60]) {
-        const [, y] = project(0, lat, width, height);
-        context2d.fillText(`${Math.abs(lat)}°${lat > 0 ? "N" : "S"}`, 6, y - 3);
+      if (!compact) {
+        for (const lat of [-60, -30, 30, 60]) {
+          const [, y] = project(0, lat, width, height);
+          context2d.fillText(`${Math.abs(lat)}°${lat > 0 ? "N" : "S"}`, 6, y - 3);
+        }
       }
       context2d.restore();
     }
@@ -363,16 +371,17 @@ export function OceanCanvas({
       }
       context2d.setLineDash([]);
 
-      const [, ny] = project(0, lat + 2.4, width, height);
-      context2d.fillStyle = "rgba(232, 238, 245, 0.8)";
-      context2d.font = '8px "IBM Plex Mono", ui-monospace, monospace';
-      context2d.textAlign = "left";
-      const labelX = 8;
-      context2d.fillText(
-        `${formatLongitude(lonStart)} → ${formatLongitude(lonEnd)}  /  lat ${lat.toFixed(1)}°`,
-        labelX,
-        Math.max(14, ny - 6),
-      );
+      if (width >= 540) {
+        const [, ny] = project(0, lat + 2.4, width, height);
+        context2d.fillStyle = "rgba(232, 238, 245, 0.8)";
+        context2d.font = '8px "IBM Plex Mono", ui-monospace, monospace';
+        context2d.textAlign = "left";
+        context2d.fillText(
+          `${formatLongitude(lonStart)} → ${formatLongitude(lonEnd)}  /  lat ${lat.toFixed(1)}°`,
+          8,
+          Math.max(14, ny - 6),
+        );
+      }
       context2d.restore();
     }
 
@@ -404,7 +413,7 @@ export function OceanCanvas({
     function stepParticles(dt: number) {
       trail2d.save();
       trail2d.globalCompositeOperation = "destination-out";
-      trail2d.fillStyle = "rgba(0, 0, 0, 0.075)";
+      trail2d.fillStyle = "rgba(0, 0, 0, 0.06)";
       trail2d.fillRect(0, 0, width, height);
       trail2d.restore();
 
@@ -458,10 +467,10 @@ export function OceanCanvas({
           0,
           Math.min(1, particle.age / 0.4, (particle.life - particle.age) / 0.8),
         );
-        const alpha = Math.min(0.62, 0.12 + speed * 0.85) * fade;
+        const alpha = Math.min(0.78, 0.18 + speed * 1.0) * fade;
 
         trail2d.strokeStyle = `rgba(196, 240, 255, ${alpha.toFixed(3)})`;
-        trail2d.lineWidth = 0.55 + Math.min(0.7, speed * 0.9);
+        trail2d.lineWidth = 0.6 + Math.min(0.9, speed * 1.1);
         trail2d.beginPath();
         trail2d.moveTo(oldX, oldY);
         trail2d.lineTo(newX, newY);
@@ -594,7 +603,7 @@ export function OceanCanvas({
       <div className="ocean-plate-viewport">
         <canvas
           ref={canvasRef}
-          aria-label={`Global sea surface temperature and surface current field for ${frame.label}. A highlighted zonal transect at ${transect.lat.toFixed(1)} degrees latitude is shown, with ${summary}. Particle motion shows current direction and relative speed, visually accelerated; displacement is not to scale.`}
+          aria-label={`Global sea surface temperature and near-surface current field for ${frame.label}. A highlighted zonal transect at ${transect.lat.toFixed(1)} degrees latitude is shown, with ${summary}. Particle motion shows current direction and relative speed, visually accelerated; displacement is not to scale.`}
           className="ocean-canvas"
           role="img"
         />
@@ -618,7 +627,7 @@ export function OceanCanvas({
       <figcaption className="ocean-plate-caption">
         <span>
           Sea surface temperature is the raster. Pale lines are advected
-          particles following surface current direction; motion is deliberately
+          particles following near-surface current direction; motion is deliberately
           faster than reality so the flow is legible. The highlighted band is a
           listening transect, not a front.
         </span>

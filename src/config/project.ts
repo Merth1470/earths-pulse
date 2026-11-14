@@ -2,7 +2,7 @@ export const PROJECT = {
   name: "Earth's Pulse",
   tagline: "Listen to what you cannot see.",
   description:
-    "An interactive scientific sonification instrument that translates global ocean surface currents and sea surface temperature into sound. Built from public OSCAR and NOAA OISST fields, with an explicit, reproducible mapping.",
+    "An interactive scientific sonification instrument that translates global ocean near-surface currents and sea surface temperature into sound. Built from public OSCAR and NOAA OISST fields, with an explicit, reproducible mapping.",
   challenge: "NASA Space Apps Challenge",
   stage: {
     number: "02",

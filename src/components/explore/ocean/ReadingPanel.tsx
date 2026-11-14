@@ -70,7 +70,7 @@ export function ReadingPanel({
         <div>
           <dt>Sea surface temperature</dt>
           <dd>
-            {sample?.sst === null || sample === null
+            {sample === null || sample.sst === null
               ? "Missing"
               : formatSst(sample.sst)}
           </dd>
@@ -78,7 +78,7 @@ export function ReadingPanel({
         <div>
           <dt>Current speed</dt>
           <dd>
-            {sample?.speed === null || sample === null
+            {sample === null || sample.speed === null
               ? "Missing"
               : formatSpeed(sample.speed)}
           </dd>
@@ -86,7 +86,7 @@ export function ReadingPanel({
         <div>
           <dt>Flows toward</dt>
           <dd>
-            {sample?.bearing === null || sample === null
+            {sample === null || sample.bearing === null
               ? "Missing"
               : formatBearing(sample.bearing)}
           </dd>
@@ -137,13 +137,16 @@ export function ReadingPanel({
       </div>
 
       <p className="reading-note">
-        Spoken readings use your browser&apos;s voice and always match the
-        visible values. Screen-reader users may prefer to keep this off.
+        {speechReady
+          ? "Spoken readings use your browser's voice and always match the visible values. Keep this off to use the polite live region with your own screen reader instead."
+          : "Browser speech synthesis is unavailable here. The visible readings and the transect table remain available."}
       </p>
 
-      <p aria-atomic="true" aria-live="polite" className="sr-only">
-        {announcement}
-      </p>
+      {spoken ? null : (
+        <p aria-atomic="true" aria-live="polite" className="sr-only">
+          {announcement}
+        </p>
+      )}
     </section>
   );
 }

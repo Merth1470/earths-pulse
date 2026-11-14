@@ -45,7 +45,7 @@ export default function AccessibilityPage() {
               The Explore instrument carries the same information in three
               forms: a visual field, an audio encoding, and a text reading. The
               audio is an access path, not a replacement for the data. Every
-              value heard is also printed, and every current value can be read
+              sampled value is printed, and every current value can be read
               aloud on demand.
             </p>
           </section>
@@ -195,10 +195,10 @@ export default function AccessibilityPage() {
             <h2>Spoken readings</h2>
             <div className="prose">
               <p>
-                “Read this aloud” speaks the current sample using the browser
-                speech voice. “Announce every fourth step” speaks a grounded
-                reading during playback. Both are off until you enable them, so a
-                screen-reader user does not receive two voices at once.
+                A polite live region announces every fourth sample by default.
+                Enabling “Announce every fourth step” switches to the browser
+                speech voice and removes the live region, so the two paths do not
+                duplicate. “Read this aloud” speaks the current sample on demand.
               </p>
               <p>
                 A reading names longitude, latitude, sea surface temperature,
@@ -229,7 +229,7 @@ export default function AccessibilityPage() {
                   <li>Text readings and a traceable table for every sample.</li>
                   <li>On-demand and automatic browser speech.</li>
                   <li>Reduced motion without loss of data.</li>
-                  <li>Contrast-checked controls and non-color status labels.</li>
+                  <li>Text labels beside every status color and visible focus rings.</li>
                 </ul>
               </div>
               <div>
