@@ -337,9 +337,8 @@ export function OceanInstrument() {
                     <p className="load-error-title">The ocean field did not load</p>
                     <p>{loadError}</p>
                     <p className="load-error-note">
-                      The 1.75 MB bundled subset is served from this site. Check
-                      the connection and retry; no data is altered by a failed
-                      request.
+                      The 1.75 MB bundled subset is served from this site.
+                      No data is altered by a failed request.
                     </p>
                     <button className="button-primary" onClick={retry} type="button">
                       <RefreshCw aria-hidden="true" size={13} strokeWidth={1.7} />

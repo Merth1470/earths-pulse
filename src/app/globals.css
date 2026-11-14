@@ -150,7 +150,7 @@ section[id] {
   background: var(--accent-cyan);
   color: #041016;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: top 120ms ease;
@@ -217,7 +217,7 @@ section[id] {
 
 .brand-sub {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   line-height: 1.2;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -267,7 +267,7 @@ section[id] {
   padding: 6px 0 6px 20px;
   border-left: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -311,7 +311,7 @@ section[id] {
   align-items: center;
   gap: 6px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   line-height: 1.2;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -340,7 +340,7 @@ section[id] {
   align-items: center;
   gap: 5px;
   color: var(--accent-cyan);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -386,7 +386,7 @@ section[id] {
   gap: 8px;
   margin-top: 14px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -410,7 +410,7 @@ section[id] {
 
 .explore-facts dt {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -418,7 +418,7 @@ section[id] {
 
 .explore-facts dd {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.2;
   color: var(--text);
 }
@@ -465,7 +465,7 @@ section[id] {
   border-bottom: 1px solid var(--line);
   background: var(--bg-raised);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -517,7 +517,7 @@ section[id] {
 
 .plate-overlay-kicker {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-cyan);
@@ -532,7 +532,7 @@ section[id] {
 .plate-overlay p {
   max-width: 42ch;
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.5;
 }
 
@@ -611,7 +611,7 @@ section[id] {
   padding: 10px 12px;
   border-top: 1px solid var(--line);
   background: var(--bg-raised);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -623,7 +623,7 @@ section[id] {
 .plate-caption-source {
   flex: none;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   color: var(--text-tertiary);
   text-align: right;
@@ -676,7 +676,7 @@ section[id] {
 .transport-note {
   max-width: 62ch;
   margin-top: 3px;
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -695,7 +695,7 @@ section[id] {
 
 .transport-metrics dt {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -704,7 +704,7 @@ section[id] {
 .transport-metrics dd {
   margin: 0;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.3;
   color: var(--text-secondary);
 }
@@ -769,7 +769,7 @@ section[id] {
   gap: 16px;
   margin-top: 2px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   color: var(--text-tertiary);
 }
@@ -799,7 +799,7 @@ section[id] {
   margin-bottom: 6px;
   padding: 0;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -818,7 +818,7 @@ section[id] {
   background: transparent;
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1;
   cursor: not-allowed;
 }
@@ -842,7 +842,7 @@ section[id] {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.2;
   color: var(--text-tertiary);
   cursor: not-allowed;
@@ -860,7 +860,7 @@ section[id] {
   max-width: 36ch;
   margin-left: auto;
   color: var(--text-tertiary);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
   text-align: right;
 }
@@ -884,7 +884,7 @@ section[id] {
 
 .panel-title {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -893,7 +893,7 @@ section[id] {
 
 .panel-count {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -919,21 +919,21 @@ section[id] {
 .record-row dt {
   padding-top: 2px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-tertiary);
 }
 
 .record-row dd {
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.45;
   color: var(--text);
 }
 
 .record-row dd.record-mono {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -953,7 +953,7 @@ section[id] {
   align-items: center;
   gap: 4px;
   color: var(--accent-cyan);
-  font-size: 10.5px;
+  font-size: 12px;
 }
 
 .panel-link:hover {
@@ -963,7 +963,7 @@ section[id] {
 
 .panel-verified {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.05em;
   color: var(--text-tertiary);
 }
@@ -1000,7 +1000,7 @@ section[id] {
 .signal-code {
   padding-top: 3px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   color: var(--text-tertiary);
 }
 
@@ -1032,7 +1032,7 @@ section[id] {
 }
 
 .signal-label {
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.35;
   color: var(--text);
 }
@@ -1040,13 +1040,13 @@ section[id] {
 .signal-detail {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
 .signal-status {
   margin-top: 2px;
-  font-size: 9.5px;
+  font-size: 12px;
 }
 
 .panel-footnote {
@@ -1054,7 +1054,7 @@ section[id] {
   padding-top: 7px;
   border-top: 1px solid var(--line-faint);
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -1072,20 +1072,20 @@ section[id] {
 }
 
 .data-note-title {
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .data-note p {
   margin-top: 3px;
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
 .data-note .text-link {
   margin-top: 6px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .explore-endnote {
@@ -1093,7 +1093,7 @@ section[id] {
   padding-top: 10px;
   border-top: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -1136,7 +1136,7 @@ section[id] {
   gap: 3px;
   padding-bottom: 3px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-align: right;
   text-transform: uppercase;
@@ -1224,7 +1224,7 @@ section[id] {
   padding-bottom: 8px;
   border-bottom: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -1244,7 +1244,7 @@ section[id] {
   position: relative;
   padding-left: 13px;
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.55;
 }
 
@@ -1278,7 +1278,7 @@ section[id] {
 .credits-list dt {
   padding-top: 2px;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -1286,14 +1286,14 @@ section[id] {
 
 .credits-list dd {
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.5;
 }
 
 .fine-print {
   margin-top: 15px;
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -1308,7 +1308,7 @@ section[id] {
 
 .aside-label {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -1325,7 +1325,7 @@ section[id] {
 .article-toc a {
   padding: 4px 0;
   color: var(--text-secondary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -1341,13 +1341,13 @@ section[id] {
 .aside-note p:not(.aside-label) {
   margin-top: 6px;
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
 .aside-note .text-link {
   margin-top: 8px;
-  font-size: 10.5px;
+  font-size: 12px;
 }
 
 /* Data sources */
@@ -1372,7 +1372,7 @@ section[id] {
   max-width: 52ch;
   margin-top: 6px;
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.55;
 }
 
@@ -1393,7 +1393,7 @@ section[id] {
 
 .source-summary dt {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-tertiary);
@@ -1403,7 +1403,7 @@ section[id] {
   margin: 0;
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
   text-align: right;
 }
@@ -1436,7 +1436,7 @@ section[id] {
   background: var(--bg-raised);
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1445,14 +1445,14 @@ section[id] {
 
 .record-table tbody th {
   color: var(--text);
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 500;
   line-height: 1.4;
 }
 
 .record-table tbody td {
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.45;
 }
 
@@ -1467,7 +1467,7 @@ section[id] {
   gap: 3px;
   color: var(--accent-cyan);
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -1499,7 +1499,7 @@ section[id] {
   padding-top: 2px;
   color: var(--accent-cyan);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .layer-heading {
@@ -1537,7 +1537,7 @@ section[id] {
   border: 1px solid var(--line);
   background: var(--bg-raised);
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.55;
 }
 
@@ -1567,7 +1567,7 @@ section[id] {
   align-items: center;
   gap: 4px;
   color: var(--text);
-  font-size: 11.5px;
+  font-size: 12.5px;
 }
 
 .link-list a:hover {
@@ -1576,7 +1576,7 @@ section[id] {
 
 .link-list span {
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.4;
   text-align: right;
 }
@@ -1601,7 +1601,7 @@ section[id] {
 .citation-block p {
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.75;
 }
 
@@ -1625,7 +1625,7 @@ section[id] {
   min-height: 62px;
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.05em;
 }
 
@@ -1638,12 +1638,12 @@ section[id] {
 .footer-name {
   color: var(--text);
   font-family: var(--sans);
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .footer-challenge {
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1709,7 +1709,7 @@ section[id] {
   border: 1px solid var(--accent-cyan);
   color: var(--accent-cyan);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1722,7 +1722,7 @@ section[id] {
   margin-top: 18px;
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.06em;
 }
 
@@ -1839,7 +1839,7 @@ section[id] {
   }
 
   .header-stage {
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: 0.06em;
   }
 
@@ -1966,7 +1966,7 @@ section[id] {
     content: attr(data-label);
     padding-top: 1px;
     font-family: var(--mono);
-    font-size: 9.5px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-tertiary);
@@ -2018,7 +2018,7 @@ section[id] {
 
   .explore-status {
     align-items: flex-start;
-    font-size: 9.5px;
+    font-size: 12px;
     line-height: 1.5;
   }
 
@@ -2032,7 +2032,7 @@ section[id] {
 
   .plate-bar {
     gap: 10px;
-    font-size: 8.5px;
+    font-size: 12px;
   }
 
   .plate-dims {
@@ -2040,7 +2040,7 @@ section[id] {
   }
 
   .timeline-labels {
-    font-size: 8.5px;
+    font-size: 12px;
   }
 
   .timeline-state {
@@ -2052,7 +2052,7 @@ section[id] {
   }
 
   .transport-title {
-    font-size: 11.5px;
+    font-size: 12.5px;
   }
 
   .layer-options {
@@ -2134,7 +2134,7 @@ section[id] {
   content: "How to listen — ";
   color: var(--accent-cyan);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -2164,7 +2164,7 @@ section[id] {
 .field-route-label {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -2182,7 +2182,7 @@ section[id] {
   background-position: right 9px center;
   color: var(--text);
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   appearance: none;
   cursor: pointer;
 }
@@ -2207,7 +2207,7 @@ section[id] {
 .field-route-value {
   color: var(--text);
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -2215,7 +2215,7 @@ section[id] {
   grid-column: 1 / -1;
   max-width: 82ch;
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -2239,7 +2239,7 @@ section[id] {
   background: var(--bg-raised);
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -2285,7 +2285,7 @@ section[id] {
   background: rgba(5, 8, 14, 0.78);
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   pointer-events: none;
@@ -2301,7 +2301,7 @@ section[id] {
   background: var(--bg-raised);
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 12px;
   letter-spacing: 0.06em;
 }
 
@@ -2312,18 +2312,14 @@ section[id] {
 }
 
 .ocean-legend-bar {
+  display: flex;
   height: 5px;
-  background: linear-gradient(
-    to right,
-    #071830 0%,
-    #0f426c 18%,
-    #167c94 34%,
-    #4ab4b2 48%,
-    #a2d6b8 60%,
-    #e1dc94 70%,
-    #f0a458 84%,
-    #d1503c 100%
-  );
+  overflow: hidden;
+}
+
+.ocean-legend-bar > span {
+  flex: 1;
+  min-width: 0;
 }
 
 .ocean-legend-range,
@@ -2344,7 +2340,7 @@ section[id] {
   border-top: 1px solid var(--line);
   background: var(--bg-raised);
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -2352,7 +2348,7 @@ section[id] {
   flex: none;
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.05em;
   text-align: right;
   white-space: nowrap;
@@ -2385,7 +2381,7 @@ section[id] {
 .load-progress-note {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -2435,7 +2431,7 @@ section[id] {
   border: 1px solid var(--line-strong);
   background: var(--bg-raised);
   color: var(--text-secondary);
-  font-size: 11.5px;
+  font-size: 12.5px;
   line-height: 1.55;
 }
 
@@ -2451,7 +2447,7 @@ section[id] {
 
 .load-error-note {
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
 }
 
 .load-error .button-primary {
@@ -2462,7 +2458,7 @@ section[id] {
 .rail-placeholder {
   padding: 10px 0 2px;
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -2489,7 +2485,7 @@ section[id] {
   background: var(--accent-cyan);
   color: #041016;
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2521,7 +2517,7 @@ section[id] {
   background: transparent;
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
@@ -2618,7 +2614,7 @@ section[id] {
   margin-top: 1px;
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -2676,7 +2672,7 @@ section[id] {
 .volume-control > label {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -2696,7 +2692,7 @@ section[id] {
   min-width: 34px;
   color: var(--text);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
@@ -2714,7 +2710,7 @@ section[id] {
   border: 1px solid rgba(214, 168, 75, 0.45);
   background: rgba(214, 168, 75, 0.08);
   color: var(--blocked);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -2750,7 +2746,7 @@ section[id] {
   min-height: 26px;
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   line-height: 1.35;
   text-transform: uppercase;
@@ -2775,7 +2771,7 @@ section[id] {
   border-top: 1px solid var(--line);
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.04em;
 }
 
@@ -2806,7 +2802,7 @@ section[id] {
   background: transparent;
   color: var(--accent-ice);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
@@ -2828,7 +2824,7 @@ section[id] {
   align-items: center;
   gap: 7px;
   color: var(--text-secondary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.4;
   cursor: pointer;
 }
@@ -2843,7 +2839,7 @@ section[id] {
 .reading-note {
   margin-top: 8px;
   color: var(--text-tertiary);
-  font-size: 9.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -2866,7 +2862,7 @@ section[id] {
 .mapping-row dt {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -2881,7 +2877,7 @@ section[id] {
 
 .mapping-sound {
   color: var(--accent-ice);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -2896,7 +2892,7 @@ section[id] {
   padding-top: 8px;
   border-top: 1px solid var(--line);
   color: var(--text-tertiary);
-  font-size: 9.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -2924,7 +2920,7 @@ section[id] {
 }
 
 .source-links .panel-link {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* Transect table */
@@ -2942,7 +2938,7 @@ section[id] {
   gap: 16px;
   padding: 10px 14px;
   color: var(--text);
-  font-size: 11.5px;
+  font-size: 12.5px;
   cursor: pointer;
   list-style: none;
 }
@@ -2971,7 +2967,7 @@ section[id] {
 .transect-summary-meta {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -2985,7 +2981,7 @@ section[id] {
 .transect-table-wrap table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 10.5px;
+  font-size: 12px;
 }
 
 .transect-table-wrap caption {
@@ -3002,7 +2998,7 @@ section[id] {
   border-bottom: 1px solid var(--line);
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-align: left;
@@ -3015,7 +3011,7 @@ section[id] {
   border-bottom: 1px solid var(--line-faint);
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -3096,13 +3092,13 @@ section[id] {
 .encoding-arrow {
   color: var(--text-tertiary);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .encoding-sound {
   color: var(--accent-ice);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.02em;
 }
 
@@ -3130,7 +3126,7 @@ section[id] {
 
 .field-note h3 {
   color: var(--text);
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
@@ -3152,7 +3148,7 @@ section[id] {
 .transect-index h3 {
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3167,14 +3163,14 @@ section[id] {
 
 .transect-index dt {
   color: var(--text);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .transect-index dd {
   margin: 2px 0 0;
   color: var(--text-tertiary);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -3199,7 +3195,7 @@ section[id] {
   padding: 11px 14px;
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
@@ -3234,7 +3230,7 @@ section[id] {
   max-width: 84ch;
   padding: 0 14px 12px;
   color: var(--text-tertiary);
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -3411,6 +3407,7 @@ section[id] {
   }
 
   .sonification-transport .transport-controls {
+    align-items: flex-start;
     gap: 16px 22px;
   }
 
@@ -3456,7 +3453,7 @@ section[id] {
   .ocean-plate-bar {
     gap: 10px;
     padding: 0 10px;
-    font-size: 8.5px;
+    font-size: 12px;
   }
 
   .ocean-plate-dims {
@@ -3516,7 +3513,7 @@ section[id] {
     content: attr(data-label);
     color: var(--text-tertiary);
     font-family: var(--mono);
-    font-size: 8.5px;
+    font-size: 12px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
   }
@@ -3532,7 +3529,7 @@ section[id] {
   }
 
   .encoding-row dt {
-    font-size: 11.5px;
+    font-size: 12.5px;
   }
 
   .field-bar {
@@ -3576,7 +3573,7 @@ section[id] {
   .ocean-plate-corner {
     top: 7px;
     right: 7px;
-    font-size: 8px;
+    font-size: 12px;
   }
 }
 
@@ -3593,4 +3590,194 @@ section[id] {
     width: 100%;
     opacity: 0.35;
   }
+}
+
+/* Legibility floor for explanatory and meta copy. Short mono labels stay at
+   the 11px functional floor; running text gets 12px. */
+.plate-caption,
+.ocean-plate-caption,
+.plate-caption-text,
+.plate-caption-source,
+.ocean-plate-credit,
+.transport-fineprint,
+.panel-footnote,
+.transect-note,
+.rail-placeholder,
+.field-hint,
+.load-progress-note,
+.load-error-note,
+.reading-note,
+.nasa-reference > p {
+  font-size: 12px;
+}
+
+.transport-fineprint {
+  max-width: 48ch;
+}
+
+.nasa-reference > p {
+  max-width: 72ch;
+}
+
+/* Explanatory copy is sentence case; uppercase stays on short labels. */
+.explore-endnote {
+  max-width: 82ch;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.transect-summary-meta {
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.plate-kind {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.transect-table-wrap caption {
+  font-size: 12px;
+}
+
+.field-note p {
+  max-width: 62ch;
+}
+
+.ocean-plate-caption > span:first-child {
+  max-width: 68ch;
+}
+
+@media (max-width: 560px) {
+  .brand-sub {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ocean-plate-index {
+    display: none;
+  }
+
+  .ocean-plate-kind {
+    margin-left: 0;
+  }
+}
+
+/* Keep running text inside a comfortable measure at proportional sizes. */
+.pulse-head .explore-lede {
+  max-width: 60ch;
+}
+
+.field-note p {
+  max-width: 56ch;
+}
+
+.prose {
+  max-width: 64ch;
+}
+
+.explore-endnote {
+  max-width: 74ch;
+}
+
+.nasa-reference > p {
+  max-width: 64ch;
+}
+
+.ocean-plate-caption > span:first-child {
+  max-width: 58ch;
+}
+
+.plate-caption-source {
+  letter-spacing: 0.03em;
+}
+
+.explore-status {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.rail-access-copy {
+  font-size: 12px;
+}
+
+/* Bounded measures for long-form and footnote copy. */
+.prose {
+  max-width: 60ch;
+}
+
+.panel-footnote,
+.callout,
+.credits-list dd,
+.fine-print,
+.transect-table-wrap caption {
+  max-width: 64ch;
+}
+
+.fine-print,
+.transect-table-wrap caption {
+  font-size: 12px;
+}
+
+.explore-status,
+.skip-link {
+  font-size: 12px;
+}
+
+.sonification-transport .transport-fineprint {
+  max-width: 64ch;
+}
+
+.transect-note,
+.citation-block p {
+  max-width: 64ch;
+}
+
+.field-hint {
+  max-width: 62ch;
+}
+
+.encoding-row dd {
+  max-width: 60ch;
+}
+
+.transect-index dd,
+.transect-index dd span {
+  max-width: 56ch;
+}
+
+.explore-endnote {
+  max-width: 60ch;
+}
+
+@media (max-width: 760px) {
+  .article-toc {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 2px;
+  }
+
+  .article-toc a {
+    padding: 6px 0;
+  }
+}
+
+.transect-table-wrap caption {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+.ocean-plate-corner {
+  font-size: 11px;
+}
+
+.explore-endnote {
+  max-width: 56ch;
+}
+
+.pulse-head .explore-lede {
+  max-width: 52ch;
 }

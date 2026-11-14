@@ -11,7 +11,7 @@ export function SiteHeader() {
           <LogoMark className="brand-mark" />
           <span className="brand-lockup">
             <span className="brand-name">Earth’s Pulse</span>
-            <span className="brand-sub">Sonification research interface</span>
+            <span className="brand-sub">Sonification interface</span>
           </span>
         </Link>
 

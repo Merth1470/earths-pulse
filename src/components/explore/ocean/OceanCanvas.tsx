@@ -330,11 +330,11 @@ export function OceanCanvas({
       context2d.fillStyle = compact
         ? "rgba(180, 210, 222, 0.68)"
         : "rgba(155, 200, 216, 0.5)";
-      context2d.font = `${compact ? 9 : 8}px "IBM Plex Mono", ui-monospace, monospace`;
+      context2d.font = `${compact ? 10 : 9}px "IBM Plex Mono", ui-monospace, monospace`;
       context2d.textAlign = "center";
       const longitudeLabels = compact
         ? [-120, 0, 120]
-        : [-180, -120, -60, 0, 60, 120, 180];
+        : [-120, -60, 0, 60, 120];
       for (const lon of longitudeLabels) {
         const [x] = project(lon, 0, width, height);
         const label = lon === 0 ? "0°" : `${Math.abs(lon)}°${lon > 0 ? "E" : "W"}`;
@@ -372,15 +372,14 @@ export function OceanCanvas({
       context2d.setLineDash([]);
 
       if (width >= 540) {
-        const [, ny] = project(0, lat + 2.4, width, height);
-        context2d.fillStyle = "rgba(232, 238, 245, 0.8)";
-        context2d.font = '8px "IBM Plex Mono", ui-monospace, monospace';
+        const text = `${formatLongitude(lonStart)} → ${formatLongitude(lonEnd)}  /  lat ${lat.toFixed(1)}°`;
+        context2d.font = '9px "IBM Plex Mono", ui-monospace, monospace';
         context2d.textAlign = "left";
-        context2d.fillText(
-          `${formatLongitude(lonStart)} → ${formatLongitude(lonEnd)}  /  lat ${lat.toFixed(1)}°`,
-          8,
-          Math.max(14, ny - 6),
-        );
+        const textWidth = context2d.measureText(text).width;
+        context2d.fillStyle = "rgba(5, 8, 14, 0.68)";
+        context2d.fillRect(20, 8, textWidth + 8, 13);
+        context2d.fillStyle = "rgba(232, 238, 245, 0.84)";
+        context2d.fillText(text, 24, 18);
       }
       context2d.restore();
     }
@@ -618,7 +617,11 @@ export function OceanCanvas({
 
       <div className="ocean-legend" aria-hidden="true">
         <span className="ocean-legend-label">SST</span>
-        <span className="ocean-legend-bar" />
+        <span className="ocean-legend-bar" aria-hidden="true">
+          {SST_STOPS.map(([value, [r, g, b]]) => (
+            <span key={value} style={{ backgroundColor: `rgb(${r} ${g} ${b})` }} />
+          ))}
+        </span>
         <span className="ocean-legend-range">−2 °C</span>
         <span className="ocean-legend-mid">20</span>
         <span className="ocean-legend-range">32 °C</span>

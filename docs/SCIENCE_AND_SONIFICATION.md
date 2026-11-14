@@ -12,7 +12,7 @@ Two different ocean products are combined on one grid.
 
 | Layer | Product | Depth | Nature | Native resolution |
 | --- | --- | --- | --- | --- |
-| Currents | OSCAR Sea Surface Velocity | **15 m** | Satellite-derived surface current analysis | 1/3°, 5-day composite |
+| Currents | OSCAR Sea Surface Velocity | **15 m** | Satellite-derived near-surface current analysis | 1/3°, 5-day composite |
 | Temperature | NOAA OISST v2.1 | **0 m** | Blended satellite + in-situ sea surface temperature | 0.25°, daily |
 
 The current is stored as two components, `u` (eastward) and `v` (northward), in metres per second. Speed and bearing are **derived** from them:

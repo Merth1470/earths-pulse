@@ -46,3 +46,6 @@ scripts/.cache/
 # Local design review artifacts and dev server logs
 .impeccable/review/
 .impeccable/dev.log
+
+.impeccable/detect-*.json
+.impeccable/detect-*.err

@@ -15,7 +15,7 @@ This report records what was actually verified, how it was verified, what the pr
 | Question | Answer |
 | --- | --- |
 | Is there a real numerical ocean field in the app? | **Yes.** 12 monthly composites for 2012 from OSCAR and OISST. |
-| Are the currents direct measurements? | **No.** OSCAR is a satellite-derived surface current analysis at 15 m. |
+| Are the currents direct measurements? | **No.** OSCAR is a satellite-derived near-surface current analysis at 15 m. |
 | Is the temperature a direct measurement? | **No.** OISST v2.1 is a blended satellite/in-situ gridded product at 0 m. |
 | Is the data live or current? | **No.** The period is January–December 2012. The interface says “not live”. |
 | Is the sonification real? | **Yes.** Web Audio; three data-driven voices; user-initiated playback. |

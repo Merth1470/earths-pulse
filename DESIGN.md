@@ -57,13 +57,13 @@ typography:
     letterSpacing: "0.005em"
   label:
     fontFamily: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
-    fontSize: "9.5px"
+    fontSize: "12px"
     fontWeight: 500
     lineHeight: 1.2
     letterSpacing: "0.12em"
   meta:
     fontFamily: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
-    fontSize: "10.5px"
+    fontSize: "12px"
     fontWeight: 400
     lineHeight: 1.45
     letterSpacing: "0.02em"
@@ -189,8 +189,8 @@ The palette is a cold ocean field with three semantic signals: cyan for availabl
 - **Body** (400, 14px, 1.6): Ledes, player notes, and interface copy. Measures stop around 61–68ch.
 - **Reading** (400, 13.5px, 1.72): Article prose at a maximum of 68ch.
 - **Nav** (500, 12px, 1.4): Top navigation and compact interface labels that must stay in the sans face.
-- **Label** (500, 9.5px, 1.2, 0.12em, uppercase): Panel titles, field labels, table headers, and status tags.
-- **Meta** (400, 10.5px, 1.45): Record values, dates, identifiers, and transport metrics.
+- **Label** (500, 12px, 1.2, 0.08em, uppercase): Panel titles, field labels, table headers, and status tags.
+- **Meta** (400, 12px, 1.45): Record values, dates, identifiers, and transport metrics.
 - **Value** (400, 16px, 1.2, tabular): The three current readings; 16px on mobile as well.
 
 ### Named Rules
@@ -239,7 +239,7 @@ The form language is rectilinear and instrument-like. Corners are square (0px ra
 - **Never fake a control:** if Web Audio is unavailable, transport controls are disabled and a visible note explains why. The field and readings remain live.
 
 ### Status Marks
-- **Style:** A 4px dot plus a 9.5px mono uppercase label. Available/running is cyan; ready/paused is muted; complete is neutral; an actual failure is amber.
+- **Style:** A 4px dot plus a 12px mono uppercase label. Available/running is cyan; ready/paused is muted; complete is neutral; an actual failure is amber.
 - **Rule:** Color is never the only channel. Every dot has a word next to it, and error states carry a reason nearby.
 
 ### Cards and Panels
@@ -268,14 +268,14 @@ The form language is rectilinear and instrument-like. Corners are square (0px ra
 
 ### Current Reading
 - **Shape:** Raised Navy panel with a three-column value row, a position line, a plain-language sentence, and speech actions.
-- **Type:** 8.5px mono labels; 16px tabular values; 12px description.
+- **Type:** 12px mono labels; 16px tabular values; 12px description.
 - **Values:** Sea surface temperature, current speed, and the compass direction the current flows toward. Missing values read "Missing", not a dash or zero.
 - **Speech:** "Read this aloud" uses the browser voice. The "Announce every fourth step" checkbox swaps the polite live region for speech synthesis, so the two paths never duplicate.
 - **Status:** Preview, Live, Paused, or Final sample. The status is always text.
 
 ### Data Record
 - **Shape:** Raised Navy panel with a 90px label column and a flexible value column.
-- **Type:** Values use 11.5px Inter; record IDs, dates, grid dimensions, and variables switch to mono.
+- **Type:** Values use 12px Inter; record IDs, dates, grid dimensions, and variables switch to mono.
 - **Content:** Products, providers, period, sampling, grid, variables and depth, access. A footnote distinguishes the OSCAR/OISST field from the NASA SVS/ECCO2 reference.
 - **Footer:** Source links and a link to full provenance.
 
