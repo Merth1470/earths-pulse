@@ -70,11 +70,13 @@ export function TransportBar({
   const max = Math.max(0, stepCount - 1);
   const safeIndex = Math.max(0, Math.min(max, stepIndex));
   const seekPercent = max === 0 ? 0 : (safeIndex / max) * 100;
+  const atEnd = safeIndex >= max;
+  const resumable = progress > 0 && !atEnd;
   const toggleLabel = !supported
     ? `${playLabel} (audio unavailable)`
     : playing
       ? "Pause sonification"
-      : progress > 0
+      : resumable
         ? "Resume sonification"
         : playLabel;
 
@@ -101,7 +103,7 @@ export function TransportBar({
             <Play aria-hidden="true" size={14} strokeWidth={1.8} />
           )}
           <span aria-hidden="true">
-            {playing ? "Pause" : progress > 0 ? "Resume" : "Play"}
+            {playing ? "Pause" : resumable ? "Resume" : "Play"}
           </span>
         </button>
         <button
