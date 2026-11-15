@@ -435,6 +435,7 @@ async function main() {
         "Ozone is often measured seasonally; missing winter hours are not zero.",
         "2023 is historical data, not live air quality and not a forecast.",
         "The data do not establish health effects, pollution sources, or compliance with any air-quality standard.",
+        "A few reported concentrations are slightly negative. They are preserved as reported instrument noise or zero drift, not replaced with zero.",
       ],
       provenanceNote:
         "Built by scripts/build-air-quality-data.mjs from EPA AirData hourly files. Each city uses one co-located site with PM2.5, NO2, and ozone. No value is interpolated.",
