@@ -5494,3 +5494,19 @@ section[id] {
 .encoding-row dt {
   max-width: 52ch;
 }
+
+/* At desktop the mapping table reads best as label / explanation columns. */
+@media (min-width: 981px) {
+  .encoding-row {
+    grid-template-columns: minmax(200px, 0.78fr) minmax(0, 1.22fr);
+    gap: 8px 28px;
+  }
+
+  .encoding-row dt {
+    max-width: none;
+  }
+
+  .encoding-row dd {
+    max-width: 54ch;
+  }
+}
