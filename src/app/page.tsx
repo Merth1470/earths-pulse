@@ -1,163 +1,198 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowDown, ArrowRight } from "lucide-react";
 
-import { OceanInstrument } from "@/components/explore/ocean/OceanInstrument";
-import { VisualizationPlate } from "@/components/visualization/VisualizationPlate";
-import { MAPPING_ROWS } from "@/lib/audio/mapping";
-import { TRANSECTS } from "@/lib/ocean/regions";
+import { ExperienceCard } from "@/components/landing/ExperienceCard";
 
 export const metadata: Metadata = {
-  title: { absolute: "Explore — Earth's Pulse" },
+  title: { absolute: "Earth's Pulse — three scientific instruments" },
   description:
-    "Listen to real 2012 ocean near-surface currents and sea surface temperature. Temperature becomes pitch, current speed becomes pulse, and direction becomes stereo position. Built from OSCAR and NOAA OISST fields.",
+    "Three ways to hear the planet: ocean circulation, the global carbon cycle, and atmospheric pollution. Real public data, explicit sonification, and a nonvisual path through every experience.",
 };
 
-export default function ExplorePage() {
-  return (
-    <div className="shell explore">
-      <header className="explore-head pulse-head">
-        <div className="explore-head-main">
-          <h1>Listen to what you cannot see.</h1>
-          <p className="explore-lede">
-            A sonified atlas of the ocean. Real near-surface currents and sea surface
-            temperature, sampled along a transect you can hear. Temperature
-            becomes pitch, current speed becomes rhythm, and east–west flow
-            moves across the stereo field.
-          </p>
-          <p className="explore-status">
-            <span aria-hidden="true" className="status-dot status-dot--available" />
-            Historical fields · 2012 · Not live
-          </p>
-          <p className="listen-cue">
-            Press play, then follow the cyan band. Warm water sounds higher;
-            faster water pulses faster; eastward flow moves right.
-          </p>
-        </div>
+const EXPERIENCES = [
+  {
+    index: "01",
+    title: "Earth’s Pulse",
+    subtitle: "An Auditory Ocean Simulator",
+    description:
+      "Hear the movement of the ocean through a transect of temperature and current. Warm water becomes pitch, faster water becomes pulse, and east–west flow moves across the stereo field.",
+    hears: [
+      "Temperature as pitch and brightness",
+      "Current speed as rhythmic pulse",
+      "Direction as stereo position",
+    ],
+    facts: [
+      { label: "Period", value: "2012" },
+      { label: "Fields", value: "OSCAR + OISST" },
+      { label: "Routes", value: "4 transects" },
+    ],
+    href: "/ocean",
+    visual: "ocean" as const,
+    accent: "ocean" as const,
+  },
+  {
+    index: "02",
+    title: "The Invisible Breath",
+    subtitle: "Earth’s Carbon Cycle",
+    description:
+      "Hear the movement of carbon between the atmosphere, the ocean, land, and fossil stores. Five voices keep concentration, emissions, two sinks, and the accounting residual distinct.",
+    hears: [
+      "CO₂ concentration as a harmonic drone",
+      "Fossil and land-use emissions as separate pulses",
+      "Ocean and land sinks as tides and bands",
+    ],
+    facts: [
+      { label: "Period", value: "1959–2024" },
+      { label: "Budget", value: "NOAA + GCB" },
+      { label: "Voices", value: "5 layers" },
+    ],
+    href: "/carbon",
+    visual: "carbon" as const,
+    accent: "carbon" as const,
+  },
+  {
+    index: "03",
+    title: "The Sound of a City",
+    subtitle: "Atmospheric Pollution",
+    description:
+      "Select a place, choose an hour, and hear how ground-level pollution differs across cities. The map is the control; the measurements come from named monitors, not a rendered surface.",
+    hears: [
+      "PM2.5 as a low filtered haze",
+      "NO₂ as a reedy pulse",
+      "Ozone as a bright high band",
+    ],
+    facts: [
+      { label: "Period", value: "2023 · hourly" },
+      { label: "Source", value: "EPA AQS" },
+      { label: "Cities", value: "8 US monitors" },
+    ],
+    href: "/air-quality",
+    visual: "air" as const,
+    accent: "air" as const,
+  },
+];
 
-        <dl className="explore-facts" aria-label="Dataset facts">
+const PRINCIPLES = [
+  {
+    kicker: "Values first",
+    title: "No pixel becomes a measurement.",
+    body: "The field, the diagram, and the map are renderings of numbers that were fetched, validated, and bundled with source records. The audio receives the same values as the text.",
+  },
+  {
+    kicker: "Missing stays missing",
+    title: "A gap is not a zero.",
+    body: "Land, ice, seasonal monitors, and absent hours stay silent and are named. Nothing is filled across a coastline, a city, or a missing timestamp.",
+  },
+  {
+    kicker: "Three access paths",
+    title: "Sound is never the only way in.",
+    body: "Every experience has readable values, keyboard controls, a nonvisual exploration path, and browser speech. The audio is an additional channel, not a replacement for the data.",
+  },
+];
+
+export default function HomePage() {
+  return (
+    <div className="shell landing">
+      <header className="landing-hero">
+        <div className="landing-hero-copy">
+          <h1>Listen to what you cannot see.</h1>
+          <p className="landing-lede">
+            The ocean, the carbon cycle, and the air above a city are too large
+            to see whole and too important to leave to a single sense. These
+            three instruments turn public scientific measurements into sound,
+            with a readable value for every tone.
+          </p>
+          <p className="landing-status">
+            <span aria-hidden="true" className="status-dot status-dot--available" />
+            Historical data · explicit mappings · no live feeds
+          </p>
+          <div className="landing-actions">
+            <a className="button-primary" href="#experiences">
+              Choose an experience
+              <ArrowDown aria-hidden="true" size={13} strokeWidth={1.7} />
+            </a>
+            <Link className="text-link" href="/about">
+              Read the method
+              <ArrowRight aria-hidden="true" size={13} strokeWidth={1.6} />
+            </Link>
+          </div>
+        </div>
+        <dl className="landing-facts" aria-label="Platform facts">
           <div>
-            <dt>Field</dt>
-            <dd>Currents + SST</dd>
+            <dt>Experiences</dt>
+            <dd>03</dd>
           </div>
           <div>
-            <dt>Source</dt>
-            <dd>OSCAR · OISST</dd>
+            <dt>Scientific sources</dt>
+            <dd>05</dd>
           </div>
           <div>
-            <dt>Engine</dt>
-            <dd>Web Audio</dd>
+            <dt>Data mode</dt>
+            <dd>Historical</dd>
+          </div>
+          <div>
+            <dt>Access paths</dt>
+            <dd>Visual · audio · text</dd>
           </div>
         </dl>
       </header>
 
-      <OceanInstrument />
-
-      <section aria-labelledby="encoding-title" className="pulse-section encoding-section">
-        <div className="section-intro">
-          <h2 id="encoding-title">The encoding is the argument</h2>
+      <section aria-labelledby="experiences-title" className="landing-experiences" id="experiences">
+        <div className="section-intro landing-section-intro">
+          <h2 id="experiences-title">Three ways into the same planet</h2>
           <p>
-            Every sound is derived from a measured or modeled value. Nothing is
-            generated as music and then matched to the data. The mapping is
-            fixed, inspectable, and reproducible.
+            Each experience has its own scientific question, data product, and
+            visual language. They share one product identity and one rule: the
+            sound must be traceable to a value.
           </p>
         </div>
-        <dl className="encoding-rows">
-          {MAPPING_ROWS.map((row) => (
-            <div className="encoding-row" key={row.variable}>
-              <dt>
-                <span>{row.variable}</span>
-                <span className="encoding-arrow" aria-hidden="true">
-                  →
-                </span>
-                <span className="encoding-sound">{row.sound}</span>
-              </dt>
-              <dd>{row.explanation}</dd>
-            </div>
+
+        <div className="experience-grid">
+          {EXPERIENCES.map((experience) => (
+            <ExperienceCard key={experience.href} {...experience} />
           ))}
-        </dl>
+        </div>
       </section>
 
-      <section aria-labelledby="field-title" className="pulse-section field-section">
+      <section aria-labelledby="principles-title" className="landing-principles">
         <div className="section-intro">
-          <h2 id="field-title">What the field is, and is not</h2>
+          <h2 id="principles-title">One contract across three instruments</h2>
           <p>
-            The interactive field is a reduced, documented subset of two public
-            ocean products. It is not the NASA visualization, and its colors are
-            computed from numbers rather than sampled from a video frame.
+            The experiences are different on purpose. Their scientific honesty
+            is not optional.
           </p>
         </div>
-
-        <div className="field-notes">
-          <div className="field-note">
-            <h3>Currents</h3>
-            <p>
-              OSCAR near-surface velocities (15 m) from Earth &amp; Space Research, a
-              NASA-funded satellite-derived analysis. The product combines
-              geostrophic, Ekman, and buoyancy components at 15 m depth; it is
-              not a direct current meter at every point.
-            </p>
-          </div>
-          <div className="field-note">
-            <h3>Temperature</h3>
-            <p>
-              NOAA OISST v2.1 daily sea surface temperature, a blended satellite
-              and in-situ analysis. The browser receives one representative
-              composite per month in 2012, resampled to 1.5°.
-            </p>
-          </div>
-          <div className="field-note">
-            <h3>Missing values</h3>
-            <p>
-              Land, ice, and gaps in the source fields stay missing. They are
-              never filled with zero or interpolated across a coastline. A
-              silent step can therefore mean land or absent data, and the
-              reading states which values are missing.
-            </p>
-          </div>
-          <div className="field-note">
-            <h3>What this is not</h3>
-            <p>
-              Not live, not a forecast, and not ECCO2. NASA&apos;s 2007–2008
-              ECCO2 render remains a separate reference. The numerical ECCO2
-              fields behind it were not reachable from this build environment,
-              so an authoritative public alternative was used and labeled.
-            </p>
-          </div>
-        </div>
-
-        <div className="transect-index">
-          <h3>Available transects</h3>
-          <dl>
-            {TRANSECTS.map((transect) => (
-              <div key={transect.id}>
-                <dt>{transect.label}</dt>
-                <dd>
-                  {transect.description} <span>{transect.whyItMatters}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <div className="principle-grid">
+          {PRINCIPLES.map((principle) => (
+            <article className="principle-card" key={principle.kicker}>
+              <p className="aside-label">{principle.kicker}</p>
+              <h3>{principle.title}</h3>
+              <p>{principle.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <details className="nasa-reference">
-        <summary>
-          <span>NASA reference render</span>
-          <span>SVS 3912 · 2007–2008 ECCO2</span>
-        </summary>
-        <p>
-          The visualization that inspired this project. It is shown as
-          evidence and context, not as the numerical source for the
-          sonification. The bundled still is a single rendered frame from 19
-          June 2007, not a data product.
-        </p>
-        <VisualizationPlate />
-      </details>
-
-      <p className="explore-endnote">
-        The dataset period ends in December 2012. Nothing on this screen is a
-        live ocean observation. Values are traceable to the published OSCAR and
-        OISST products through the data record.
-      </p>
+      <section aria-labelledby="sources-title" className="landing-sources">
+        <div>
+          <h2 id="sources-title">Real records, kept in view.</h2>
+          <p>
+            OSCAR near-surface currents and NOAA OISST; NOAA Mauna Loa CO₂ and
+            the Global Carbon Budget 2025; US EPA AirData ground monitors. Each
+            experience has its own period, resolution, units, and limits.
+          </p>
+        </div>
+        <div className="landing-source-actions">
+          <Link className="button-secondary" href="/data-sources">
+            Inspect data sources
+          </Link>
+          <Link className="text-link" href="/accessibility">
+            Nonvisual guide
+            <ArrowRight aria-hidden="true" size={13} strokeWidth={1.6} />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

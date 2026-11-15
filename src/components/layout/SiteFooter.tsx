@@ -11,8 +11,7 @@ export function SiteFooter() {
 
         <p className="footer-credit">
           Data:{" "}
-          <Link href="/data-sources">OSCAR currents and NOAA OISST</Link>.
-          Reference imagery: NASA SVS 3912. Sky: Ivana Cajina / Unsplash.
+          <Link href="/data-sources">ocean, carbon, and air-quality records</Link>.
         </p>
 
         <p className="footer-note">
