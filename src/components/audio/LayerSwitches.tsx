@@ -26,10 +26,11 @@ export function LayerSwitches<T extends string>({
     <fieldset className="control-set layer-set" disabled={disabled}>
       <legend>{legend}</legend>
       <div className="layer-options layer-options--stacked">
-        {options.map((option) => (
+        {options.map((option, index) => (
           <label className="layer-option layer-option--wide" key={option.id}>
             <input
               checked={values[option.id]}
+              data-ep-layers={index === 0 ? "" : undefined}
               onChange={(event) =>
                 onChange({ ...values, [option.id]: event.currentTarget.checked })
               }

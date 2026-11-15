@@ -123,6 +123,7 @@ export function CarbonReadingPanel({
 
       <div className="reading-actions">
         <button
+          aria-keyshortcuts="R"
           className="reading-speak"
           disabled={!speechReady}
           onClick={onSpeak}

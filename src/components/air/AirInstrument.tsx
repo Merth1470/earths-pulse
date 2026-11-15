@@ -18,6 +18,7 @@ import { AirTimeline } from "@/components/air/AirTimeline";
 import { LayerSwitches } from "@/components/audio/LayerSwitches";
 import { TransportBar } from "@/components/audio/TransportBar";
 import { cancelSpeech, speakText } from "@/lib/accessibility/speech";
+import { useInstrumentShortcuts } from "@/lib/accessibility/useInstrumentShortcuts";
 import { AirSonifier, type AirLayers } from "@/lib/audio/air-sonifier";
 import {
   AIR_LAYERS,
@@ -306,6 +307,12 @@ export function AirInstrument() {
     speakText(text);
   }, [current]);
 
+  useInstrumentShortcuts({
+    onToggle: handleToggle,
+    onStop: handleStop,
+    onRead: handleSpeak,
+  });
+
   if (!dataset || loading || !city || !current) {
     return (
       <div className="ocean-instrument">
@@ -358,11 +365,12 @@ export function AirInstrument() {
   const timestamp = airTimeAt(dataset, current.hourIndex);
 
   return (
-    <div className="air-instrument">
+    <div className="air-instrument" data-ep-instrument="">
       <div className="air-field-bar">
         <label className="field-control" htmlFor="air-city">
           <span>City</span>
           <select
+            data-ep-select=""
             id="air-city"
             onChange={(event) => handleCity(event.currentTarget.value)}
             value={city.id}

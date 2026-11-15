@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { routeShortcutFor } from "@/lib/accessibility/guide";
 import { PROJECT } from "@/config/project";
 
 export function SiteNav() {
@@ -18,6 +19,7 @@ export function SiteNav() {
           <Link
             key={item.href}
             aria-current={isActive ? "page" : undefined}
+            aria-keyshortcuts={routeShortcutFor(item.href)}
             className="nav-link"
             href={item.href}
           >

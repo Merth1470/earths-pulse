@@ -20,6 +20,7 @@ import {
 import { CarbonDatasetRecord } from "@/components/carbon/CarbonDatasetRecord";
 import { CarbonReadingPanel } from "@/components/carbon/CarbonReadingPanel";
 import { cancelSpeech, speakText } from "@/lib/accessibility/speech";
+import { useInstrumentShortcuts } from "@/lib/accessibility/useInstrumentShortcuts";
 import {
   CarbonSonifier,
   type CarbonLayers,
@@ -277,6 +278,12 @@ export function CarbonInstrument() {
     speakText(text);
   }, [samples, yearIndex]);
 
+  useInstrumentShortcuts({
+    onToggle: handleToggle,
+    onStop: handleStop,
+    onRead: handleSpeak,
+  });
+
   if (!dataset || loading) {
     return (
       <div className="ocean-instrument">
@@ -337,11 +344,12 @@ export function CarbonInstrument() {
   );
 
   return (
-    <div className="carbon-instrument">
+    <div className="carbon-instrument" data-ep-instrument="">
       <div className="carbon-field-bar">
         <label className="field-control" htmlFor="carbon-year">
           <span>Year</span>
           <select
+            data-ep-select=""
             id="carbon-year"
             onChange={(event) => handleYear(Number(event.currentTarget.value))}
             value={yearIndex}

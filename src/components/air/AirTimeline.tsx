@@ -44,6 +44,7 @@ export function AirTimeline({
       <label className="air-day-select" htmlFor="air-day">
         <span>Day</span>
         <select
+          data-ep-select=""
           id="air-day"
           onChange={(event) => {
             const nextDay = Number(event.currentTarget.value);

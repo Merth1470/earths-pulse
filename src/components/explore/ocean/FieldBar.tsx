@@ -26,6 +26,7 @@ export function FieldBar({
       <div className="field-control">
         <label htmlFor="field-region">Region</label>
         <select
+          data-ep-select=""
           disabled={disabled}
           id="field-region"
           onChange={(event) => onTransect(event.target.value)}

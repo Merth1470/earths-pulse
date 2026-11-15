@@ -18,6 +18,7 @@ import { ReadingPanel } from "@/components/explore/ocean/ReadingPanel";
 import { TransectDetails } from "@/components/explore/ocean/TransectDetails";
 import { TransportControls } from "@/components/explore/ocean/TransportControls";
 import { cancelSpeech, speakText } from "@/lib/accessibility/speech";
+import { useInstrumentShortcuts } from "@/lib/accessibility/useInstrumentShortcuts";
 import { OceanSonifier, type SonifierLayers } from "@/lib/audio/sonifier";
 import { useMediaQuery } from "@/lib/browser/useMediaQuery";
 import {
@@ -307,6 +308,13 @@ export function OceanInstrument() {
     setAttempt((value) => value + 1);
   }, []);
 
+  // P / S / R from the keyboard, without needing to tab to the transport.
+  useInstrumentShortcuts({
+    onToggle: handleToggle,
+    onStop: handleStop,
+    onRead: handleSpeak,
+  });
+
   const derivedIndex = Math.min(
     Math.max(0, samples.length - 1),
     Math.floor(progress * Math.max(1, samples.length)),
@@ -392,7 +400,7 @@ export function OceanInstrument() {
   }
 
   return (
-    <div className="ocean-instrument">
+    <div className="ocean-instrument" data-ep-instrument="">
       <FieldBar
         frames={dataset.meta.frames}
         monthIndex={monthIndex}

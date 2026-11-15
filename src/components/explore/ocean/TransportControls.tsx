@@ -61,6 +61,7 @@ export function TransportControls({
     <section className="player sonification-transport" aria-labelledby="transport-title">
       <div className="transport">
         <button
+          aria-keyshortcuts="P"
           aria-label={playing ? "Pause sonification" : "Play sonification"}
           className="transport-play"
           disabled={!supported}
@@ -76,6 +77,7 @@ export function TransportControls({
         </button>
 
         <button
+          aria-keyshortcuts="S"
           aria-label="Stop sonification and return to the first sample"
           className="transport-stop"
           disabled={!supported || (!playing && progress === 0)}
@@ -121,6 +123,7 @@ export function TransportControls({
         <input
           aria-valuetext={`Step ${stepIndex + 1} of ${stepCount}, ${positionLabel}`}
           className="seek"
+          data-ep-seek=""
           id="seek"
           max={Math.max(1, stepCount - 1)}
           min={0}
@@ -167,6 +170,7 @@ export function TransportControls({
             <label className="layer-option">
               <input
                 checked={layers.temperature}
+                data-ep-layers=""
                 onChange={(event) =>
                   onLayers({ ...layers, temperature: event.target.checked })
                 }
@@ -202,6 +206,7 @@ export function TransportControls({
           <div className="volume-row">
             <input
               aria-valuetext={`${Math.round(volume * 100)} percent`}
+              data-ep-volume=""
               disabled={!supported}
               id="volume"
               max={1}

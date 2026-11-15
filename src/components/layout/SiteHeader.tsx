@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { VoiceGuide } from "@/components/accessibility/VoiceGuide";
+
 import { LogoMark } from "./LogoMark";
 import { SiteNav } from "./SiteNav";
 
@@ -16,6 +18,8 @@ export function SiteHeader() {
         </Link>
 
         <SiteNav />
+
+        <VoiceGuide />
 
         <Link
           aria-label="Stage 3, three scientific experiences active. View data status."

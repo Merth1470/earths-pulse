@@ -91,6 +91,7 @@ export function TransportBar({
 
       <div className="transport">
         <button
+          aria-keyshortcuts="P"
           aria-label={toggleLabel}
           className="transport-play"
           disabled={!supported}
@@ -107,6 +108,7 @@ export function TransportBar({
           </span>
         </button>
         <button
+          aria-keyshortcuts="S"
           aria-label="Stop sonification and return to the start"
           className="transport-stop"
           disabled={!canStop}
@@ -142,6 +144,7 @@ export function TransportBar({
           aria-label={stepLabel}
           aria-valuetext={stepText}
           className="seek"
+          data-ep-seek=""
           max={max}
           min={0}
           onChange={(event) => {
@@ -185,6 +188,7 @@ export function TransportBar({
             <input
               disabled={!supported}
               id="shared-volume"
+              data-ep-volume=""
               max={1}
               min={0}
               onChange={(event) => onVolume(Number(event.currentTarget.value))}
