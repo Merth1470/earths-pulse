@@ -46,6 +46,8 @@ const landUseLowIndex = data.series.landUseGtC.indexOf(
   Math.min(...data.series.landUseGtC),
 );
 const landUseLow = mapCarbonYear(sampleAt(landUseLowIndex), ranges);
+assert.equal(low.hasChange, false, "1959 has no annual change");
+assert.equal(high.hasChange, true, "2024 has an annual change");
 assert.ok(high.atmosphereHz > low.atmosphereHz);
 assert.ok(high.fossilPulseHz > low.fossilPulseHz);
 assert.ok(high.oceanGain > low.oceanGain);

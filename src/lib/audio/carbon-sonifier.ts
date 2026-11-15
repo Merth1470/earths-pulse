@@ -374,6 +374,12 @@ export class CarbonSonifier {
     target(graph.atmosphereFilter.frequency, params.atmosphereCutoffHz, time, 0.16);
     target(graph.atmosphereLfo.frequency, params.atmosphereTremoloHz, time, 0.2);
     target(
+      graph.atmosphereLfoDepth.gain,
+      params.hasChange ? 0.014 : 0,
+      time,
+      0.16,
+    );
+    target(
       graph.atmosphereGain.gain,
       this.layers.atmosphere ? params.atmosphereGain : SILENT,
       time,

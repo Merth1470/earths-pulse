@@ -9,6 +9,7 @@ import type { CarbonNormalization, CarbonYear } from "./types";
 export interface CarbonSoundParameters {
   co2Norm: number;
   changeNorm: number;
+  hasChange: boolean;
   fossilNorm: number;
   landUseNorm: number;
   oceanNorm: number;
@@ -99,10 +100,13 @@ export function mapCarbonYear(
     ranges.co2Ppm.min,
     ranges.co2Ppm.max,
   );
-  const changeNorm = clamp(
-    Math.abs(sample.co2AnnualChangePpm ?? 0) /
-      CARBON_AUDIO_LIMITS.changeReferencePpm,
-  );
+  const hasChange = sample.co2AnnualChangePpm !== null;
+  const changeNorm = hasChange
+    ? clamp(
+        Math.abs(sample.co2AnnualChangePpm ?? 0) /
+          CARBON_AUDIO_LIMITS.changeReferencePpm,
+      )
+    : 0;
   const fossilNorm = norm(
     sample.fossilGtC,
     ranges.fossilGtC.min,
@@ -132,6 +136,7 @@ export function mapCarbonYear(
   return {
     co2Norm,
     changeNorm,
+    hasChange,
     fossilNorm,
     landUseNorm,
     oceanNorm,

@@ -131,7 +131,7 @@ See [`ACCESSIBILITY.md`](ACCESSIBILITY.md) and the in-app `/accessibility` guide
 | Data | Sound |
 | --- | --- |
 | Atmospheric CO₂ concentration | Harmonic drone, 110–220 Hz across the record |
-| Year-to-year CO₂ change | Tremolo rate, 0.06–0.56 Hz |
+| Year-to-year CO₂ change | Tremolo rate, 0.06–0.56 Hz; no change available means no tremolo, not a zero change |
 | Fossil emissions | Regular pulse, 0.8–4.2 Hz |
 | Land-use emissions | Separate darker pulse, 0.25–1.35 Hz |
 | Ocean sink | Filtered-noise tide; magnitude and sign change timbre and pan |

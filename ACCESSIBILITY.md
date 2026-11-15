@@ -77,7 +77,7 @@ The speech is the browser's voice, not a recorded narration. Voice availability,
 Missing data is preserved, not imputed:
 
 - **Ocean:** a route can cross land or a source gap. The reading says “Missing”; temperature or current voices are silenced if their layer is missing; the table shows an em dash.
-- **Carbon:** the annual records are complete for 1959–2024. The first year has no prior-year CO₂ change; the reading says the change is not available rather than inventing zero.
+- **Carbon:** the annual records are complete for 1959–2024. The first year has no prior-year CO₂ change; the reading says the change is not available rather than inventing zero, and its tremolo depth is zero.
 - **City:** an absent hour or pollutant is `null`. Its voice is silent and the reading says “Missing.” Ozone is often monitored seasonally, so winter silence is expected. No hour is filled from a daily average.
 
 Missing data is never converted to 0 °C, 0 m/s, 0 ppm, or a default direction. This is both a scientific and an accessibility decision: a false value is worse than an honest silence.

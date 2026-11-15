@@ -205,14 +205,14 @@ The mapping is pure (`src/lib/carbon/mapping.ts`). Normalization uses the 2nd–
 | Voice | Variable | Mapping |
 | --- | --- | --- |
 | Atmosphere | CO₂ concentration | Pitch `110 × 2^co2Norm` Hz, 110–220 Hz; low-pass cutoff 320–1620 Hz |
-| Atmosphere tremolo | Absolute year-to-year change | 0.06–0.56 Hz, independent of concentration |
+| Atmosphere tremolo | Absolute year-to-year change | 0.06–0.56 Hz, independent of concentration; a missing change sets tremolo depth to 0 |
 | Fossil pulse | Fossil + industrial emissions | Regular pulse, 0.8–4.2 Hz; cutoff 500–1700 Hz |
 | Land-use pulse | Land-use change emissions | Separate darker pulse, 0.25–1.35 Hz; cutoff 180–680 Hz |
 | Ocean tide | Ocean sink | Filtered noise; magnitude 0.014–0.061 gain; sign flips pan |
 | Land band | Land sink | Higher filtered band; magnitude 0.012–0.055 gain; sign flips pan |
 | Balance anchor | Budget residual | Low tone 55–78 Hz; magnitude sets gain; the anchor stays centered |
 
-The atmosphere layer includes its tremolo. “Carbon emissions” is one layer switch covering the two separate emission pulses. The other four layers are atmosphere, ocean, land, and balance.
+The atmosphere layer includes its tremolo. In 1959, the first year of the intersection, no prior-year change exists, so the reading says “not available” and the tremolo depth is set to zero; the drone stays at the measured concentration instead of implying a zero change. “Carbon emissions” is one layer switch covering the two separate emission pulses. The other four layers are atmosphere, ocean, land, and balance.
 
 ### 9.3 What the sound does not establish
 
