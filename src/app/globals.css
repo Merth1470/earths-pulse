@@ -3,6 +3,7 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-plex);
+  --font-display: var(--font-orbitron);
 }
 
 :root {
@@ -29,6 +30,7 @@
 
   --sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
   --mono: var(--font-plex), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display: var(--font-orbitron), "Orbitron", system-ui, -apple-system, sans-serif;
 
   --shadow-plate: 0 30px 70px -44px rgba(0, 0, 0, 0.95);
 }
@@ -166,6 +168,7 @@ figure {
 h1,
 h2,
 h3 {
+  font-family: var(--display);
   font-weight: 600;
   color: var(--text);
   text-wrap: balance;

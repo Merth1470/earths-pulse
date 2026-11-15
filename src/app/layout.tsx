@@ -16,6 +16,14 @@ const inter = localFont({
   fallback: ["system-ui", "sans-serif"],
 });
 
+const orbitron = localFont({
+  src: "./fonts/Orbitron-Variable.woff2",
+  variable: "--font-orbitron",
+  display: "swap",
+  weight: "400 900",
+  fallback: ["system-ui", "sans-serif"],
+});
+
 const plexMono = localFont({
   src: [
     {
@@ -77,7 +85,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      className={`${inter.variable} ${plexMono.variable}`}
+      className={`${inter.variable} ${plexMono.variable} ${orbitron.variable}`}
       lang="en"
     >
       <body>

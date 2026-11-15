@@ -20,19 +20,19 @@ colors:
   transparent: "transparent"
 typography:
   display:
-    fontFamily: "Inter, system-ui, -apple-system, sans-serif"
+    fontFamily: "Orbitron, system-ui, -apple-system, sans-serif"
     fontSize: "clamp(30px, 3vw, 42px)"
     fontWeight: 600
     lineHeight: 1.06
     letterSpacing: "-0.032em"
   headline:
-    fontFamily: "Inter, system-ui, -apple-system, sans-serif"
+    fontFamily: "Orbitron, system-ui, -apple-system, sans-serif"
     fontSize: "clamp(26px, 2.35vw, 34px)"
     fontWeight: 600
     lineHeight: 1.12
     letterSpacing: "-0.027em"
   title:
-    fontFamily: "Inter, system-ui, -apple-system, sans-serif"
+    fontFamily: "Orbitron, system-ui, -apple-system, sans-serif"
     fontSize: "20px"
     fontWeight: 600
     lineHeight: 1.25
