@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { PageIntro } from "@/components/layout/PageIntro";
+import { KEY_GROUPS } from "@/lib/accessibility/guide";
 import { AIR_MAPPING_ROWS } from "@/lib/air/mapping";
 import { MAPPING_ROWS } from "@/lib/audio/mapping";
 import { CARBON_MAPPING_ROWS } from "@/lib/carbon/mapping";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 const contents = [
+  { href: "#voice", label: "Voice guide" },
   { href: "#nonvisual", label: "Nonvisual path" },
   { href: "#carbon", label: "Carbon path" },
   { href: "#air", label: "City path" },
@@ -51,6 +53,40 @@ export default function AccessibilityPage() {
               The audio is an access path, not a replacement for the data. Every
               sampled value is printed, and every current value can be read
               aloud on demand.
+            </p>
+          </section>
+
+          <section className="prose-section" id="voice">
+            <h2>The voice guide</h2>
+            <div className="prose">
+              <p>
+                On the first visit the site speaks an introduction on its own.
+                It says what Earth&apos;s Pulse is, that every control works from
+                the keyboard, and which key brings the guide back. If the browser
+                blocks sound before any interaction, a visible{" "}
+                <strong>Start the guide</strong> button appears in the same place
+                and does the same thing.
+              </p>
+              <p>
+                Press <kbd>H</kbd> at any time to hear the guide for the page you
+                are on, followed by the essential keys. Press <kbd>?</kbd> for the
+                complete list, which is also drawn on screen. Press <kbd>M</kbd>{" "}
+                to silence the voice, and <kbd>Escape</kbd> to stop it mid-sentence.
+                Silencing the guide silences every spoken reading on the site, so
+                two voices never talk over each other.
+              </p>
+              <p>
+                The guide speaks with the browser voice, so it inherits the
+                reader&apos;s own speech settings and adds nothing to download.
+                The same instructions are always on this page and in the dialog
+                opened by <kbd>?</kbd>; the audio is an addition, never the only
+                copy.
+              </p>
+            </div>
+            <p className="fine-print">
+              The chosen voice and the mute state are kept in this browser. The
+              introduction repeats once per tab session, and each page announces
+              itself when you arrive.
             </p>
           </section>
 
@@ -247,6 +283,46 @@ export default function AccessibilityPage() {
               Focus indicators are visible on every control. The visual field is
               not focusable; all controls and readings sit outside the canvas.
             </p>
+
+            <h3>Single-key shortcuts</h3>
+            <p className="prose">
+              These keys work from anywhere on the page, without holding a
+              modifier. Text fields keep every character you type. Inside a
+              selector, a letter is only read as a shortcut when no option starts
+              with that letter, so type-ahead still moves the way the browser
+              normally does.
+            </p>
+            {KEY_GROUPS.map((group) => (
+              <div className="key-table" key={group.id}>
+                <h4>{group.title}</h4>
+                <div
+                  aria-label={`${group.title} shortcuts`}
+                  className="table-wrap"
+                  role="region"
+                  tabIndex={0}
+                >
+                  <table className="record-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Keys</th>
+                        <th scope="col">Effect</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {group.rows.map((row) => (
+                        <tr key={`${group.id}-${row.keys}`}>
+                          <th scope="row">
+                            <kbd>{row.keys}</kbd>
+                          </th>
+                          <td>{row.label}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {group.note ? <p className="fine-print">{group.note}</p> : null}
+              </div>
+            ))}
           </section>
 
           <section className="prose-section" id="sounds">

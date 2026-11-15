@@ -23,6 +23,8 @@ Every experience provides the same four access layers:
 
 No scientific value exists **only** in a canvas, SVG, or map. Everything that sounds is also available as text.
 
+A site-wide **voice guide** speaks the instructions on the first visit and can be replayed at any time from the keyboard. Section 4 covers it.
+
 ## 2. Per-experience controls
 
 | Experience | Sample control | Primary values | Automatic speech interval |
@@ -55,7 +57,32 @@ The sliders are sample indexes, not continuous 0–1000 controls. Ocean value te
 
 The play button's accessible name changes between “Play…” and “Pause sonification”. It does not use `aria-pressed`, so assistive technology does not announce a confusing “pressed” state on top of the changing name. The transport status (“Ready”, “Running”, “Paused”, “Complete”) is visible text.
 
-## 4. Screen reader and speech behavior
+## 4. The voice guide
+
+The site speaks for itself. On the first visit an introduction plays without any interaction: what Earth's Pulse is, that every control works from the keyboard, and the one key that brings the instructions back. A listener who misses it needs nothing but `H`.
+
+| Key | Effect |
+| --- | --- |
+| `H` | Replay the guide for the current page, then the essential keys |
+| `?` | Open and speak the complete shortcut list |
+| `M` | Silence or restore the voice |
+| `Escape` | Stop the voice mid-sentence |
+| `0`–`6` | Jump to home, ocean, carbon, city, about, data sources, accessibility |
+
+Inside an instrument, `P` plays or pauses, `S` stops, `R` reads the current sample, and `J`, `V`, `L`, `C` move focus to the sample slider, volume, layer switches, and the first selector. These work even while a slider has focus, so a listener never has to tab away from the sample they are hearing.
+
+Each page shortcut also carries `aria-keyshortcuts` on its nav link, so assistive technology can discover the binding on the element itself.
+
+Design decisions behind it:
+
+- **One speech path.** The guide and the per-instrument “read this aloud” buttons share a single queue and a single mute switch. Two voices never talk over each other, and `M` silences the whole site rather than one component.
+- **Keys follow the control.** A text field keeps every character. Inside a `<select>`, a letter is only treated as a shortcut when no option starts with that letter, so native type-ahead still moves the list. `?` and `Escape` are handled everywhere, because the shortcut list must always be reachable.
+- **A failed autoplay is visible, not silent.** Browsers may accept a speech request and never speak it. If no sound has started shortly after the request, the guide stops claiming to speak and shows a **Start the guide** button that does the same thing on a real gesture.
+- **Speech is optional, never load-bearing.** The same instructions are printed in the `?` dialog and on `/accessibility`. Nothing is spoken that is not also readable, and the guide never describes a control that does not exist — the key table, the narration, and `aria-keyshortcuts` all read from `src/lib/accessibility/guide.ts`.
+- **Preferences are remembered.** The mute state persists in `localStorage`; the introduction repeats once per tab session, and each client-side navigation announces where the visitor arrived.
+- **No visual change for sighted users.** The guide adds one header button, one dismissible first-visit prompt, and one modal that only opens on request. Existing controls, layout, and styling are untouched.
+
+## 5. Screen reader and speech behavior
 
 There are two automatic announcement paths, and they are deliberately exclusive:
 
@@ -72,7 +99,7 @@ Spoken text is generated from the same function as the visible description:
 
 The speech is the browser's voice, not a recorded narration. Voice availability, language, and pronunciation vary by operating system. The text is the source of truth.
 
-## 5. Missing data, gaps, and silence
+## 6. Missing data, gaps, and silence
 
 Missing data is preserved, not imputed:
 
@@ -82,7 +109,7 @@ Missing data is preserved, not imputed:
 
 Missing data is never converted to 0 °C, 0 m/s, 0 ppm, or a default direction. This is both a scientific and an accessibility decision: a false value is worse than an honest silence.
 
-## 6. Motion, color, and touch
+## 7. Motion, color, and touch
 
 - `prefers-reduced-motion: reduce` disables ocean particle advection and draws static current vectors instead. The carbon diagram and city map do not animate.
 - The ocean canvas, carbon diagram, and city map have accessible names and text equivalents. No meaning depends on color alone.
@@ -91,22 +118,23 @@ Missing data is never converted to 0 °C, 0 m/s, 0 ppm, or a default direction. 
 - The carbon diagram scrolls horizontally at narrow widths; it is keyboard-focusable and accompanied by a visible scroll hint.
 - The interface uses one column at narrow widths; controls are not hidden behind hover-only menus.
 
-## 7. Audio lifecycle
+## 8. Audio lifecycle
 
 Each mounted instrument owns one `AudioContext`. Playback starts only after a gesture. Pause and Stop suspend the context; Stop also silences every voice. Navigating to another experience unmounts the previous instrument, disposes its audio graph, and closes its context. There is no shared global player that can continue the previous experience's sound.
 
-## 8. Known limitations
+## 9. Known limitations
 
 - **Audio needs a gesture.** Browsers block autoplay. Each instrument explains this and starts only after Play.
 - **Stereo needs two channels.** A mono speaker collapses the ocean east–west cue and the city's west–east position. The bearing or longitude is still in the reading.
 - **Hearing differs.** The mappings stay within limited ranges and use a compressor, but they are not calibrated perceptual scales.
-- **Speech synthesis is not guaranteed.** Some browsers expose the API with no voices; the button is disabled and the live region remains.
+- **Speech synthesis is not guaranteed.** Some browsers expose the API with no voices, or accept an utterance and never speak it. The guide detects a start that never happens, stops reporting “speaking”, and offers the visible start button; the same instructions stay on screen.
+- **A single-letter shortcut can beat a select's type-ahead.** Inside a selector a letter is only used as a shortcut when no option begins with that letter, so a list of regions still jumps to “North Atlantic” on `N`, but `J` jumps to the sample slider even while a list of years has focus.
 - **Screen reader + sonification mixing.** A screen reader may speak over the audio. Users can turn automatic speech off and use “Read this aloud” between phrases.
 - **The carbon diagram is not a map.** It is a conceptual reservoir/flow diagram, not to scale; the reading panel carries the exact values.
 - **One monitor is not a city.** The city map is a control for eight stations, not a continuous pollution surface.
 - **No formal conformance claim.** The app was checked with automated DOM assertions, keyboard traversal, and manual browser review. It has not been audited by a certified accessibility professional or tested with every screen reader/browser combination.
 
-## 9. How this was checked
+## 10. How this was checked
 
 Manual and scripted checks performed for this build:
 
@@ -120,16 +148,31 @@ Manual and scripted checks performed for this build:
 - The ocean, carbon, and city pages have no horizontal overflow at 320, 360, 390, 834, and 1440 CSS pixels.
 - No console errors on desktop, tablet, or mobile.
 - Loading, failed-request, and retry states are operable by keyboard.
+- The intro speaks on first load and names `H` in its first lines; every spoken line originates from `src/lib/accessibility/guide.ts`.
+- `H`, `?`, `M`, `Escape`, and `0`–`6` were pressed on every route and produced the documented action.
+- `P`, `S`, and `R` drove all three instruments, including while the sample slider had focus.
+- `J`, `V`, `L`, and `C` moved focus to the sample slider, volume, layer switches, and first selector on all three instruments, and `J` still worked when a `<select>` had focus.
+- Muting with `M` persisted to `localStorage` and silenced both the guide and “Read this aloud”; unmuting restored both.
+- The `?` dialog opened from inside a selector, trapped focus, and closed on `Escape`.
+- The dialog has no horizontal overflow and the page has no horizontal scroll at 390 CSS pixels.
 
-## 10. Manual test script
+## 11. Manual test script
 
 1. Load `/`. Use `Tab` then `Enter` on “Skip to main content”.
-2. Open `/ocean`. Change Region and Month; confirm the readings reset. Play, then move the position slider one arrow key; confirm one step.
-3. Open `/carbon`. Select 2024; confirm 424.6 ppm and 11.8 GtC/yr. Toggle a layer; confirm the value remains in the reading. Turn speech on and off; confirm the live region disappears and returns.
-4. Open `/air-quality`. Choose Los Angeles, then NO₂; confirm the monitor name, timestamp, units, and POC update. Move the hour slider one arrow key; confirm one hour.
-5. In either new instrument, play, pause, stop, and change speed/volume. Confirm no error and no stale sound after Stop.
-6. Navigate directly from one experience to another while audio is playing; confirm the previous sound stops and only one `<h1>` remains.
-7. Open the carbon and city comparison disclosures; confirm missing values are labelled, not ranked.
-8. Enable “Reduce motion” in the OS or browser and reload `/ocean`; confirm particles stop and static vectors remain.
-9. Resize to 390 px and confirm no horizontal page scrolling and that the transport, readings, and tables remain operable.
-10. Test with a screen reader and, separately, with browser speech. Include the browser, assistive technology, viewport, and value shown if a step fails.
+2. Load `/` in a fresh tab and stop touching the machine. Confirm the voice introduces the site within about a second and says the letter `H` in the first few sentences. If the browser blocks speech, confirm a **Start the guide** button appears instead, and that pressing it starts the same narration.
+3. Press `H`. Confirm the guide names the current page, the essential keys, and how to repeat it. Press `Escape` mid-sentence and confirm the voice stops.
+4. Press `?`. Confirm the shortcut list opens, is spoken, keeps focus inside it, and closes on `Escape`. Press it again while a `<select>` has focus; it must still open.
+5. Press `M` twice. Confirm the first press silences the guide and every “read this aloud”, and that the second restores it and says so.
+6. Press `1`, `2`, `3`, `4`, `5`, `6`, `0` in turn; confirm each loads the named page and the guide announces the new page.
+7. On each instrument press `P`, `S`, `R` without tabbing to the transport; confirm play, stop, and a spoken reading. Repeat once with the sample slider focused; confirm `P` still plays.
+8. Press `J`, `V`, `L`, `C` on each instrument and confirm focus lands on the sample slider, volume, first layer switch, and first selector. With a selector focused, press `J` again; it must still reach the slider, and pressing a letter that begins an option must still jump the list.
+9. Open `/ocean`. Change Region and Month; confirm the readings reset. Play, then move the position slider one arrow key; confirm one step.
+10. Open `/carbon`. Select 2024; confirm 424.6 ppm and 11.8 GtC/yr. Toggle a layer; confirm the value remains in the reading. Turn speech on and off; confirm the live region disappears and returns.
+11. Open `/air-quality`. Choose Los Angeles, then NO₂; confirm the monitor name, timestamp, units, and POC update. Move the hour slider one arrow key; confirm one hour.
+12. In either new instrument, play, pause, stop, and change speed/volume. Confirm no error and no stale sound after Stop.
+13. Navigate directly from one experience to another while audio is playing; confirm the previous sound stops and only one `<h1>` remains.
+14. Open the carbon and city comparison disclosures; confirm missing values are labelled, not ranked.
+15. Enable “Reduce motion” in the OS or browser and reload `/ocean`; confirm particles stop and static vectors remain.
+16. Resize to 390 px and confirm no horizontal page scrolling, that the shortcut dialog fits, and that the transport, readings, and tables remain operable.
+17. Turn the screen off, or close your eyes, and complete an entire session — intro, page jump, play, one reading — using only the keyboard. Anything that required looking is a bug.
+18. Test with a screen reader and, separately, with browser speech. Include the browser, assistive technology, viewport, and value shown if a step fails.
