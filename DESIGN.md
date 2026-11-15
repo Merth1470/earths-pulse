@@ -1,6 +1,6 @@
 ---
 name: Earth's Pulse
-description: A NASA ocean-observation plate treated as a scientific instrument.
+description: A three-instrument scientific sonification platform for ocean, carbon, and air.
 colors:
   primary: "#42c7d9"
   secondary: "#438be8"
@@ -231,7 +231,7 @@ The form language is rectilinear and instrument-like. Corners are square (0px ra
 ### Navigation
 - **Style:** 12px Inter links in muted blue-grey, spaced 27px apart on a 64px sticky header.
 - **States:** Hover lifts to ink; the current page uses ink plus a 1px cyan underline. Focus is a 1px cyan outline with 3px offset.
-- **Stage link:** Separated by a 1px left rule and set in 10px mono uppercase, with a cyan dot and "Stage 02 / Audio active". On mobile it collapses to "Stage 02" plus the dot.
+- **Stage link:** Separated by a 1px left rule and set in 12px mono uppercase, with a cyan dot and "Stage 03 / Three instruments". On mobile it collapses to "Stage 03" plus the dot.
 
 ### Buttons and Links
 - **Primary button:** A square, filled cyan control with a dark label, 10px mono uppercase, used for Play and Retry. Hover lightens; focus uses the global cyan outline.
@@ -286,10 +286,43 @@ The form language is rectilinear and instrument-like. Corners are square (0px ra
 - **Rows:** 48, thinned on narrow screens without changing the reading order. Columns: step, longitude, latitude, SST, speed, bearing, and a missing-data marker.
 - **Rule:** The table carries the same numbers as the sound. It is not a decorative appendix.
 
+## Stage 3 — Three Experiences
+
+### Landing
+- **Role:** One screen that states the platform idea, then three experience cards with equal weight.
+- **Hero:** A single sentence set large, one explanatory paragraph, a data-status line, and two actions. The right column is a factual record, not a marketing metric block.
+- **Cards:** Each card carries a small instrument-specific diagram, a numbered index, the experience name, its scientific subtitle, a three-line "what you will hear" list, three dataset facts, and one entry action. The entire card is a link.
+- **Visual language:** The mini diagrams use the same Abyss plate, cyan signal, and hairline grid as the instruments. They are illustrative and marked decorative; no pixel is a measurement.
+- **Responsive:** Three columns at desktop, one column below 1100px. Cards keep the visual above the copy on mobile.
+
+### Carbon Cycle Instrument
+- **Field bar:** Year select, selected-period readout, and one sentence separating concentration from emissions.
+- **Diagram:** A conceptual reservoir/flow plate, not a map. Atmosphere is a concentration state; ocean, land, and fossil boxes are reservoirs; arrows are annual fluxes. Stroke width follows flux magnitude. The residual is a separate callout.
+- **Labels:** Diagram labels are SVG text sized to remain at least 12px after scaling. At narrow widths the diagram becomes a keyboard-focusable horizontal scroll region with a visible hint.
+- **Layers:** Five independent voices: atmospheric CO₂, carbon emissions, ocean exchange, land uptake, carbon balance.
+- **Reading:** The three headline values become labelled rows, not three narrow columns, so long units never collide. Six flow buttons act as definitions, not data selectors.
+- **Compare:** A disclosure with two year selects and a native table. Difference is arithmetic; the copy refuses trend or causal claims.
+
+### City Air Instrument
+- **Field bar:** City, highlight pollutant, and one sentence naming the stereo convention and the single-monitor limit.
+- **Map:** A geographic control on an Abyss plate. Markers sit at monitor coordinates; marker size follows the selected pollutant. It is not a continuous surface. On compact widths, only the selected and comparison labels are drawn.
+- **Time:** A day select and a real hour slider. Every label names UTC. Missing hours remain missing.
+- **Layers:** PM2.5, NO₂, and ozone, each with its own timbre and independent switch.
+- **Reading:** A labelled row per pollutant with its own unit, plus monitor name, timestamp, site ID, and POC.
+- **Compare:** Two monitors at the same UTC hour in a native table; missing values are labelled, never ranked.
+- **Map labels:** Canvas city labels are 12px; the 9–10px exception is limited to graticule ticks.
+
+### Shared Reading and Transport
+- **Transport:** The carbon and city instruments share one transport component: Play/Pause, Stop, sample slider, speed, volume, and fineprint. The slider is a real sample index.
+- **State:** Ready, Running, Paused, Complete. The play control changes its accessible name, not its pressed state.
+- **Reading rows:** Carbon and city values use a label/value row instead of a three-column grid. This is the default when a unit or value can exceed a narrow column.
+- **Diagrams:** SVG text is functional text and follows the 12px legibility floor after scaling. Canvas tick labels are the only 9–10px exception.
+- **No card grids for data:** Experience cards are navigation; scientific values stay in plates, tables, and definition lists.
+
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep the computed field plate as the largest, first-read object on Explore.
+- **Do** keep the computed field plate as the largest, first-read object on the ocean experience.
 - **Do** use 1px hairlines and tonal surfaces to separate regions before reaching for any shadow.
 - **Do** pair every status color with a text label and a nearby reason.
 - **Do** reserve IBM Plex Mono for identifiers, coordinates, timestamps, units, measurements, and machine status.
@@ -306,6 +339,6 @@ The form language is rectilinear and instrument-like. Corners are square (0px ra
 - **Don't** map a missing value to zero, to the coldest temperature, or to slack water.
 - **Don't** call the data live, current, or a forecast.
 - **Don't** describe particle displacement as real-time or to scale.
-- **Don't** use marketing hero metrics, card grids, oversized slogans, or chart-like ornament that implies data we do not have.
+- **Don't** use marketing hero metrics, decorative card grids, oversized slogans, or chart-like ornament that implies data we do not have.
 - **Don't** make a disabled control look active or hide the reason it cannot be used.
 - **Don't** use the mono face for prose.

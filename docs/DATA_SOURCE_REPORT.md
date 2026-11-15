@@ -1,10 +1,10 @@
 # Data Source Report
 
 **Project:** Earth's Pulse — NASA Space Apps Challenge
-**Stage:** 02, working sonification instrument
+**Stage:** 03, three working sonification instruments
 **Validation date:** 14 November 2026
 **Author:** Earth's Pulse project
-**Status:** Numerical OSCAR and OISST fields are connected. Sonification is implemented. ECCO2 numerical fields were not obtained. The NASA SVS 3912 render remains a separate reference.
+**Status:** Numerical ocean, carbon, and air-quality records are connected. Three Web Audio instruments are implemented. ECCO2 numerical fields were not obtained; the NASA SVS 3912 render remains a separate reference.
 
 This report records what was actually verified, how it was verified, what the project can claim, and what remains unresolved. A fact appears here only if it was read from a named publisher, measured from a file in this repository, or computed from the bundled dataset.
 
@@ -241,3 +241,109 @@ npm run verify:mapping              # mapping determinism and missing-data check
 ```
 
 The fetch script targets the 15th of each month in 2012. If a month lacks a nearby OSCAR composite, it logs and continues rather than inventing one. The exact source timestamps used are recorded per frame in the JSON.
+
+---
+
+## 11. Carbon record verification
+
+### Sources
+
+| Source | Product | Period | Unit | Nature |
+| --- | --- | --- | --- | --- |
+| NOAA Global Monitoring Laboratory | Mauna Loa annual mean CO₂ | 1959–2024 | ppm | Measured atmospheric concentration at one benchmark station |
+| Global Carbon Project | Global Carbon Budget 2025, global summary | 1959–2024 | GtC/yr | Annual global budget estimates |
+| openclimatedata mirror | CSV mirror of the GCB summary | 1959–2024 | GtC/yr | Reproducible build input; DOI 10.18160/gcp-2025 |
+
+The bundled record is the intersection of the two series. The build verifies that each year has both a concentration and a complete budget before writing it. No value is interpolated.
+
+### Verified contents
+
+- **66 annual records, 1959–2024.**
+- CO₂: **315.98–424.61 ppm** (2024: 424.61).
+- Total emissions (`fossil + landUse`): **4.61–11.79 GtC/yr** (2024: 11.79).
+- Fossil emissions: **2.42–10.53 GtC/yr**.
+- Land-use emissions: **1.26–2.16 GtC/yr**.
+- Ocean sink: **1.02–3.39 GtC/yr**, positive in every year.
+- Land sink: **0.21–3.29 GtC/yr**.
+- Budget residual: **−1.91 to +1.91 GtC/yr**.
+- Annual CO₂ change is derived from consecutive annual means; 1959 has no prior year and is reported as unavailable, not zero.
+- The atmospheric growth, cement carbonation, and sink sum are retained so the budget identity can be checked.
+- Bundle: `public/data/carbon-1959-2024.json`, 10.2 KB.
+
+### What is not in the record
+
+- Ocean, land, or geological carbon **stocks**.
+- A global spatial field or national inventory.
+- Monthly, daily, or gridded values.
+- A forecast, a live concentration, or a causal attribution.
+- Uncertainty propagation into the audio.
+
+### Verification
+
+`npm run verify:carbon` checks the year count, period, units, non-null values, the emissions identity, monotonic plausibility of concentration, ranges, and provenance/limitation strings. `npm run verify:carbon-mapping` checks the five voice mappings, independence of concentration and annual change, sign handling for negative fluxes, and determinism.
+
+### Limits
+
+The concentration is measured at Mauna Loa, Hawaii. It is a benchmark station, not a global mean. The sinks are model-based global estimates with uncertainties of roughly ±0.4 GtC/yr (ocean), ±0.5 GtC/yr (land), ±0.7 GtC/yr (land-use), and ±5% (fossil). The residual measures imperfect accounting; it is not “missing carbon.”
+
+## 12. Air-quality record verification
+
+### Sources
+
+| Source | Product | Period | Resolution |
+| --- | --- | --- | --- |
+| US EPA AirData | Hourly PM2.5 (`88101`), NO₂ (`42602`), ozone (`44201`) | 2023 | Hourly, UTC |
+
+### City and monitor selection
+
+Eight cities are represented by one co-located ground monitor that reports all three pollutants. The build uses a per-pollutant POC map for each city's specific site; using a single POC across all pollutants was an early bug and is now prevented by the per-pollutant `wanted` map.
+
+| City | Monitor | Site ID |
+| --- | --- | --- |
+| Los Angeles, CA | Los Angeles-North Main Street | 06/037/1103 |
+| Seattle, WA | Seattle - Beacon Hill | 53/033/0080 |
+| Denver, CO | La Casa | 08/031/0026 |
+| Houston, TX | Houston East | 48/201/1034 |
+| Minneapolis, MN | Near Road I-35/I-94 | 27/053/0962 |
+| New York, NY | Queens College 2 | 36/081/0124 |
+| Phoenix, AZ | West Phoenix | 04/013/0019 |
+| Philadelphia, PA | North East Waste (NEW) | 42/101/0048 |
+
+Pollutant-specific POCs are stored per city and displayed in the reading panel.
+
+### Verified contents
+
+- **8 cities × 8,760 hours = 70,080 city-hours** before missing-value filtering.
+- PM2.5: **69,074 valid city-hours**, reported range **−9 to 1,069 µg/m³**, 98th percentile **31.9**.
+- NO₂: **66,135 valid city-hours**, reported range **−2.5 to 70.4 ppb**, 98th percentile **39.4**.
+- Ozone: **65,043 valid city-hours**, reported range **−0.001 to 0.136 ppm**, 98th percentile **0.066**.
+- Nulls are preserved. No hour is filled from a daily average, a nearby station, or a seasonal model.
+- A few reported values are slightly negative. They are preserved as reported instrument noise or zero drift, not replaced with zero.
+- Bundle: `public/data/air-quality-2023.json`, 0.93 MB.
+
+### What is not in the record
+
+- A city-wide average or a continuous pollution surface.
+- A satellite-derived atmospheric column.
+- Live air quality, a forecast, or a health warning.
+- Source attribution, chemical composition, or compliance with any standard.
+- Any value for a city-hour not reported by the selected monitor.
+
+### Verification
+
+`npm run verify:air` checks the eight city identities, 8,760-hour length, null preservation, units, ranges, valid counts, and source strings. `npm run verify:air-mapping` checks the three pollutant voices, west/east stereo, missing-layer silence, and deterministic output.
+
+### Limits
+
+A single point monitor is not a city-wide average and is not street-level precision for the whole city. Local siting and methods differ. Ozone is often measured seasonally, so winter gaps are normal and are not zero. The data do not establish health effects, pollution sources, or regulatory compliance.
+
+## 13. Reproduction — all records
+
+```bash
+node scripts/fetch-ocean-data.mjs          # OSCAR + OISST → ocean-2012.*
+node scripts/build-carbon-data.mjs         # NOAA GML + GCB → carbon-1959-2024.json
+node scripts/build-air-quality-data.mjs    # EPA AirData → air-quality-2023.json
+npm run verify                             # all data and mapping checks
+```
+
+The ocean and air scripts use cached downloads in `scripts/.cache/`; carbon reads the cached source files. Rebuilding does not call any API from the browser.

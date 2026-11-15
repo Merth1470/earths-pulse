@@ -175,3 +175,113 @@ Manual browser checks used in this build:
 - Natural Earth 110m land (coastlines).
 
 Full access log and unresolved provenance questions: [`DATA_SOURCE_REPORT.md`](DATA_SOURCE_REPORT.md).
+
+---
+
+## 9. The carbon cycle experience
+
+The carbon instrument is not a second ocean view. It is a separate global annual record, and the interface keeps four kinds of quantity apart.
+
+| Quantity | Example | Unit | What it is |
+| --- | --- | --- | --- |
+| Concentration | 424.61 ppm CO₂ | ppm | A state of the atmosphere at one benchmark station |
+| Emission | 10.53 GtC/yr fossil | GtC/yr | A flow into the atmosphere over a year |
+| Flux / sink | +3.39 GtC/yr ocean | GtC/yr | A transfer between reservoirs; positive means into the reservoir |
+| Stock | not estimated | — | An amount stored at a moment; this bundle does not estimate it |
+| Residual | −1.69 GtC/yr | GtC/yr | Emissions minus growth and sinks; an accounting gap, not a physical flux |
+
+### 9.1 Sources and period
+
+- **NOAA Global Monitoring Laboratory**, Mauna Loa annual mean CO₂, ppm. One benchmark station, not a global spatial mean.
+- **Global Carbon Budget 2025**, global summary, GtC/yr, DOI `10.18160/gcp-2025`.
+- The bundled record is the intersection: **1959–2024, 66 years**. No year is interpolated.
+- `co2AnnualChangePpm` is derived as the difference from the previous year. The first year has no prior value and is reported as unavailable, not zero.
+- Total emissions are `fossilGtC + landUseGtC`. The residual follows the source budget identity, including the cement carbonation sink.
+
+### 9.2 Five independent layers
+
+The mapping is pure (`src/lib/carbon/mapping.ts`). Normalization uses the 2nd–98th percentiles of the 66-year series; raw values outside that range remain in the reading and saturate in sound.
+
+| Voice | Variable | Mapping |
+| --- | --- | --- |
+| Atmosphere | CO₂ concentration | Pitch `110 × 2^co2Norm` Hz, 110–220 Hz; low-pass cutoff 320–1620 Hz |
+| Atmosphere tremolo | Absolute year-to-year change | 0.06–0.56 Hz, independent of concentration |
+| Fossil pulse | Fossil + industrial emissions | Regular pulse, 0.8–4.2 Hz; cutoff 500–1700 Hz |
+| Land-use pulse | Land-use change emissions | Separate darker pulse, 0.25–1.35 Hz; cutoff 180–680 Hz |
+| Ocean tide | Ocean sink | Filtered noise; magnitude 0.014–0.061 gain; sign flips pan |
+| Land band | Land sink | Higher filtered band; magnitude 0.012–0.055 gain; sign flips pan |
+| Balance anchor | Budget residual | Low tone 55–78 Hz; magnitude sets gain; the anchor stays centered |
+
+The atmosphere layer includes its tremolo. “Carbon emissions” is one layer switch covering the two separate emission pulses. The other four layers are atmosphere, ocean, land, and balance.
+
+### 9.3 What the sound does not establish
+
+- That a concentration rise was caused by a particular emitter.
+- That a global sink operates the same way at a specific place.
+- That the residual is missing carbon rather than imperfect accounting.
+- That an annual global value is a forecast, a national inventory, or a stock.
+- That a louder layer is more important or more dangerous.
+
+The diagram is conceptual and not to scale. It is not a map, and its box areas are not quantities.
+
+## 10. The city air experience
+
+The city instrument uses ground-level station records, not a satellite column and not a continuous surface.
+
+### 10.1 Sources and period
+
+- **US EPA AirData** pre-generated hourly files for 2023.
+- Parameter codes: PM2.5 `88101`, NO₂ `42602`, ground-level ozone `44201`.
+- Eight cities, one co-located monitor per city reporting all three pollutants.
+- **8,760 hours per city in UTC**; nulls preserved. No hour is interpolated from a daily average or a nearby station.
+- Valid city-hours: 69,074 PM2.5; 66,135 NO₂; 65,043 ozone. Ozone is often monitored seasonally, so winter gaps are expected.
+- A few reported values are slightly negative. They are preserved as reported instrument noise/zero drift, not replaced with zero.
+
+### 10.2 Mapping
+
+Normalization uses each pollutant's 2nd–98th percentile over all city-hours.
+
+| Variable | Mapping |
+| --- | --- |
+| PM2.5 | Low filtered-noise haze; cutoff 220–1500 Hz; gain 0.009–0.055 |
+| NO₂ | Reedy pulse; 0.55–4.2 Hz; pitch 150–270 Hz; cutoff 420–1500 Hz |
+| Ozone | Bright high band; cutoff 800–2600 Hz; gain 0.006–0.038 |
+| Longitude | Stereo pan `clamp((lon + 98) / 27, −1, 1) × 0.9`; west left, east right |
+| Hour | Playback order through the selected UTC day |
+
+A missing pollutant silences only its voice; the other two continue. A missing hour is not turned into a zero. The map marker size follows the selected pollutant's concentration, but the map is a control: all eight places are available from a standard select.
+
+### 10.3 What the sound does not establish
+
+- That one city is more polluted overall.
+- That a single monitor represents every neighbourhood or every person.
+- That a high value is a health diagnosis or a compliance result.
+- That a winter ozone gap is zero.
+- That 2023 values describe the present.
+- That stereo position is a physical direction in the atmosphere.
+
+The comparison view shows two monitors at the same UTC hour. It is a comparison, not a ranking; units differ by pollutant and are kept visible.
+
+## 11. Extended verification
+
+```bash
+npm run verify
+```
+
+The six checks cover:
+
+- Ocean binary: 12 frames, 240 × 106 grid, byte length, valid counts, ranges, statistics, normalization.
+- Ocean mapping: monotonic pitch/rate/pan, missing-value silence, exact determinism.
+- Carbon data: 66 records, unit identities, ranges, provenance strings.
+- Carbon mapping: independent concentration and change, negative-flux direction, deterministic output.
+- Air data: 8 cities, 8,760 hours, null preservation, pollutant ranges, source strings.
+- Air mapping: pollutant voice ranges, west/east pan, missing-layer silence, determinism.
+
+Manual browser checks also cover one `AudioContext` per mounted instrument, suspension on pause/stop, disposal and close on route change, no stale audio, and no console errors.
+
+## 12. Extended citations
+
+- NOAA Global Monitoring Laboratory, Mauna Loa CO₂ annual mean. <https://gml.noaa.gov/ccgg/trends/>
+- Global Carbon Project (2025). Global Carbon Budget 2025. DOI 10.18160/gcp-2025.
+- US Environmental Protection Agency, AirData / Air Quality System, 2023 hourly files. <https://aqs.epa.gov/aqsweb/airdata/download_files.html>
+- Natural Earth 110m land, public domain.

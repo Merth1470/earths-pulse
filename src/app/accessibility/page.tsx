@@ -3,16 +3,20 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { PageIntro } from "@/components/layout/PageIntro";
+import { AIR_MAPPING_ROWS } from "@/lib/air/mapping";
 import { MAPPING_ROWS } from "@/lib/audio/mapping";
+import { CARBON_MAPPING_ROWS } from "@/lib/carbon/mapping";
 
 export const metadata: Metadata = {
   title: "Accessibility",
   description:
-    "How to use Earth's Pulse without relying on the visual field: keyboard controls, spoken readings, text equivalents, reduced motion, and the limits of the sonification.",
+    "How to use all three Earth's Pulse experiences without relying on the visual field: keyboard controls, spoken readings, text equivalents, reduced motion, and the limits of sonification.",
 };
 
 const contents = [
   { href: "#nonvisual", label: "Nonvisual path" },
+  { href: "#carbon", label: "Carbon path" },
+  { href: "#air", label: "City path" },
   { href: "#keyboard", label: "Keyboard" },
   { href: "#sounds", label: "Sound meanings" },
   { href: "#speech", label: "Spoken readings" },
@@ -26,12 +30,12 @@ export default function AccessibilityPage() {
       <PageIntro
         aside={
           <>
-            <span>Stage 02</span>
+            <span>Stage 03</span>
             <span>Access guide</span>
             <span>Keyboard · speech · text</span>
           </>
         }
-        lede="The ocean is not only a picture. This page explains how to explore the field with a keyboard, with sound, with speech, or with text alone — and where each path stops."
+        lede="The ocean, the carbon cycle, and a city's air are not only pictures. This page explains how to explore each instrument with a keyboard, with sound, with speech, or with text alone — and where each path stops."
         title="Accessibility"
       />
 
@@ -42,9 +46,9 @@ export default function AccessibilityPage() {
               No single sense is required to read the field.
             </p>
             <p className="prose">
-              The Explore instrument carries the same information in three
-              forms: a visual field, an audio encoding, and a text reading. The
-              audio is an access path, not a replacement for the data. Every
+              Each instrument carries the same information in three forms: a
+              visual field or diagram, an audio encoding, and a text reading.
+              The audio is an access path, not a replacement for the data. Every
               sampled value is printed, and every current value can be read
               aloud on demand.
             </p>
@@ -112,6 +116,85 @@ export default function AccessibilityPage() {
             </ol>
           </section>
 
+          <section className="prose-section" id="carbon">
+            <h2>The carbon path</h2>
+            <div className="prose">
+              <p>
+                The carbon instrument is a single annual sequence from 1959 to
+                2024. The Year select and the Carbon year slider reach the same
+                66 records; each step changes all five voices together.
+              </p>
+              <ul className="marker-list">
+                <li>
+                  Choose a year, or press Play to run the annual sequence. The
+                  reading panel prints the CO₂ concentration, total emissions,
+                  and ocean sink for that year.
+                </li>
+                <li>
+                  The six flow buttons in the reading panel select a definition:
+                  atmosphere, fossil emissions, land-use emissions, ocean sink,
+                  land sink, and budget residual. Each button names the value and
+                  explains what it is, and is not.
+                </li>
+                <li>
+                  The visual reservoir diagram is conceptual, not a map. On a
+                  narrow screen it scrolls horizontally; the same values remain in
+                  the reading panel and its flow detail.
+                </li>
+                <li>
+                  Layer switches mute the atmosphere, emissions, ocean, land, or
+                  balance voice. Muting changes sound only; the value stays in
+                  the reading.
+                </li>
+                <li>
+                  “Speak each year” reads every fifth annual step through browser
+                  speech. The live region is removed while speech is on, so the
+                  same value is not announced twice.
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section className="prose-section" id="air">
+            <h2>The city path</h2>
+            <div className="prose">
+              <p>
+                The city instrument is a set of eight ground monitors at hourly
+                resolution. The map is a control, not the measurement: every city
+                is also available from a standard select.
+              </p>
+              <ul className="marker-list">
+                <li>
+                  Choose a City, a Highlight pollutant, a Day, and an Hour. The
+                  reading panel prints the monitor, UTC timestamp, all three
+                  pollutant values, units, site identifier, and POC.
+                </li>
+                <li>
+                  The Day select jumps to a date; the Hour slider moves one hour
+                  at a time and reports its value text as a time and date.
+                </li>
+                <li>
+                  Activate Play to hear the selected day hour by hour. Pause,
+                  resume, stop, seek, speed, and volume behave like the ocean
+                  transport.
+                </li>
+                <li>
+                  Each pollutant layer can be muted independently. A missing hour
+                  stays silent and is named; it is never read as zero.
+                </li>
+                <li>
+                  “Speak each hour” reads every fourth hour through browser
+                  speech. The live region is removed while speech is on.
+                </li>
+                <li>
+                  The comparison section shows two monitors at the same UTC hour.
+                  It is not a ranking; each value keeps its own unit and missing
+                  values are not ranked.
+                </li>
+              </ul>
+            </div>
+          </section>
+
           <section className="prose-section" id="keyboard">
             <h2>Keyboard operation</h2>
             <div className="table-wrap" role="region" aria-label="Keyboard controls" tabIndex={0}>
@@ -143,9 +226,9 @@ export default function AccessibilityPage() {
                     <td>Moves along the transect; the reading updates.</td>
                   </tr>
                   <tr>
-                    <th scope="row">Region / month</th>
+                    <th scope="row">Ocean / carbon / city selects</th>
                     <td>Arrow keys on the select</td>
-                    <td>Changes the field and resets playback.</td>
+                    <td>Changes the sample set and resets or seeks playback.</td>
                   </tr>
                   <tr>
                     <th scope="row">Layers, speech, volume</th>
@@ -182,6 +265,36 @@ export default function AccessibilityPage() {
                 </div>
               ))}
             </dl>
+            <h3>The carbon voices</h3>
+            <dl className="encoding-rows">
+              {CARBON_MAPPING_ROWS.map((row) => (
+                <div className="encoding-row" key={row.variable}>
+                  <dt>
+                    <span>{row.variable}</span>
+                    <span className="encoding-arrow" aria-hidden="true">
+                      →
+                    </span>
+                    <span className="encoding-sound">{row.sound}</span>
+                  </dt>
+                  <dd>{row.explanation}</dd>
+                </div>
+              ))}
+            </dl>
+            <h3>The city voices</h3>
+            <dl className="encoding-rows">
+              {AIR_MAPPING_ROWS.map((row) => (
+                <div className="encoding-row" key={row.variable}>
+                  <dt>
+                    <span>{row.variable}</span>
+                    <span className="encoding-arrow" aria-hidden="true">
+                      →
+                    </span>
+                    <span className="encoding-sound">{row.sound}</span>
+                  </dt>
+                  <dd>{row.explanation}</dd>
+                </div>
+              ))}
+            </dl>
             <p className="fine-print">
               The temperature voice is a continuous tone, not a scale. Warm
               water raises it across two octaves. The pulse is a repeating
@@ -195,16 +308,17 @@ export default function AccessibilityPage() {
             <h2>Spoken readings</h2>
             <div className="prose">
               <p>
-                A polite live region announces every fourth sample by default.
-                Enabling “Speak every fourth step” switches to the browser
-                speech voice and removes the live region, so the two paths do not
-                duplicate. “Read this aloud” speaks the current sample on demand.
+                Each instrument has its own interval: every fourth ocean sample,
+                every fifth carbon year, and every fourth city hour. The live
+                region is polite by default; enabling the speech checkbox
+                switches to the browser speech voice and removes the live region,
+                so the two paths do not duplicate. The read-aloud button speaks
+                the current value on demand.
               </p>
               <p>
-                A reading names longitude, latitude, sea surface temperature,
-                current speed, and compass direction, and states when a value is
-                missing. It does not describe the whole ocean or make a claim
-                beyond the sample.
+                A reading names the sample, its place or period, its values and
+                units, and states when a value is missing. It does not describe
+                the whole system or make a claim beyond that sample.
               </p>
             </div>
           </section>

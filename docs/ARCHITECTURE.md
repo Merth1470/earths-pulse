@@ -1,20 +1,23 @@
 # Architecture
 
 **Project:** Earth's Pulse
-**Stage:** 02, working sonification instrument
+**Stage:** 03, three working sonification instruments
 **Stack:** Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4, Canvas 2D, Web Audio API
-**Status:** Static routes, client-side data load, real audio, no database, no authentication, no runtime NASA API calls.
+**Status:** Static routes, client-side data load, three Web Audio engines, no database, no authentication, no runtime NASA/NOAA API calls.
 
 ---
 
 ## 1. Purpose
 
-The app turns a reduced, verified ocean dataset into two synchronized outputs:
+The app turns three reduced, verified datasets into synchronized sound, visual, and text outputs. The ocean experience is the deepest implementation; the carbon and city instruments reuse the same evidence contract with their own engines.
 
-1. **Sound** — a deterministic three-voice mapping of temperature and current.
-2. **A visual field** — an SST raster, advected current particles, a transect band, and a playhead.
+Each experience keeps its data separate:
 
-A text reading panel and a full transect table carry the same numbers, so the experience does not depend on seeing the canvas or hearing the audio.
+1. **Sound** — a deterministic mapping from physical values to bounded audio parameters.
+2. **A visual** — an SST raster and current field, a conceptual carbon reservoir/flow diagram, or a city monitor map.
+3. **Text** — a reading panel, tables or definitions, speech, and a live region.
+
+No experience depends on seeing a canvas or hearing the audio to reach its values.
 
 The architecture keeps four things separate:
 
@@ -41,18 +44,19 @@ The NASA SVS 3912 still is outside this path. It is a reference image, not a dat
 | Concern | Implementation |
 | --- | --- |
 | Rendering | Next.js App Router; pages prerendered; the instrument is a client component |
-| Routes | `/`, `/about`, `/data-sources`, `/accessibility`, plus `error` and `not-found` |
-| Data source | `public/data/ocean-2012.bin` and `.json` fetched by the browser |
+| Routes | `/`, `/ocean`, `/carbon`, `/air-quality`, `/about`, `/data-sources`, `/accessibility`, plus `error` and `not-found` |
+| Data sources | `public/data/ocean-2012.{bin,json}`, `carbon-1959-2024.json`, `air-quality-2023.json`, fetched by the browser |
 | External calls at runtime | None (the ocean data is local; source links open in a new tab) |
 | Database | None |
 | Authentication | None |
 | API routes | None |
-| Audio | Web Audio API; one `AudioContext` per mounted instrument |
+| Audio | Web Audio API; one `AudioContext` per mounted instrument; disposed on unmount |
 | Visualization | Canvas 2D with DPR capped at 2; three offscreen layers (raster, trails, land) |
 | Styling | One global stylesheet with CSS design tokens |
 | Fonts | Self-hosted `next/font/local` |
 | Images | One local NASA JPEG used as a reference plate on About/Data Sources |
-| Deployment | Any Node host that supports Next.js static output; all four routes prerender |
+| Map geometry | Natural Earth 110m land GeoJSON, local |
+| Deployment | Any Node host that supports Next.js static output; all seven public pages prerender |
 
 The app does not call NASA or NOAA at runtime. A demo should not fail because a government server is slow, and the browser should not download raw NetCDF collections.
 
@@ -62,7 +66,10 @@ The app does not call NASA or NOAA at runtime. A demo should not fail because a 
 
 | Route | Role |
 | --- | --- |
-| `/` | The instrument: field controls, map, transport, reading, data record, transect table |
+| `/` | Landing page for the three experiences |
+| `/ocean` | Ocean instrument: field controls, map, transport, reading, data record, transect table |
+| `/carbon` | Carbon instrument: year control, five voices, conceptual diagram, reading, comparison |
+| `/air-quality` | City instrument: city/pollutant controls, map, hourly timeline, three voices, comparison |
 | `/about` | Purpose, method, what the project is and is not |
 | `/data-sources` | Provenance, sample times, claims, limitations, source links |
 | `/accessibility` | The nonvisual path, keyboard map, speech behavior |
@@ -91,15 +98,26 @@ earths-pulse/
 │   └── data/
 │       ├── ocean-2012.bin
 │       ├── ocean-2012.json
+│       ├── carbon-1959-2024.json
+│       ├── air-quality-2023.json
 │       └── ne_110m_land.geojson
 ├── scripts/
 │   ├── fetch-ocean-data.mjs
+│   ├── build-carbon-data.mjs
+│   ├── build-air-quality-data.mjs
 │   ├── verify-ocean-data.mjs
-│   └── verify-sonification.mjs
+│   ├── verify-sonification.mjs
+│   ├── verify-carbon-data.mjs
+│   ├── verify-carbon-sonification.mjs
+│   ├── verify-air-quality-data.mjs
+│   └── verify-air-sonification.mjs
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx
-│   │   ├── page.tsx                 Explore
+│   │   ├── page.tsx                 Landing
+│   │   ├── ocean/page.tsx           Ocean instrument
+│   │   ├── carbon/page.tsx          Carbon instrument
+│   │   ├── air-quality/page.tsx     City air instrument
 │   │   ├── about/page.tsx
 │   │   ├── data-sources/page.tsx
 │   │   ├── accessibility/page.tsx
@@ -283,7 +301,7 @@ npm run build
 npm run verify
 ```
 
-All four routes prerender. The app has no server-side data fetching and no secrets.
+All seven public pages prerender. The app has no server-side data fetching and no secrets.
 
 Manual browser checks used in this build:
 
@@ -316,3 +334,77 @@ The `verify` scripts are independent of the UI: they decode the committed binary
 - There is no uncertainty field, no subsurface dimension, and no volume transport.
 - The project is not an official NASA product.
 - The ECCO2 numerical fields behind the SVS reference were not obtained.
+
+---
+
+## 17. Stage 3 — three instruments
+
+### 17.1 Route and mount model
+
+| Path | Client component | Data | Engine |
+| --- | --- | --- | --- |
+| `/` | none (server landing) | static experience copy | none |
+| `/ocean` | `OceanInstrument` | `ocean-2012.bin` + JSON | `Sonifier` |
+| `/carbon` | `CarbonInstrument` | `carbon-1959-2024.json` | `CarbonSonifier` |
+| `/air-quality` | `AirInstrument` | `air-quality-2023.json` | `AirSonifier` |
+
+Each instrument mounts exactly one engine and disposes it in its cleanup function. Navigation unmounts the previous page, so the previous `AudioContext` is closed and its interval is cleared. The app intentionally does **not** retain hidden route trees: `cacheComponents` and `partialPrefetching` are disabled in `next.config.ts` because retained hidden pages would leave a second `<h1>` in the document and could keep an old instrument alive. Correct single-instrument lifecycle and a clean accessibility tree win over route-state preservation here.
+
+### 17.2 Shared modules
+
+```text
+src/lib/
+├── audio/
+│   ├── primitives.ts        deterministic noise, pulse curves, target ramps
+│   ├── sonifier.ts          ocean engine
+│   ├── carbon-sonifier.ts   five-layer carbon engine
+│   └── air-sonifier.ts      three-voice city engine
+├── carbon/
+│   ├── types.ts             CarbonDataset, CarbonYear, layer IDs
+│   ├── dataset.ts           load, index, format, describe
+│   └── mapping.ts           pure audio mapping + limits + rows
+├── air/
+│   ├── types.ts             AirDataset, AirCity, AirSample
+│   ├── dataset.ts           load, time indexing, format, describe
+│   └── mapping.ts           pure audio mapping + pan + rows
+└── browser/
+    ├── useDataset.ts        abortable fetch + retry state
+    └── useMediaQuery.ts     reduced motion
+```
+
+`TransportBar` and `LayerSwitches` are presentational: they emit intent and own no audio. `CarbonInstrument` and `AirInstrument` own their engine refs, transport state, loading/error UI, speech, and layer state.
+
+### 17.3 Data contracts
+
+- **Ocean:** binary Int16, frame-major `(sst, u, v)`, fill `-32768`, plus JSON normalization and provenance. `OceanSample` values are `number | null`.
+- **Carbon:** JSON with `years: number[]` and variable-major `series`; every series value is `number | null` (the first annual change is null). Metadata carries normalization, definitions, statistics, sources, and limitations.
+- **Air:** JSON with eight cities and three nullable hourly series per city. Time is a UTC index `0..8759`; `airSampleAt` reads one city at one index and does not aggregate. Missing values remain `null` all the way to the mapping.
+
+No rendered pixel is read back into any of these contracts.
+
+### 17.4 Audio graphs
+
+All three engines share the same primitives and lifecycle shape:
+
+- Lazily create `AudioContext` on the first Play (user gesture).
+- Build a master gain and a `DynamicsCompressorNode`.
+- Start oscillators/noise once, keep them running, and gate voices with gain ramps.
+- `play()` resumes a suspended context and starts a scheduling interval.
+- `pause()` captures the fractional step, suspends the context.
+- `stop()` silences every voice, resets the step, and suspends.
+- `seek()` moves to a real step and notifies the UI.
+- `dispose()` stops sources, disconnects, closes the context, and nulls references.
+
+Carbon has five layer switches (atmosphere, emissions, ocean, land, balance); emissions contains two independent pulses. Air has three pollutant switches. Ocean has temperature, current pulse, and flow texture.
+
+### 17.5 Performance and data size
+
+- Ocean: 1.75 MB binary, decoded once per mount.
+- Carbon: 10.2 KB JSON, negligible.
+- Air: 0.93 MB JSON, parsed once per mount; the map renders only eight markers and uses static Natural Earth geometry.
+- Canvas DPR is capped at 2. The air map is a single Canvas 2D pass per state change, not an animation loop.
+- No runtime government API calls, no database, no analytics, no LLM.
+
+### 17.6 Verification surface
+
+`npm run verify` runs six data/mapping checks. TypeScript, ESLint, and `next build` are separate gates. The browser QA script covers transport lifecycle, context disposal on client navigation, speech/live-region exclusivity, real sample movement, and console errors at desktop and mobile widths.

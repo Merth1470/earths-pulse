@@ -9,11 +9,13 @@ import { NASA_SVS_RECORD } from "@/lib/nasa/sources";
 export const metadata: Metadata = {
   title: "Data Sources",
   description:
-    "Provenance for Earth's Pulse: the OSCAR and NOAA OISST fields behind the sonification, the reduction pipeline, NASA SVS record 3912 as reference, and the unresolved ECCO2 numerical-data question.",
+    "Provenance for all three Earth's Pulse experiences: the ocean, carbon, and air-quality records, their reduction pipelines, NASA SVS record 3912 as reference, and the unresolved ECCO2 numerical-data question.",
 };
 
 const contents = [
-  { href: "#field", label: "Interactive field" },
+  { href: "#ocean", label: "Ocean field" },
+  { href: "#carbon", label: "Carbon cycle" },
+  { href: "#air", label: "Air quality" },
   { href: "#record", label: "NASA reference" },
   { href: "#layers", label: "Evidence layers" },
   { href: "#limits", label: "Limits" },
@@ -38,6 +40,22 @@ const assets = [
     tone: "available" as const,
     href: "https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg",
     linkLabel: "ERDDAP",
+  },
+  {
+    name: "Bundled carbon record",
+    role: "66 annual global records",
+    state: "1959–2024",
+    tone: "available" as const,
+    href: "/data/carbon-1959-2024.json",
+    linkLabel: "Metadata",
+  },
+  {
+    name: "Bundled air-quality record",
+    role: "8 monitors × 8,760 hours",
+    state: "2023",
+    tone: "available" as const,
+    href: "/data/air-quality-2023.json",
+    linkLabel: "Metadata",
   },
   {
     name: "Bundled ocean subset",
@@ -79,12 +97,12 @@ export default function DataSourcesPage() {
       <PageIntro
         aside={
           <>
-            <span>Stage 02</span>
+            <span>Stage 03</span>
             <span>Source validation</span>
             <span>{NASA_SVS_RECORD.validatedOn}</span>
           </>
         }
-        lede="What is measured, what is modeled, what is reduced for the browser, and what is still missing. This page separates the numerical field, the sonification, NASA's reference render, and the unresolved ECCO2 question."
+        lede="What is measured, what is modeled, what is reduced for the browser, and what is still missing. Each experience has its own period, resolution, units, and limits; none of them is a live feed."
         title="Data sources and provenance"
       />
 
@@ -93,27 +111,27 @@ export default function DataSourcesPage() {
           <section className="prose-section">
             <div className="source-summary">
               <div>
-                <p className="aside-label">Interactive field</p>
+                <p className="aside-label">Bundled records</p>
                 <p className="source-summary-title">
-                  OSCAR currents + NOAA OISST temperature
+                  Ocean · carbon · air quality
                 </p>
                 <p>
-                  Twelve monthly composites from 2012, reduced to a public
-                  1.5° global grid and bundled with the application.
+                  Three separate products with different periods and resolutions,
+                  reduced to small public bundles and shipped with the app.
                 </p>
               </div>
               <dl>
                 <div>
-                  <dt>Period</dt>
-                  <dd className="record-mono">Jan — Dec 2012</dd>
+                  <dt>Ocean</dt>
+                  <dd className="record-mono">12 months · 2012</dd>
                 </div>
                 <div>
-                  <dt>Grid</dt>
-                  <dd className="record-mono">240 × 106 cells</dd>
+                  <dt>Carbon</dt>
+                  <dd className="record-mono">66 years · 1959–2024</dd>
                 </div>
                 <div>
-                  <dt>Access</dt>
-                  <dd>Public · no login</dd>
+                  <dt>Air</dt>
+                  <dd className="record-mono">8 × 8,760 hours · 2023</dd>
                 </div>
               </dl>
             </div>
@@ -127,7 +145,7 @@ export default function DataSourcesPage() {
             </p>
           </section>
 
-          <section className="prose-section" id="field">
+          <section className="prose-section" id="ocean">
             <h2>The interactive field</h2>
             <p className="prose">
               The browser does not download the original archives. A reproducible
@@ -212,6 +230,193 @@ export default function DataSourcesPage() {
                 </dd>
               </div>
             </dl>
+          </section>
+
+          <section className="prose-section" id="carbon">
+            <h2>The carbon cycle</h2>
+            <div className="source-summary">
+              <div>
+                <p className="aside-label">Annual global record</p>
+                <p className="source-summary-title">
+                  NOAA Mauna Loa CO₂ + Global Carbon Budget 2025
+                </p>
+                <p>
+                  Concentration and annual flows are kept separate. The first is
+                  a measured state at one benchmark station; the others are
+                  global budget estimates.
+                </p>
+              </div>
+              <dl>
+                <div>
+                  <dt>Period</dt>
+                  <dd className="record-mono">1959 — 2024</dd>
+                </div>
+                <div>
+                  <dt>Records</dt>
+                  <dd className="record-mono">66 annual</dd>
+                </div>
+                <div>
+                  <dt>Bundle</dt>
+                  <dd className="record-mono">10.2 KB JSON</dd>
+                </div>
+              </dl>
+            </div>
+            <p className="prose">
+              The atmospheric series is the NOAA Global Monitoring Laboratory
+              annual mean CO₂ mixing ratio at Mauna Loa, Hawaii, in parts per
+              million. The budget series is the global summary of the Global
+              Carbon Budget 2025, in gigatonnes of carbon per year. The bundled
+              record is the intersection of the two series, so every year has
+              both a concentration and a complete budget.
+            </p>
+            <dl className="credits-list">
+              <div>
+                <dt>Concentration</dt>
+                <dd>
+                  NOAA GML Mauna Loa annual mean CO₂, ppm. One benchmark station,
+                  not a global spatial mean.
+                </dd>
+              </div>
+              <div>
+                <dt>Fossil emissions</dt>
+                <dd>
+                  Fossil-fuel and industrial emissions, GtC/yr. Reported
+                  separately from land-use change.
+                </dd>
+              </div>
+              <div>
+                <dt>Land-use emissions</dt>
+                <dd>
+                  Land-use change emissions, GtC/yr, averaged across bookkeeping
+                  models.
+                </dd>
+              </div>
+              <div>
+                <dt>Sinks</dt>
+                <dd>
+                  Ocean and land sinks, GtC/yr. Positive means a net transfer from
+                  the atmosphere into that reservoir.
+                </dd>
+              </div>
+              <div>
+                <dt>Residual</dt>
+                <dd>
+                  Emissions minus atmospheric growth, ocean sink, land sink, and
+                  cement carbonation. A measure of budget imperfection, not a
+                  physical flux.
+                </dd>
+              </div>
+              <div>
+                <dt>Validation</dt>
+                <dd>
+                  66 records; CO₂ 315.98–424.61 ppm; total emissions 4.61–11.79
+                  GtC/yr; ocean sink 1.02–3.39 GtC/yr. The 2024 values are
+                  424.61 ppm and 11.79 GtC/yr.
+                </dd>
+              </div>
+              <div>
+                <dt>Not stored</dt>
+                <dd>
+                  Ocean, land, or geological carbon stocks; national inventories;
+                  monthly or gridded values; any interpolated year.
+                </dd>
+              </div>
+            </dl>
+            <p className="fine-print">
+              Source DOI: 10.18160/gcp-2025. The NOAA annual mean is public data;
+              the Global Carbon Budget is a collaborative scientific assessment.
+              Neither is a live measurement. The openclimatedata CSV mirror is
+              used only to make the build reproducible.
+            </p>
+          </section>
+
+          <section className="prose-section" id="air">
+            <h2>City air quality</h2>
+            <div className="source-summary">
+              <div>
+                <p className="aside-label">Hourly ground monitors</p>
+                <p className="source-summary-title">US EPA AirData 2023</p>
+                <p>
+                  Eight cities, one co-located monitor per city, three pollutants
+                  at the same site and hour. This is a station record, not a
+                  continuous map.
+                </p>
+              </div>
+              <dl>
+                <div>
+                  <dt>Period</dt>
+                  <dd className="record-mono">2023 · hourly UTC</dd>
+                </div>
+                <div>
+                  <dt>Sites</dt>
+                  <dd className="record-mono">8 monitors</dd>
+                </div>
+                <div>
+                  <dt>Bundle</dt>
+                  <dd className="record-mono">0.93 MB JSON</dd>
+                </div>
+              </dl>
+            </div>
+            <p className="prose">
+              PM2.5, NO₂, and ground-level ozone come from the EPA AirData
+              pre-generated hourly files for parameter codes 88101, 42602, and
+              44201. Each city uses one site that reports all three pollutants;
+              the site, state/county/site identifier, latitude, longitude, and
+              pollutant-specific POC are stored with the record.
+            </p>
+            <dl className="credits-list">
+              <div>
+                <dt>PM2.5</dt>
+                <dd>
+                  Fine particulate mass concentration, µg/m³. 69,074 valid
+                  city-hours; reported range −9 to 1,069 µg/m³; 98th percentile
+                  31.9.
+                </dd>
+              </div>
+              <div>
+                <dt>NO₂</dt>
+                <dd>
+                  Nitrogen dioxide mixing ratio, ppb. 66,135 valid city-hours;
+                  reported range −2.5 to 70.4 ppb; 98th percentile 39.4.
+                </dd>
+              </div>
+              <div>
+                <dt>Ozone</dt>
+                <dd>
+                  Ground-level ozone mixing ratio, ppm. 65,043 valid city-hours;
+                  reported range −0.001 to 0.136 ppm; 98th percentile 0.066.
+                </dd>
+              </div>
+              <div>
+                <dt>Resolution</dt>
+                <dd>
+                  One value per hour per city, 8,760 hours in UTC. Nulls are
+                  preserved; no hour is interpolated from a daily average or a
+                  neighbouring station.
+                </dd>
+              </div>
+              <div>
+                <dt>Negative values</dt>
+                <dd>
+                  A few reported values are slightly below zero. They are
+                  preserved as reported instrument noise or zero drift, not
+                  silently replaced with zero.
+                </dd>
+              </div>
+              <div>
+                <dt>Not claimed</dt>
+                <dd>
+                  A city-wide average, a satellite column, live air quality, a
+                  health warning, a source attribution, or a compliance finding.
+                </dd>
+              </div>
+            </dl>
+            <p className="fine-print">
+              The map is a geographic control for the monitors. Marker size and
+              stereo position are derived from the same station value; no
+              surface is interpolated between sites. Ozone is often monitored
+              seasonally, so winter gaps are expected.
+            </p>
           </section>
 
           <section className="prose-section" id="record">
